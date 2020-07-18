@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* NAV */
+
+.nav {
+  width: 100%;
+  background-color: #cb3b3b;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  height: 10vh;
+  align-items: center;
+  padding: 0 3em;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fa-bug {
+  font-size: 21px;
+  padding: 0.5em 0.5em;
+}
+.nav-links p {
+  font-size: 1.3rem;
+  margin-right: 2rem;
+}
+
+.nav-links ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-links ul li {
+  list-style: none;
+  padding: 1em 1em;
+}
+.nav-links ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.welcome {
+  font-size: 1rem;
+}
+
+/* BUTTON */
+.btn {
+  border: none;
+  border-radius: 0.4em;
+  margin: 0.5rem;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 0.5rem 2.5rem;
+  font-size: 1rem;
+  color: White;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  background-color: #85203b;
+}
+
+.createBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+/* CARD */
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0 5vw;
+  color: #e24c4c;
+}
+
+.card {
+  background-color: #f1c5c5;
+  width: 30vw;
+  height: 73vh;
+  margin: 1em 3vw;
+  padding: 1em 1em;
+  border-radius: 3px;
+}
+
+/* BUG ITEM */
+
+.bug-item-container {
+  width: 100%;
+  background-color: #f6e0e0;
+  color: black;
+  margin: 1em 0;
+  padding: 0.5em 0.5em;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  font-size: 0.8em;
+  transition: 0.5s ease;
+}
+
+.bug-item-container:hover {
+  background-color: burlywood;
+  cursor: pointer;
+}
+
+.circle {
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: red;
+  margin: auto 0;
+  margin-right: 4px;
+  justify-content: center;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+.projectname {
+  margin-top: 30px;
+  margin-left: 5px;
+}
+
+.title {
+  padding-right: 15px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.clicked {
+  background-color: crimson;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: teal;
+}
+
+.closebtn {
+  padding: 20px 20px;
+  background-color: tomato;
+}

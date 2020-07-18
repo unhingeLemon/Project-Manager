@@ -1,0 +1,37 @@
+NAV
+-BRAND NAME
+-Your Work
+-Projects
+-People (teams, all peoples)
+-Create issue 
+-Account(google auth, own login feauture)
+
+WHEN you are in a project {
+DashBoard = [ Todo, In progress, Done
+]  // If you click on an issue in the dashboard{
+-can see the infos about it
+-users can also comment
+-can put a child issue
+-attach the code
+-attach files
+-The creator can also edit
+-Edit History
+}
+Project Settings = 
+	nameOfTheProject, project keys
+
+]
+}
+
+
+when creating an issue
+-Name of Project
+-Issue Type
+-Summary/Title
+-Description
+-assigned to
+-Priority Levels
+-labels
+-create/cancel button
+-this will add it the the projects current issues 
+
