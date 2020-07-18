@@ -162,7 +162,10 @@
 }
 
 .modal {
+  width: 40vw;
+  height: 50vh;
   background: teal;
+  border-radius: 4px;
 }
 
 .closebtn {
