@@ -13,6 +13,7 @@ const BugForm = () => {
     projectName: '',
     description: '',
     status: 'todo',
+    date: Date.now(),
   });
 
   const { title, description, projectName, priority, status, id } = bug;
@@ -31,6 +32,7 @@ const BugForm = () => {
       projectName: '',
       description: '',
       status: 'todo',
+      date: Date.now(),
     });
   };
 
@@ -76,6 +78,7 @@ const BugForm = () => {
                   value={description}
                   onChange={onChange}
                   name='description'
+                  maxLength='500'
                 />
               </label>
               <div className='priority'>

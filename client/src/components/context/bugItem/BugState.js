@@ -14,6 +14,7 @@ const BugState = (props) => {
         projectName: 'projectName',
         description: 'wew',
         status: 'in progress',
+        date: Date.now(),
       },
 
       {
@@ -23,6 +24,7 @@ const BugState = (props) => {
         projectName: 'projectName',
         description: 'wew',
         status: 'todo',
+        date: Date.now(),
       },
 
       {
@@ -32,6 +34,7 @@ const BugState = (props) => {
         projectName: 'projectName',
         description: 'wew',
         status: 'todo',
+        date: Date.now(),
       },
 
       {
@@ -41,6 +44,7 @@ const BugState = (props) => {
         projectName: 'projectName',
         description: 'wew',
         status: 'in progress',
+        date: Date.now(),
       },
       {
         id: 5,
@@ -49,6 +53,7 @@ const BugState = (props) => {
         projectName: 'projectName',
         description: 'wew',
         status: 'done',
+        date: Date.now(),
       },
     ],
   };

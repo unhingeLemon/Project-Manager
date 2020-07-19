@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import ShowBugInfo from './ShowBugInfo';
 
-const BugItem = ({ bug }) => {
+const BugItem = ({ bug, getDragBug }) => {
   const { id, title, projectName, priority, status } = bug;
 
   let color;
@@ -19,7 +19,12 @@ const BugItem = ({ bug }) => {
 
   return (
     <Fragment>
-      <div onClick={onClick} className='bug-item-container'>
+      <div
+        onClick={onClick}
+        className='bug-item-container'
+        draggable='true'
+        onDragStart={() => getDragBug(bug)}
+      >
         <div className='title'>{title} </div>
         <div> </div>
         <div>
