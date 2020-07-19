@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import ShowBugInfo from './ShowBugInfo';
 
 const BugItem = ({ bug }) => {
   const { id, title, projectName, priority, status } = bug;
@@ -11,11 +12,15 @@ const BugItem = ({ bug }) => {
   } else if (bug.priority === 'Deffered') {
     color = 'gray';
   }
+  let [bugInfo, openBugInfo] = useState(false);
+  const onClick = () => {
+    openBugInfo(true);
+  };
 
   return (
     <Fragment>
-      <div className='bug-item-container'>
-        <div className='title'>{title}</div>
+      <div onClick={onClick} className='bug-item-container'>
+        <div className='title'>{title} </div>
         <div> </div>
         <div>
           <div className='projectname'>{projectName}</div>
@@ -29,6 +34,8 @@ const BugItem = ({ bug }) => {
           <div>{priority}</div>
         </div>
       </div>
+
+      {bugInfo ? <ShowBugInfo openBugInfo={openBugInfo} bug={bug} /> : null}
     </Fragment>
   );
 };

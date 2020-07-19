@@ -1,6 +1,8 @@
 import React, { useReducer } from 'react';
 import bugContext from './bugContext';
 import bugReducer from './bugReducer';
+import { ADD_BUG } from '../types';
+import shortid from 'shortid';
 
 const BugState = (props) => {
   const initialState = {
@@ -10,6 +12,7 @@ const BugState = (props) => {
         title: 'Bug #1',
         priority: 'Medium',
         projectName: 'projectName',
+        description: 'wew',
         status: 'in progress',
       },
 
@@ -18,6 +21,7 @@ const BugState = (props) => {
         title: 'Bug #2',
         priority: 'Deffered',
         projectName: 'projectName',
+        description: 'wew',
         status: 'todo',
       },
 
@@ -26,6 +30,7 @@ const BugState = (props) => {
         title: 'Bug #3',
         priority: 'High',
         projectName: 'projectName',
+        description: 'wew',
         status: 'todo',
       },
 
@@ -34,6 +39,7 @@ const BugState = (props) => {
         title: 'Bug #4',
         priority: 'Low',
         projectName: 'projectName',
+        description: 'wew',
         status: 'in progress',
       },
       {
@@ -41,16 +47,27 @@ const BugState = (props) => {
         title: 'Bug #5',
         priority: 'High',
         projectName: 'projectName',
+        description: 'wew',
         status: 'done',
       },
     ],
   };
-
   const [state, dispatch] = useReducer(bugReducer, initialState);
+
+  const addBug = (bug) => {
+    let idGen = shortid.generate();
+    bug.id = idGen;
+    dispatch({
+      type: ADD_BUG,
+      payload: bug,
+    });
+  };
+
   return (
     <bugContext.Provider
       value={{
         bugs: state.bugs,
+        addBug,
       }}
     >
       {props.children}
