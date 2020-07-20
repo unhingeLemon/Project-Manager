@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import bugContext from './bugContext';
 import bugReducer from './bugReducer';
-import { ADD_BUG } from '../types';
+import { ADD_BUG, DELETE_BUG } from '../types';
 import shortid from 'shortid';
 
 const BugState = (props) => {
@@ -55,6 +55,17 @@ const BugState = (props) => {
         status: 'done',
         date: Date.now(),
       },
+
+      {
+        id: 6,
+        title: 'THIS IS THE MOST HARD BUG',
+        priority: 'High',
+        projectName: 'ProjectName',
+        description:
+          'wBulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Venusaur Lorem ipsumada dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        status: 'in progress',
+        date: Date.now(),
+      },
     ],
   };
   const [state, dispatch] = useReducer(bugReducer, initialState);
@@ -68,11 +79,19 @@ const BugState = (props) => {
     });
   };
 
+  const deleteBug = (bug) => {
+    dispatch({
+      type: DELETE_BUG,
+      payload: bug,
+    });
+  };
+
   return (
     <bugContext.Provider
       value={{
         bugs: state.bugs,
         addBug,
+        deleteBug,
       }}
     >
       {props.children}

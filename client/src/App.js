@@ -2,17 +2,32 @@ import React, { Fragment } from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import BugForm from './components/bugs/BugForm';
-import Cards from './components/bugs/Cards';
+import Bugs from './components/bugs/Bugs';
 import BugState from './components/context/bugItem/BugState';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import ProjectIndex from './components/projects/index';
 
 const App = () => {
   return (
     <BugState>
-      <Fragment>
+      <Router>
         <Navbar />
-        <BugForm />
-        <Cards />
-      </Fragment>
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <Fragment>
+                <BugForm />
+                <Bugs />
+              </Fragment>
+            )}
+          />
+          <Route exact path='/projects' component={ProjectIndex} />
+          <Route />
+        </Switch>
+      </Router>
     </BugState>
   );
 };

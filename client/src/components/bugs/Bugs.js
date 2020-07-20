@@ -1,8 +1,8 @@
 import React, { useContext, Fragment, useState } from 'react';
-import BugItem from '../bugs/BugItem';
+import BugItem from './BugItem';
 import BugContext from '../context/bugItem/bugContext';
 
-const Cards = () => {
+const Bugs = () => {
   const bugContext = useContext(BugContext);
   const { bugs } = bugContext;
   const [update, setUpdate] = useState(false);
@@ -79,4 +79,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default Bugs;

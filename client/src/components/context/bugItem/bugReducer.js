@@ -1,4 +1,4 @@
-import { ADD_BUG } from '../types';
+import { ADD_BUG, DELETE_BUG } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -6,6 +6,12 @@ export default (state, action) => {
       return {
         ...state,
         bugs: [...state.bugs, action.payload],
+      };
+
+    case DELETE_BUG:
+      return {
+        ...state,
+        bugs: state.bugs.filter((bug) => action.payload.id !== bug.id),
       };
 
     default:

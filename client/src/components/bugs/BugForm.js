@@ -46,39 +46,42 @@ const BugForm = () => {
       {isOpen ? (
         <div className='modal-bg'>
           <div className='modal'>
-            <p>CREATE AN ISSUE</p>
             <i
               onClick={() => setOpen(false)}
               className='fa fa-times-circle closebtn'
               aria-hidden='true'
             ></i>
 
-            <form onSubmit={onSubmit}>
+            <form className='create-form' onSubmit={onSubmit}>
+              <p>CREATE AN ISSUE</p>
               <label>
-                Project
+                <div> Project</div>
                 <input
                   type='text'
                   name='projectName'
                   onChange={onChange}
                   value={projectName}
+                  required
                 />
               </label>
               <label>
-                Bug Title
+                <div>Bug Title</div>
                 <input
                   type='text'
                   name='title'
                   onChange={onChange}
                   value={title}
+                  required
                 />
               </label>
               <label>
-                Bug Description
+                <div>Bug Description</div>
                 <textarea
                   value={description}
                   onChange={onChange}
                   name='description'
                   maxLength='500'
+                  required
                 />
               </label>
               <div className='priority'>

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -15,7 +16,7 @@ const Navbar = () => {
               <a href='/#'>People</a>
             </li>
             <li>
-              <a href='/#'>Projects</a>
+              <Link to='/projects'>Projects</Link>
             </li>
           </ul>
         </div>
