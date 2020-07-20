@@ -1,15 +1,20 @@
-import React, { useContext, Fragment, useState } from 'react';
+import React, { useContext, Fragment, useState, useEffect } from 'react';
 import BugItem from './BugItem';
 import BugContext from '../context/bugItem/bugContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
-  const { bugs } = bugContext;
+  const { bugs, getBugs } = bugContext;
   const [update, setUpdate] = useState(false);
 
   let todo = bugs.filter((bug) => bug.status === 'todo');
   let inprogress = bugs.filter((bug) => bug.status === 'in progress');
   let done = bugs.filter((bug) => bug.status === 'done');
+
+  useEffect(() => {
+    getBugs();
+    // eslint-disable-next-line
+  }, []);
 
   const onDragOver = (e) => {
     e.preventDefault();
@@ -34,7 +39,8 @@ const Bugs = () => {
   const dropIn = (s) => {
     tempBug.status = s;
     bugs.filter((bug) => {
-      bug.id === tempBug.id ? (bug.status = s) : (bug.id = bug.id);
+      // eslint-disable-next-line
+      bug._id === tempBug._id ? (bug.status = s) : (bug._id = bug._id);
     });
     updating();
   };
@@ -50,7 +56,7 @@ const Bugs = () => {
           >
             <p>TO DO</p>
             {todo.map((bug) => (
-              <BugItem key={bug.id} bug={bug} getDragBug={getDragBug} />
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
             ))}
           </div>
           <div
@@ -60,7 +66,7 @@ const Bugs = () => {
           >
             <p>IN PROGRESS</p>
             {inprogress.map((bug) => (
-              <BugItem key={bug.id} bug={bug} getDragBug={getDragBug} />
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
             ))}
           </div>
           <div
@@ -70,7 +76,7 @@ const Bugs = () => {
           >
             <p>DONE</p>
             {done.map((bug) => (
-              <BugItem key={bug.id} bug={bug} getDragBug={getDragBug} />
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
             ))}
           </div>
         </div>

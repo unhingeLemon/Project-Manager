@@ -16,7 +16,7 @@ const BugForm = () => {
     date: Date.now(),
   });
 
-  const { title, description, projectName, priority, status, id } = bug;
+  const { title, description, projectName, priority } = bug;
 
   const onChange = (e) => setBug({ ...bug, [e.target.name]: e.target.value });
 

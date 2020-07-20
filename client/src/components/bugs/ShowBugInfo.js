@@ -21,7 +21,7 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
           ></i>
           <div className='info-project-container'>
             <div>{bug.projectName}</div>
-            <div>BUG-{bug.id}</div>
+            <div>BUG</div>
           </div>
           <div className='info-title'>
             <div>{bug.title}</div>

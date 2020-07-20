@@ -1,82 +1,44 @@
 import React, { useReducer } from 'react';
 import bugContext from './bugContext';
 import bugReducer from './bugReducer';
-import { ADD_BUG, DELETE_BUG } from '../types';
-import shortid from 'shortid';
+import { ADD_BUG, DELETE_BUG, GET_BUGS } from '../types';
+import axios from 'axios';
 
 const BugState = (props) => {
   const initialState = {
-    bugs: [
-      {
-        id: 1,
-        title: 'Bug #1',
-        priority: 'Medium',
-        projectName: 'projectName',
-        description: 'wew',
-        status: 'in progress',
-        date: Date.now(),
-      },
-
-      {
-        id: 2,
-        title: 'Bug #2',
-        priority: 'Deffered',
-        projectName: 'projectName',
-        description: 'wew',
-        status: 'todo',
-        date: Date.now(),
-      },
-
-      {
-        id: 3,
-        title: 'Bug #3',
-        priority: 'High',
-        projectName: 'projectName',
-        description: 'wew',
-        status: 'todo',
-        date: Date.now(),
-      },
-
-      {
-        id: 4,
-        title: 'Bug #4',
-        priority: 'Low',
-        projectName: 'projectName',
-        description: 'wew',
-        status: 'in progress',
-        date: Date.now(),
-      },
-      {
-        id: 5,
-        title: 'Bug #5',
-        priority: 'High',
-        projectName: 'projectName',
-        description: 'wew',
-        status: 'done',
-        date: Date.now(),
-      },
-
-      {
-        id: 6,
-        title: 'THIS IS THE MOST HARD BUG',
-        priority: 'High',
-        projectName: 'ProjectName',
-        description:
-          'wBulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Venusaur Lorem ipsumada dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        status: 'in progress',
-        date: Date.now(),
-      },
-    ],
+    bugs: [],
   };
   const [state, dispatch] = useReducer(bugReducer, initialState);
 
-  const addBug = (bug) => {
-    let idGen = shortid.generate();
-    bug.id = idGen;
-    dispatch({
-      type: ADD_BUG,
-      payload: bug,
-    });
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNThlMDM2M2MwZjczMjgwMGI5YjIyIn0sImlhdCI6MTU5NTI0OTE4MywiZXhwIjoxNTk1NjA5MTgzfQ.2mrfCiHvpJqlPGOi7UigVhd0qBM4SPk8z-oJjZXSXag';
+
+  const getBugs = async () => {
+    axios.defaults.headers.common['x-auth-token'] = token;
+
+    try {
+      const res = await axios.get('/api/bugs');
+
+      dispatch({
+        type: GET_BUGS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addBug = async (bug) => {
+    axios.defaults.headers.common['x-auth-token'] = token;
+    try {
+      const res = await axios.post('/api/bugs', bug);
+      dispatch({
+        type: ADD_BUG,
+        payload: bug,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deleteBug = (bug) => {
@@ -92,6 +54,7 @@ const BugState = (props) => {
         bugs: state.bugs,
         addBug,
         deleteBug,
+        getBugs,
       }}
     >
       {props.children}
