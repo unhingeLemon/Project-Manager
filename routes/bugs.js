@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const { v4: uuidv4 } = require('uuid');
 
@@ -10,10 +10,9 @@ const Bug = require('../models/Bug');
 // @route   GET api/bugs
 // @desc    Get all the users bugs
 // @access  Private
-// MAKE IT router.get('/', auth, async (req, res) to make it private
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const bugs = await Bug.find({ user: 'mark' }).sort({
+    const bugs = await Bug.find({ user: req.user.id }).sort({
       date: -1,
     });
     res.json(bugs);
@@ -29,6 +28,7 @@ router.get('/', async (req, res) => {
 // put auth in the middle to make it private
 router.post(
   '/',
+  auth,
   [
     [check('title', 'Title is required').not().isEmpty()],
     [check('priority', 'Priority is required')],
@@ -48,7 +48,7 @@ router.post(
         projectName,
         description,
         status,
-        user: 'mark',
+        user: req.user.id,
       });
       const bug = await newBug.save();
       res.json(bug);

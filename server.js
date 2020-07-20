@@ -11,8 +11,8 @@ connectDB();
 app.use(express.json({ extendend: false }));
 
 // ROUTES
-// app.use('/api/users', require('./routes/users'));
-// app.use('/api/auth', require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/bugs', require('./routes/bugs'));
 
 app.listen(PORT, () => {
