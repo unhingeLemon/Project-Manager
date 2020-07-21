@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import BugForm from './components/bugs/BugForm';
 import Bugs from './components/bugs/Bugs';
-import BugState from './components/context/bugItem/BugState';
+import BugState from './context/bug/BugState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import ProjectIndex from './components/projects/index';

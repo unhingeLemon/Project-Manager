@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Moment from 'react-moment';
+import BugContext from '../../context/bug/bugContext';
 
 const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
   const getStatusColor = () => {
@@ -8,6 +9,14 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
     } else if (bug.status === 'done') {
       return 'green';
     }
+  };
+
+  const bugContext = useContext(BugContext);
+  const { deleteBug } = bugContext;
+
+  const onDelete = () => {
+    deleteBug(bug._id);
+    openBugInfo(false);
   };
 
   return (
@@ -21,6 +30,7 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
           ></i>
           <div className='info-project-container'>
             <div>{bug.projectName}</div>
+            <i className='fas fa-trash' onClick={onDelete}></i>
             <div>BUG</div>
           </div>
           <div className='info-title'>

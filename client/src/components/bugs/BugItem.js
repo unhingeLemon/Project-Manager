@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react';
 import ShowBugInfo from './ShowBugInfo';
-import BugContext from '../context/bugItem/bugContext';
+import BugContext from '../../context/bug/bugContext';
 const BugItem = ({ bug, getDragBug }) => {
   const { id, title, projectName, priority, status } = bug;
 
@@ -22,10 +22,6 @@ const BugItem = ({ bug, getDragBug }) => {
     openBugInfo(true);
   };
 
-  const onDelete = () => {
-    deleteBug(bug);
-  };
-
   return (
     <Fragment>
       <div
@@ -35,9 +31,7 @@ const BugItem = ({ bug, getDragBug }) => {
         onDragStart={() => getDragBug(bug)}
       >
         <div className='title'>{title} </div>
-        <div>
-          <i className='fas fa-trash' onClick={onDelete}></i>
-        </div>
+        <div></div>
         <div>
           <div className='projectname'>{projectName}</div>
         </div>

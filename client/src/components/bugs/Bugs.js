@@ -1,6 +1,6 @@
 import React, { useContext, Fragment, useState, useEffect } from 'react';
 import BugItem from './BugItem';
-import BugContext from '../context/bugItem/bugContext';
+import BugContext from '../../context/bug/bugContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);

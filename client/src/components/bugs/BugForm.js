@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useContext } from 'react';
-import BugContext from '../context/bugItem/bugContext';
+import BugContext from '../../context/bug/bugContext';
 
 const BugForm = () => {
   const [isOpen, setOpen] = useState(false);

@@ -152,12 +152,12 @@
 .fa-trash {
   float: right;
   margin: 4px 4px;
-  opacity: 0;
+
   transition: 0.3 ease;
 }
 
-.bug-item-container:hover .fa-trash {
-  opacity: 1;
+.fa-trash:hover {
+  cursor: pointer;
 }
 
 .title {

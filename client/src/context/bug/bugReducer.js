@@ -11,7 +11,7 @@ export default (state, action) => {
     case DELETE_BUG:
       return {
         ...state,
-        bugs: state.bugs.filter((bug) => action.payload._id !== bug._id),
+        bugs: state.bugs.filter((bug) => action.payload !== bug._id),
       };
     case GET_BUGS:
       return {

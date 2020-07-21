@@ -41,11 +41,16 @@ const BugState = (props) => {
     }
   };
 
-  const deleteBug = (bug) => {
-    dispatch({
-      type: DELETE_BUG,
-      payload: bug,
-    });
+  const deleteBug = async (id) => {
+    try {
+      await axios.delete(`/api/bugs/${id}`);
+      dispatch({
+        type: DELETE_BUG,
+        payload: id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
