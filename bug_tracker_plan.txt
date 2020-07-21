@@ -1,3 +1,18 @@
+TODO!
+- GET THE TOKEN AND TRANSLATE IT TO USERS
+- MAKE AN AUTHSTATE
+
+
+
+
+
+
+
+
+
+
+
+
 NAV
 -BRAND NAME
 -Your Work
