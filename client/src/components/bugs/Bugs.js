@@ -11,6 +11,8 @@ const Bugs = () => {
   let inprogress = bugs.filter((bug) => bug.status === 'in progress');
   let done = bugs.filter((bug) => bug.status === 'done');
 
+  console.log(todo)
+
   useEffect(() => {
     getBugs();
     // eslint-disable-next-line
@@ -38,10 +40,11 @@ const Bugs = () => {
 
   const dropIn = (s) => {
     tempBug.status = s;
-    bugs.filter((bug) => {
-      // eslint-disable-next-line
+    bugs.forEach((bug) => {
+      // eslint-disable-next-line 
       bug._id === tempBug._id ? (bug.status = s) : (bug._id = bug._id);
     });
+    console.log(todo);
     updating();
   };
 

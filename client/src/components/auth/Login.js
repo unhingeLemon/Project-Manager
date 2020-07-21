@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext'
 const Login = (props) => {
   const authContext = useContext(AuthContext)
 
-  const {login,isAuthenticated} = authContext;
+  const {login,isAuthenticated,loadUser} = authContext;
 
 
   const [user, setUser] = useState({
@@ -24,9 +24,10 @@ const Login = (props) => {
     // while not reloading the page
     if (isAuthenticated) {
       props.history.push('/');
+      loadUser()
     }
 
-  
+  // eslint-disable-next-line
   }, [ isAuthenticated,props.history]);
 
   const onSubmit = (e) => {

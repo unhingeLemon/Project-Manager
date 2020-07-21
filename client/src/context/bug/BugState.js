@@ -10,12 +10,11 @@ const BugState = (props) => {
   };
   const [state, dispatch] = useReducer(bugReducer, initialState);
 
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNThlMDM2M2MwZjczMjgwMGI5YjIyIn0sImlhdCI6MTU5NTI0OTE4MywiZXhwIjoxNTk1NjA5MTgzfQ.2mrfCiHvpJqlPGOi7UigVhd0qBM4SPk8z-oJjZXSXag';
+  // Most of these is authenticated routes so
+  // our backend will read the token from the header
+  // and then translate it to user data
 
   const getBugs = async () => {
-    axios.defaults.headers.common['x-auth-token'] = token;
-
     try {
       const res = await axios.get('/api/bugs');
 
@@ -29,9 +28,8 @@ const BugState = (props) => {
   };
 
   const addBug = async (bug) => {
-    axios.defaults.headers.common['x-auth-token'] = token;
     try {
-      const res = await axios.post('/api/bugs', bug);
+      await axios.post('/api/bugs', bug);
       dispatch({
         type: ADD_BUG,
         payload: bug,

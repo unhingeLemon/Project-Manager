@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState } from 'react';
 import ShowBugInfo from './ShowBugInfo';
-import BugContext from '../../context/bug/bugContext';
-const BugItem = ({ bug, getDragBug }) => {
-  const { id, title, projectName, priority, status } = bug;
 
-  const bugContext = useContext(BugContext);
-  const { deleteBug } = bugContext;
+const BugItem = ({ bug, getDragBug }) => {
+  const {  title, projectName, priority } = bug;
+
+
+ 
 
   const getColor = () => {
     if (bug.priority === 'Low') {
@@ -46,7 +46,7 @@ const BugItem = ({ bug, getDragBug }) => {
       </div>
 
       {bugInfo ? (
-        <ShowBugInfo getColor={getColor} openBugInfo={openBugInfo} bug={bug} />
+        <ShowBugInfo key={bug._id} getColor={getColor} openBugInfo={openBugInfo} bug={bug} />
       ) : null}
     </Fragment>
   );
