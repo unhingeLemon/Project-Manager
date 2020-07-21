@@ -22,6 +22,9 @@ const Navbar = () => {
         </div>
         <div className='welcome'>
           <p>Welcome Mark</p>
+          <Link to='/login'>Login</Link>
+          <Link to='/register'>Register</Link>
+          
         </div>
       </div>
     </Fragment>
