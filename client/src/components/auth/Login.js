@@ -1,10 +1,10 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext'
 
 const Login = (props) => {
   const authContext = useContext(AuthContext)
 
-  const {login} = authContext;
+  const {login,isAuthenticated} = authContext;
 
 
   const [user, setUser] = useState({
@@ -15,6 +15,19 @@ const Login = (props) => {
   const { email, password } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
+
+
+  useEffect(() => {
+    // Once authenticated,redirect.
+    // history is used to change url inside our app,
+    // while not reloading the page
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+
+  
+  }, [ isAuthenticated,props.history]);
 
   const onSubmit = (e) => {
     e.preventDefault();
