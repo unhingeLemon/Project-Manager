@@ -3,13 +3,13 @@ import axios from 'axios';
 import setAuthToken from '../../components/utils/setAuthToken';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
-import { USER_LOADED, LOGIN_SUCCESS } from '../types';
+import { USER_LOADED, LOGIN_SUCCESS,LOG_OUT } from '../types';
 
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem('token'),
     user: null,
-    isAuthenticated: null,
+    isAuthenticated: false,
     loading: true,
   };
 
@@ -49,6 +49,14 @@ const AuthState = (props) => {
     }
   };
 
+  //LOGOUT
+  const logout =() => {
+    dispatch({
+      type:LOG_OUT
+    })
+  }
+
+
   return (
     <AuthContext.Provider
       value={{
@@ -58,6 +66,7 @@ const AuthState = (props) => {
         loading: state.loading,
         login,
         loadUser,
+        logout,
       }}
     >
       {props.children}

@@ -1,7 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/auth/authContext'
+
 
 const Navbar = () => {
+  const authContext = useContext(AuthContext)
+  const {logout} = authContext
+
+
+  const onLogout =()=>{
+    logout();
+  }
+
   return (
     <Fragment>
       <div className='nav'>
@@ -24,7 +34,10 @@ const Navbar = () => {
           <p>Welcome Mark</p>
           <Link to='/login'>Login</Link>
           <Link to='/register'>Register</Link>
-          
+          <a onClick={onLogout} href='#!'>
+    
+          <span className='hide-sm'>Logout</span>
+        </a>
         </div>
       </div>
     </Fragment>
