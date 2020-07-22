@@ -2,10 +2,7 @@ import React, { Fragment, useState } from 'react';
 import ShowBugInfo from './ShowBugInfo';
 
 const BugItem = ({ bug, getDragBug }) => {
-  const {  title, projectName, priority } = bug;
-
-
- 
+  const { title, projectName, priority } = bug;
 
   const getColor = () => {
     if (bug.priority === 'Low') {
@@ -46,7 +43,12 @@ const BugItem = ({ bug, getDragBug }) => {
       </div>
 
       {bugInfo ? (
-        <ShowBugInfo key={bug._id} getColor={getColor} openBugInfo={openBugInfo} bug={bug} />
+        <ShowBugInfo
+          key={bug._id}
+          getColor={getColor}
+          openBugInfo={openBugInfo}
+          bug={bug}
+        />
       ) : null}
     </Fragment>
   );

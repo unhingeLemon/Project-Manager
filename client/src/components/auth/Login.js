@@ -1,11 +1,10 @@
-import React, { useState,useContext,useEffect } from 'react';
-import AuthContext from '../../context/auth/authContext'
+import React, { useState, useContext, useEffect } from 'react';
+import AuthContext from '../../context/auth/authContext';
 
 const Login = (props) => {
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
 
-  const {login,isAuthenticated,loadUser} = authContext;
-
+  const { login, isAuthenticated, loadUser } = authContext;
 
   const [user, setUser] = useState({
     email: '',
@@ -16,23 +15,22 @@ const Login = (props) => {
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
-
-
   useEffect(() => {
     // Once authenticated,redirect.
     // history is used to change url inside our app,
     // while not reloading the page
+    loadUser();
     if (isAuthenticated) {
       props.history.push('/');
-      loadUser()
+      loadUser();
     }
 
-  // eslint-disable-next-line
-  }, [ isAuthenticated,props.history]);
+    // eslint-disable-next-line
+  }, [isAuthenticated, props.history]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login(user)
+    login(user);
   };
 
   return (

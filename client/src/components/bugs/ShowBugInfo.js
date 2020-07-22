@@ -15,7 +15,6 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
   const { deleteBug } = bugContext;
 
   const onDelete = () => {
-    
     deleteBug(bug._id);
     openBugInfo(false);
   };
@@ -50,7 +49,9 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
               ></div>
               <div>{bug.priority}</div>
             </div>
-            <Moment format='MMMM Do YYYY, h:mm a'>{bug.date}</Moment>{' '}
+            <Moment key={bug._id} format='MMMM Do YYYY, h:mm a'>
+              {bug.date}
+            </Moment>{' '}
           </div>
         </div>
       </div>

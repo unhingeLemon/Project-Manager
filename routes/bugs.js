@@ -61,19 +61,45 @@ router.post(
 // @route   PUT api/bugs/:id
 // @desc    Update Bugs
 // @access  Private
-router.put('/:id', (req, res) => {
-  res.send('Update Bug');
+router.put('/:id', auth, async (req, res) => {
+  const { status } = req.body;
+
+  // Build bug object
+  const bugFields = {};
+  if (status) bugFields.status = status;
+
+  try {
+    let bug = await Bug.findById(req.params.id);
+
+    if (!bug) return res.status(404).json({ msg: 'Bug not found' });
+
+    // Make sure user owns contact
+    if (bug.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    bug = await Bug.findByIdAndUpdate(
+      req.params.id,
+      { $set: bugFields },
+      { new: true }
+    );
+
+    res.json(contact);
+  } catch (err) {
+    console.error(er.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 // @route   DELETE api/bugs/:id
 // @desc    Delete Bugs
 // @access  Private
-router.delete('/:id', auth,async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     let bug = await Bug.findById(req.params.id);
 
-    if (!bug) return res.status(404).json({ msg: 'Contact not found' });
-    
+    if (!bug) return res.status(404).json({ msg: 'Bug not found' });
+
     // Make sure user owns contact
     if (bug.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
@@ -81,7 +107,7 @@ router.delete('/:id', auth,async (req, res) => {
 
     await Bug.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: 'Contact removed' });
+    res.json({ msg: 'Bug removed' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

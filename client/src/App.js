@@ -3,9 +3,9 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 
 import Home from './components/pages/Home';
-import Register from './components/auth/Register'
-import Login from './components/auth/Login'
-import PrivateRoute from './components/routing/PrivateRoute'
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import BugState from './context/bug/BugState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -24,7 +24,6 @@ const App = () => {
             <Route exact path='/projects' component={ProjectIndex} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
-            
           </Switch>
         </Router>
       </BugState>

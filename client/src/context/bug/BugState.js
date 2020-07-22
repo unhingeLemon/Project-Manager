@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import bugContext from './bugContext';
 import bugReducer from './bugReducer';
-import { ADD_BUG, DELETE_BUG, GET_BUGS } from '../types';
+import { ADD_BUG, DELETE_BUG, GET_BUGS, UPDATE_BUG } from '../types';
 import axios from 'axios';
 
 const BugState = (props) => {
@@ -51,6 +51,25 @@ const BugState = (props) => {
     }
   };
 
+  const updateBug = async (bug) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.put(`/api/bugs/${bug._id}`, bug, config);
+      console.log(res.data);
+      dispatch({
+        type: UPDATE_BUG,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <bugContext.Provider
       value={{
@@ -58,6 +77,7 @@ const BugState = (props) => {
         addBug,
         deleteBug,
         getBugs,
+        updateBug,
       }}
     >
       {props.children}

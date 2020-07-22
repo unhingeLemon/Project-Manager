@@ -1,4 +1,4 @@
-import { ADD_BUG, DELETE_BUG, GET_BUGS } from '../types';
+import { ADD_BUG, DELETE_BUG, GET_BUGS, UPDATE_BUG } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -12,6 +12,13 @@ export default (state, action) => {
       return {
         ...state,
         bugs: state.bugs.filter((bug) => action.payload !== bug._id),
+      };
+    case UPDATE_BUG:
+      return {
+        ...state,
+        bugs: state.bugs.map((bug) =>
+          bug._id === action.payload._id ? action.payload : bug
+        ),
       };
     case GET_BUGS:
       return {

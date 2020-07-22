@@ -4,19 +4,16 @@ import BugContext from '../../context/bug/bugContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
-  const { bugs, getBugs } = bugContext;
+  const { bugs, getBugs, updateBug } = bugContext;
   const [update, setUpdate] = useState(false);
-
-  let todo = bugs.filter((bug) => bug.status === 'todo');
-  let inprogress = bugs.filter((bug) => bug.status === 'in progress');
-  let done = bugs.filter((bug) => bug.status === 'done');
-
-  console.log(todo)
-
   useEffect(() => {
     getBugs();
     // eslint-disable-next-line
   }, []);
+
+  let todo = bugs.filter((bug) => bug.status === 'todo');
+  let inprogress = bugs.filter((bug) => bug.status === 'in progress');
+  let done = bugs.filter((bug) => bug.status === 'done');
 
   const onDragOver = (e) => {
     e.preventDefault();
@@ -40,11 +37,7 @@ const Bugs = () => {
 
   const dropIn = (s) => {
     tempBug.status = s;
-    bugs.forEach((bug) => {
-      // eslint-disable-next-line 
-      bug._id === tempBug._id ? (bug.status = s) : (bug._id = bug._id);
-    });
-    console.log(todo);
+    updateBug(tempBug);
     updating();
   };
 
