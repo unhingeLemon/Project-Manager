@@ -8,6 +8,12 @@
   white-space: normal;
 }
 
+.ripple {
+  position: fixed;
+  top: 25vh;
+  right: 43vw;
+}
+
 /* NAV */
 
 .nav {

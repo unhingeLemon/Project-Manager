@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
+import Loading from './components/layout/Loading';
 
 import Home from './components/pages/Home';
 import Register from './components/auth/Register';
@@ -17,8 +18,10 @@ const App = () => {
   return (
     <AuthState>
       <BugState>
+        <Loading />
         <Router>
           <Navbar />
+
           <Switch>
             <PrivateRoute exact path='/' component={Home} />
             <Route exact path='/projects' component={ProjectIndex} />

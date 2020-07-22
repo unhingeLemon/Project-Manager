@@ -1,11 +1,11 @@
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState, Fragment, useContext, useEffect } from 'react';
 import BugContext from '../../context/bug/bugContext';
 
 const BugForm = () => {
   const [isOpen, setOpen] = useState(false);
   const bugContext = useContext(BugContext);
 
-  const { addBug } = bugContext;
+  const { addBug, getBugs } = bugContext;
 
   const [bug, setBug] = useState({
     title: '',
@@ -16,16 +16,7 @@ const BugForm = () => {
     date: Date.now(),
   });
 
-  const { title, description, projectName, priority } = bug;
-
-  const onChange = (e) => setBug({ ...bug, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    addBug(bug);
-    setOpen(false);
-
+  useEffect(() => {
     setBug({
       title: '',
       priority: 'Low',
@@ -34,6 +25,18 @@ const BugForm = () => {
       status: 'todo',
       date: Date.now(),
     });
+  }, [bugContext]);
+
+  const { title, description, projectName, priority } = bug;
+
+  const onChange = (e) => setBug({ ...bug, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    bugContext.loading = true;
+    addBug(bug);
+    setOpen(false);
+    getBugs();
   };
 
   return (

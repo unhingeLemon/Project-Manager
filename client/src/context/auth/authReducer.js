@@ -1,4 +1,4 @@
-import {USER_LOADED,LOGIN_SUCCESS} from '../types';
+import { USER_LOADED, LOGIN_SUCCESS } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -6,15 +6,17 @@ export default (state, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user:action.payload
-      }
+        user: action.payload,
+        loading: false,
+      };
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         ...action.payload,
         isAuthenticated: true,
-      }
+        loading: false,
+      };
     default:
       return state;
   }

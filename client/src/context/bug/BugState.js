@@ -7,6 +7,7 @@ import axios from 'axios';
 const BugState = (props) => {
   const initialState = {
     bugs: [],
+    loading: true,
   };
   const [state, dispatch] = useReducer(bugReducer, initialState);
 
@@ -74,6 +75,7 @@ const BugState = (props) => {
     <bugContext.Provider
       value={{
         bugs: state.bugs,
+        loading: state.loading,
         addBug,
         deleteBug,
         getBugs,

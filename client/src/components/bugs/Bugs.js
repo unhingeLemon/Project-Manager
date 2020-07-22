@@ -7,6 +7,7 @@ const Bugs = () => {
   const { bugs, getBugs, updateBug } = bugContext;
   const [update, setUpdate] = useState(false);
   useEffect(() => {
+    bugContext.loading = true;
     getBugs();
     // eslint-disable-next-line
   }, []);
@@ -37,6 +38,7 @@ const Bugs = () => {
 
   const dropIn = (s) => {
     tempBug.status = s;
+    bugContext.loading = true;
     updateBug(tempBug);
     updating();
   };
