@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Ripple from './Ripple.svg';
 import AuthContext from '../../context/auth/authContext';
 

@@ -28,7 +28,8 @@ const AuthState = (props) => {
       });
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      /// ERROR IS ABOUT TOKEN
+      console.log(error.response.data.msg);
     }
   };
   // LOGIN USER
@@ -41,13 +42,15 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post('/api/auth', formData, config);
+      console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
       loadUser();
     } catch (error) {
-      console.log(error);
+      /// WE CAN MANIPULATE THIS DATA TO PULL OUT AN ERROR IN THE UI
+      console.log(error.response.data.msg);
     }
   };
 

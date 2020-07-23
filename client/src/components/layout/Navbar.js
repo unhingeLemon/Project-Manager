@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
-  const { logout, user } = authContext;
+  const { logout, user, isAuthenticated } = authContext;
 
   const onLogout = () => {
     logout();
@@ -12,7 +12,10 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <div className='nav'>
+      <div
+        className='nav'
+        style={{ display: `${isAuthenticated ? 'flex' : 'none'}` }}
+      >
         <div className='nav-links'>
           <i className='fas fa-bug' />
           <p>Bug Tracker</p>

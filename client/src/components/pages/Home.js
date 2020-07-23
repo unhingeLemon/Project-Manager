@@ -4,7 +4,7 @@ import Bugs from '../bugs/Bugs';
 
 const Home = () => {
   return (
-    <div>
+    <div className='underNav'>
       <BugForm />
       <Bugs />
     </div>

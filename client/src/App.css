@@ -18,7 +18,7 @@
 
 .nav {
   width: 100%;
-  background-color: #cb3b3b;
+  background-color: #040813;
   display: flex;
   justify-content: space-between;
   color: white;
@@ -65,6 +65,7 @@
   border: none;
   border-radius: 20px;
   text-align: center;
+  margin-top: 1em;
 }
 .btn:hover {
   cursor: pointer;
@@ -76,33 +77,36 @@
   color: white;
   font-weight: 500;
   letter-spacing: 3px;
-  background-color: #85203b;
+  background-color: #20433d;
 }
 
 .btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 1em;
 }
 
 /* CARD */
+.underNav {
+  background-color: #e6e6e6;
+}
 
 .cards {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 0 auto;
-  color: #e24c4c;
+  color: black;
 }
 
 .card {
-  background-color: #f1c5c5;
+  background-color: #617576;
   width: 30vw;
   margin: 1em 3vw;
   padding: 1em 1em;
   border-radius: 3px;
   min-height: 400px;
+  font-weight: 500;
 }
 
 .scrolly {
@@ -117,7 +121,7 @@
 
 .bug-item-container {
   width: 100%;
-  background-color: #f6e0e0;
+  background-color: #bac7b8;
   color: black;
   margin: 1em 0;
   padding: 0.5em 0.5em;
@@ -125,12 +129,13 @@
   display: grid;
   grid-template-columns: auto auto;
   font-size: 0.8em;
+  font-weight: 400;
   transition: 0.3s ease;
 }
 
 .bug-item-container:hover {
-  background-color: #e24c4c;
-  color: white;
+  background-color: #e6e6e6;
+  color: black;
   cursor: pointer;
 }
 
