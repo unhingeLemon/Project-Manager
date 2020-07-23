@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -352,4 +351,172 @@
 
 .info-footer > div:nth-of-type(1) {
   margin: 0 0;
+}
+
+/* AUTH */
+.auth {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* BANNER */
+.banner-container {
+  width: 40%;
+  height: 100vh;
+  background-color: #040813;
+  color: white;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.brand-container {
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.main-icon {
+  font-size: 80px;
+  margin: 0 auto;
+  margin-top: 20vh;
+  padding: 0 0;
+}
+
+.brand-name {
+  margin: auto auto;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20vh;
+}
+.quote {
+  width: 50%;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0 auto;
+
+  text-align: left;
+}
+.quote-author {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 11px;
+
+  text-align: left;
+}
+
+.register-prompt {
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.register-prompt div {
+  font-weight: bold;
+  color: #040813;
+  margin-left: 4px;
+}
+
+/* LOGIN FORM */
+
+.login-form-container {
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 10vh;
+  padding-top: 15vh;
+}
+
+.auth-title {
+  font-size: 30px;
+  color: #040813;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.auth-sub {
+  font-size: 20px;
+  font-weight: 400;
+  color: #8d8d8d;
+  margin-top: 10px;
+}
+
+.login-form-container label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #040813;
+}
+
+.login-form-container input {
+  height: 30px;
+  width: 50%;
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 2px solid #8d8d8d;
+}
+
+.login-form-container input:focus {
+  border: 2px solid #499ffa;
+}
+
+.login-form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.auth-submit {
+  width: 100px !important;
+  height: 45px !important;
+  color: white;
+  background-color: #017bfd;
+  border: none !important;
+  border-radius: 3px !important;
+  margin-top: 30px !important;
+  font-size: 20px !important;
+}
+
+/* REGISTER */
+
+.register-form-container {
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 10vh;
+  padding-top: 10vh;
+}
+
+.register-form-container label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #040813;
+}
+
+.register-form-container input {
+  height: 30px;
+  width: 50%;
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 2px solid #8d8d8d;
+}
+
+.register-form-container input:focus {
+  border: 2px solid #499ffa;
+}
+
+.register-form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
