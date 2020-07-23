@@ -33,7 +33,7 @@ const BugForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    bugContext.loading = true;
+
     addBug(bug);
     setOpen(false);
     getBugs();

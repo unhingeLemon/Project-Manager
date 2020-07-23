@@ -1,16 +1,14 @@
-import React, { Fragment,useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from '../../context/auth/authContext'
-
+import AuthContext from '../../context/auth/authContext';
 
 const Navbar = () => {
-  const authContext = useContext(AuthContext)
-  const {logout} = authContext
+  const authContext = useContext(AuthContext);
+  const { logout, user } = authContext;
 
-
-  const onLogout =()=>{
+  const onLogout = () => {
     logout();
-  }
+  };
 
   return (
     <Fragment>
@@ -31,13 +29,20 @@ const Navbar = () => {
           </ul>
         </div>
         <div className='welcome'>
-          <p>Welcome Mark</p>
-          <Link to='/login'>Login</Link>
-          <Link to='/register'>Register</Link>
-          <a onClick={onLogout} href='#!'>
-    
-          <span className='hide-sm'>Logout</span>
-        </a>
+          {user === null ? (
+            <div>
+              <Link to='/login'>Login</Link>
+              <Link to='/register'>Register</Link>
+            </div>
+          ) : (
+            <div>
+              <p>Welcome {user.name}</p>
+
+              <a onClick={onLogout} href='#!'>
+                <span className='hide-sm'>Logout</span>{' '}
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </Fragment>

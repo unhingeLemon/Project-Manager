@@ -19,11 +19,11 @@ const Login = (props) => {
     // Once authenticated,redirect.
     // history is used to change url inside our app,
     // while not reloading the page
-    authContext.loading = true
+
     loadUser();
     if (isAuthenticated) {
       props.history.push('/');
-      
+
       loadUser();
     }
 

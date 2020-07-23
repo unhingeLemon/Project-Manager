@@ -1,4 +1,4 @@
-import { USER_LOADED, LOGIN_SUCCESS,LOG_OUT } from '../types';
+import { USER_LOADED, LOGIN_SUCCESS, LOG_OUT, SET_LOADING } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -17,14 +17,19 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
       };
-      case LOG_OUT:
-        localStorage.removeItem('token');
-        return {
-          token: null,
-          user: null,
-          isAuthenticated: false,
-          loading: false,
-        };
+    case LOG_OUT:
+      localStorage.removeItem('token');
+      return {
+        token: null,
+        user: null,
+        isAuthenticated: false,
+        loading: false,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }

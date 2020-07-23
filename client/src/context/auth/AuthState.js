@@ -3,20 +3,21 @@ import axios from 'axios';
 import setAuthToken from '../../components/utils/setAuthToken';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
-import { USER_LOADED, LOGIN_SUCCESS,LOG_OUT } from '../types';
+import { USER_LOADED, LOGIN_SUCCESS, LOG_OUT, SET_LOADING } from '../types';
 
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem('token'),
     user: null,
     isAuthenticated: false,
-    loading: true,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //LOAD USER
   const loadUser = async () => {
+    setLoading();
     setAuthToken(localStorage.token);
 
     try {
@@ -32,6 +33,7 @@ const AuthState = (props) => {
   };
   // LOGIN USER
   const login = async (formData) => {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -50,12 +52,18 @@ const AuthState = (props) => {
   };
 
   //LOGOUT
-  const logout =() => {
+  const logout = () => {
+    setLoading();
     dispatch({
-      type:LOG_OUT
-    })
-  }
+      type: LOG_OUT,
+    });
+  };
 
+  const setLoading = () => {
+    dispatch({
+      type: SET_LOADING,
+    });
+  };
 
   return (
     <AuthContext.Provider
@@ -67,6 +75,7 @@ const AuthState = (props) => {
         login,
         loadUser,
         logout,
+        setLoading,
       }}
     >
       {props.children}
