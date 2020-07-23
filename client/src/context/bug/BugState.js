@@ -7,7 +7,7 @@ import axios from 'axios';
 const BugState = (props) => {
   const initialState = {
     bugs: [],
-    loading: true,
+    loading: false,
   };
   const [state, dispatch] = useReducer(bugReducer, initialState);
 

@@ -17,9 +17,8 @@ const AuthState = (props) => {
 
   //LOAD USER
   const loadUser = async () => {
-    setLoading();
     setAuthToken(localStorage.token);
-
+    setLoading(true);
     try {
       const res = await axios.get('/api/auth');
 
@@ -28,12 +27,13 @@ const AuthState = (props) => {
         payload: res.data,
       });
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
   // LOGIN USER
   const login = async (formData) => {
-    setLoading();
+    setLoading(true);
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -53,15 +53,16 @@ const AuthState = (props) => {
 
   //LOGOUT
   const logout = () => {
-    setLoading();
+    setLoading(true);
     dispatch({
       type: LOG_OUT,
     });
   };
 
-  const setLoading = () => {
+  const setLoading = (b) => {
     dispatch({
       type: SET_LOADING,
+      payload: b,
     });
   };
 

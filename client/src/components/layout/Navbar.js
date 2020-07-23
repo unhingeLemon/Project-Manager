@@ -37,7 +37,6 @@ const Navbar = () => {
           ) : (
             <div>
               <p>Welcome {user.name}</p>
-
               <a onClick={onLogout} href='#!'>
                 <span className='hide-sm'>Logout</span>{' '}
               </a>

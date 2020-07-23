@@ -6,7 +6,6 @@ const Loading = () => {
   const authContext = useContext(AuthContext);
 
   const { loading } = authContext;
-  useEffect(() => {}, [loading]);
 
   return (
     <Fragment>
