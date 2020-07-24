@@ -1,4 +1,10 @@
-import { USER_LOADED, LOGIN_SUCCESS, LOG_OUT, SET_LOADING } from '../types';
+import {
+  USER_LOADED,
+  LOGIN_SUCCESS,
+  LOG_OUT,
+  SET_LOADING,
+  REGISTER_SUCCESS,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -10,6 +16,7 @@ export default (state, action) => {
         loading: false,
       };
     case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,

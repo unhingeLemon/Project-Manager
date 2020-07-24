@@ -1,7 +1,13 @@
 import React, { useReducer } from 'react';
 import bugContext from './bugContext';
 import bugReducer from './bugReducer';
-import { ADD_BUG, DELETE_BUG, GET_BUGS, UPDATE_BUG } from '../types';
+import {
+  ADD_BUG,
+  DELETE_BUG,
+  GET_BUGS,
+  UPDATE_BUG,
+  RESET_BUGS,
+} from '../types';
 import axios from 'axios';
 
 const BugState = (props) => {
@@ -70,6 +76,11 @@ const BugState = (props) => {
       console.log(err);
     }
   };
+  const resetBugs = () => {
+    dispatch({
+      type: RESET_BUGS,
+    });
+  };
 
   return (
     <bugContext.Provider
@@ -80,6 +91,7 @@ const BugState = (props) => {
         deleteBug,
         getBugs,
         updateBug,
+        resetBugs,
       }}
     >
       {props.children}

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = (props) => {
+  const authContext = useContext(AuthContext);
+  const { register, isAuthenticated, loadUser } = authContext;
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -15,7 +18,28 @@ const Register = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (password === password2) {
+      register({
+        name,
+        email,
+        password,
+      });
+    } else {
+      console.log('PASSWORD DOES NOT MATCH!');
+    }
   };
+
+  useEffect(() => {
+    // Once authenticated,redirect.
+    // history is used to change url inside our app,
+    // while not reloading the page
+    if (isAuthenticated) {
+      props.history.push('/');
+      loadUser();
+    }
+
+    // eslint-disable-next-line
+  }, [isAuthenticated, props.history]);
 
   return (
     <div className='auth'>

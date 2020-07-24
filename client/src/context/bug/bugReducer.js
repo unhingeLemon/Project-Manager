@@ -1,4 +1,10 @@
-import { ADD_BUG, DELETE_BUG, GET_BUGS, UPDATE_BUG } from '../types';
+import {
+  ADD_BUG,
+  DELETE_BUG,
+  GET_BUGS,
+  UPDATE_BUG,
+  RESET_BUGS,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -28,6 +34,12 @@ export default (state, action) => {
       return {
         ...state,
         bugs: action.payload,
+        loading: false,
+      };
+    case RESET_BUGS:
+      return {
+        ...state,
+        bugs: [],
         loading: false,
       };
     default:

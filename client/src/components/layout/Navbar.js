@@ -1,13 +1,17 @@
 import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import BugContext from '../../context/bug/bugContext';
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
+  const bugContext = useContext(BugContext);
   const { logout, user, isAuthenticated } = authContext;
+  const { resetBugs } = bugContext;
 
   const onLogout = () => {
     logout();
+    resetBugs();
   };
 
   return (
