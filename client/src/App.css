@@ -78,7 +78,6 @@
   border: none;
   border-radius: 20px;
   text-align: center;
-  margin-top: 1em;
 }
 .btn:hover {
   cursor: pointer;
@@ -100,9 +99,6 @@
 }
 
 /* CARD */
-.underNav {
-  background-color: #e6e6e6;
-}
 
 .cards {
   display: flex;
@@ -110,44 +106,58 @@
   justify-content: space-around;
   margin: 0 auto;
   color: black;
+  width: 70vw;
 }
 
 .card {
   background-color: #617576;
   width: 30vw;
-  margin: 1em 3vw;
+  margin: 1em 1.6em;
   padding: 1em 1em;
   border-radius: 3px;
   min-height: 400px;
   font-weight: 500;
+  font-size: 17px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+}
+.card-header p {
+  margin-right: 15px;
+  margin-left: 2px;
 }
 
 .scrolly {
-  height: 80vh;
+  height: 90vh;
+  width: 73vw;
   overflow: scroll;
   overflow-x: hidden;
-  margin: 0 5vw;
+  float: right;
   white-space: nowrap;
+  padding-top: 30px;
+  margin-right: 40px;
 }
 
 /* BUG ITEM */
 
 .bug-item-container {
-  width: 100%;
-  background-color: #bac7b8;
+  width: 95%;
+  background-color: #799281;
   color: black;
-  margin: 1em 0;
-  padding: 0.5em 0.5em;
+  margin: 1em auto;
+  padding: 10px 15px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: auto auto;
-  font-size: 0.8em;
+
   font-weight: 400;
   transition: 0.3s ease;
 }
 
 .bug-item-container:hover {
-  background-color: #e6e6e6;
+  background-color: #d0dab4;
   color: black;
   cursor: pointer;
 }
@@ -164,13 +174,24 @@
 .status {
   display: flex;
   flex-direction: row;
-  margin-top: 30px;
+  margin-top: 25px;
   margin-right: 10px;
-  justify-content: flex-end;
+  font-size: 14px;
 }
+
+.status .circle {
+  margin: auto 0;
+  margin-right: 5px;
+}
+
+.status > div:nth-of-type(2) {
+  margin: auto 0;
+}
+
 .projectname {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 5px;
+  font-size: 13px;
 }
 
 .fa-trash {
@@ -188,6 +209,8 @@
   padding-right: 15px;
   margin-left: 5px;
   margin-top: 5px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .clicked {
@@ -535,4 +558,19 @@
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+}
+
+/* SIDEBAR */
+
+.underNav {
+  display: flex;
+  flex-direction: row;
+}
+.sidebar-container {
+  width: 26vw;
+  margin-right: 1vw;
+  background-color: #17282a;
+  height: 90vh;
+  color: #ecf5e7;
+  text-align: center;
 }

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Sidebar = () => {
   return (
-    <div>
-      <div>PROJECT NAME</div>
-      <ul>
-        <li>Roadmap</li>
-        <li>Dashboard</li>
-      </ul>
-    </div>
+    <Fragment>
+      <div className='sidebar-container'>
+        <div>PROJECT NAME</div>
+        <ul>
+          <li>Roadmap</li>
+          <li>Dashboard</li>
+        </ul>
+      </div>
+    </Fragment>
   );
 };
 

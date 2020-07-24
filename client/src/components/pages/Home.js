@@ -1,11 +1,12 @@
-import React from 'react';
-import BugForm from '../bugs/BugForm';
+import React, { Fragment } from 'react';
+
 import Bugs from '../bugs/Bugs';
+import Sidebar from '../layout/Sidebar';
 
 const Home = () => {
   return (
     <div className='underNav'>
-      <BugForm />
+      <Sidebar />
       <Bugs />
     </div>
   );
