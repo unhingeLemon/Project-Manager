@@ -9,6 +9,8 @@ import {
   LOG_OUT,
   SET_LOADING,
   REGISTER_SUCCESS,
+  LOGIN_FAIL,
+  REMOVE_ERROR,
 } from '../types';
 
 const AuthState = (props) => {
@@ -17,6 +19,7 @@ const AuthState = (props) => {
     user: null,
     isAuthenticated: false,
     loading: false,
+    error: '',
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -35,7 +38,6 @@ const AuthState = (props) => {
     } catch (error) {
       setLoading(false);
       /// ERROR IS ABOUT TOKEN
-      console.log(error.response.data.msg);
     }
   };
   // LOGIN USER
@@ -57,6 +59,15 @@ const AuthState = (props) => {
     } catch (error) {
       /// WE CAN MANIPULATE THIS DATA TO PULL OUT AN ERROR IN THE UI
       console.log(error.response.data.msg);
+
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: error.response.data.msg,
+      });
+
+      dispatch({
+        type: REMOVE_ERROR,
+      });
     }
   };
 
@@ -79,6 +90,13 @@ const AuthState = (props) => {
     } catch (error) {
       /// WE CAN MANIPULATE THIS DATA TO PULL OUT AN ERROR IN THE UI
       console.log(error.response.data.msg);
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: error.response.data.msg,
+      });
+      dispatch({
+        type: REMOVE_ERROR,
+      });
     }
   };
 
@@ -104,6 +122,7 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         user: state.user,
         loading: state.loading,
+        error: state.error,
         login,
         loadUser,
         register,

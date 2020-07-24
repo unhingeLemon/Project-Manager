@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Register = (props) => {
   const authContext = useContext(AuthContext);
-  const { register, isAuthenticated, loadUser } = authContext;
+  const { register, isAuthenticated, loadUser, error } = authContext;
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -25,7 +25,7 @@ const Register = (props) => {
         password,
       });
     } else {
-      console.log('PASSWORD DOES NOT MATCH!');
+      alert('Password does not match');
     }
   };
 
@@ -37,9 +37,12 @@ const Register = (props) => {
       props.history.push('/');
       loadUser();
     }
+    if (error) {
+      alert(error);
+    }
 
     // eslint-disable-next-line
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, props.history, error]);
 
   return (
     <div className='auth'>

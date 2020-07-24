@@ -4,6 +4,8 @@ import {
   LOG_OUT,
   SET_LOADING,
   REGISTER_SUCCESS,
+  LOGIN_FAIL,
+  REMOVE_ERROR,
 } from '../types';
 
 export default (state, action) => {
@@ -36,6 +38,17 @@ export default (state, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case REMOVE_ERROR:
+      return {
+        ...state,
+        error: '',
+        loading: false,
       };
     default:
       return state;

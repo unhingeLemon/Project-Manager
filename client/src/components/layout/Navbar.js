@@ -42,10 +42,11 @@ const Navbar = () => {
               <Link to='/register'>Register</Link>
             </div>
           ) : (
-            <div>
+            <div className='right-items'>
               <p>Welcome {user.name}</p>
-              <a onClick={onLogout} href='#!'>
-                <span className='hide-sm'>Logout</span>{' '}
+              <a onClick={onLogout} href='/login'>
+                <i class='fas fa-sign-out-alt  ' aria-hidden='true' />
+                Logout
               </a>
             </div>
           )}

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Login = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { login, isAuthenticated, loadUser } = authContext;
+  const { login, isAuthenticated, loadUser, error } = authContext;
 
   const [user, setUser] = useState({
     email: '',
@@ -26,9 +26,12 @@ const Login = (props) => {
 
       loadUser();
     }
+    if (error) {
+      alert(error);
+    }
 
     // eslint-disable-next-line
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, props.history, error]);
 
   const onSubmit = (e) => {
     e.preventDefault();

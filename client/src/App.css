@@ -56,9 +56,23 @@
 }
 
 .welcome {
-  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
+.right-items {
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+.right-items a {
+  color: white;
+  padding-left: 10px;
+}
+.right-items a i {
+  color: white;
+  padding-right: 4px;
+}
 /* BUTTON */
 .btn {
   border: none;
@@ -484,7 +498,9 @@
   margin-top: 30px !important;
   font-size: 20px !important;
 }
-
+.auth-submit:hover {
+  cursor: pointer;
+}
 /* REGISTER */
 
 .register-form-container {
