@@ -112,7 +112,7 @@
 .card {
   background-color: #617576;
   width: 30vw;
-  margin: 1em 1.6em;
+  margin: 1em 1.2vw;
   padding: 1em 1em;
   border-radius: 3px;
   min-height: 400px;
@@ -131,13 +131,14 @@
 
 .scrolly {
   height: 90vh;
-  width: 73vw;
+  width: 70vw;
   overflow: scroll;
   overflow-x: hidden;
   float: right;
   white-space: nowrap;
   padding-top: 30px;
   margin-right: 40px;
+  margin-left: 10px;
 }
 
 /* BUG ITEM */
@@ -567,7 +568,7 @@
   flex-direction: row;
 }
 .sidebar-container {
-  width: 26vw;
+  width: 18vw;
   margin-right: 1vw;
   background-color: #17282a;
   height: 90vh;

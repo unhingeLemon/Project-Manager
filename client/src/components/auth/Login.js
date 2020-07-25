@@ -43,14 +43,15 @@ const Login = (props) => {
       <div className='banner-container'>
         <div className='brand-container'>
           <i className='fas fa-bug main-icon' />
-          <div className='brand-name'>BUG TRACKER</div>
+          <div className='brand-name'>PROJECT MANAGER</div>
         </div>
 
         <div className='quote-container'>
           <div className='quote'>
-            It's not a bug — it's an undocumented feature.
+            A place where you can work with the same project with other people.
+            Like social media? I still don't have a name for it tho.
           </div>
-          <div className='quote-author'>- Anonymous</div>
+          <div className='quote-author'>- me</div>
         </div>
       </div>
 

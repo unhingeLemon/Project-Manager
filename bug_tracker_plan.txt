@@ -63,3 +63,34 @@ YOUR WORK BUTTON HAS THE LIST OF PROJECTS YOU CONTRIBUTED (LISTED IN BADGES) AND
 
 
 
+SCHEMASSS!
+
+ISSUES: 
+project-schema
+title 
+description
+date:
+status:
+priority:
+
+Projects:
+issues: an object;
+user: (it can be users but whatever, I'll implement that in the next future )
+description:
+
+USERS:
+name
+email 
+password(hash);
+
+
+
+ROADMAP? I will research more haha roadmap
+name:
+description:
+project: (kung san sya related)
+startDate:
+dueDate:
+status: kung DONE or IN PROGRESS or TODO
+
+
