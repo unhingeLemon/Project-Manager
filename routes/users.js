@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
@@ -65,12 +66,40 @@ router.post(
         }
       );
     } catch (error) {
-      console.error(err.message);
+      console.error(error.message);
       {
         res.status(500).send('Server error');
       }
     }
   }
 );
+
+// @route   PUT api/projects/:id
+// @desc    Update the project current ID
+// @access  Private
+router.put('/:id', auth, async (req, res) => {
+  const { projectId } = req.body;
+
+  // Build bug object
+  const userFields = {};
+  if (projectId) userFields.projectId = projectId;
+
+  try {
+    let user = await User.findById(req.params.id);
+
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+
+    user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: userFields },
+      { new: true }
+    );
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

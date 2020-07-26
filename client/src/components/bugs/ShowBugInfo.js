@@ -30,7 +30,6 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
             aria-hidden='true'
           ></i>
           <div className='info-project-container'>
-            <div>{bug.projectName}</div>
             <i className='fas fa-trash' onClick={onDelete}></i>
             <div>BUG</div>
           </div>

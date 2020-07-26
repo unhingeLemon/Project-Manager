@@ -3,15 +3,14 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
-// const User = require('../models/User');
-const Bug = require('../models/Bug');
+const Roadmap = require('../models/Roadmap');
 
 // @route   GET api/bugs
-// @desc    Get all the project's bugs
+// @desc    Get all the users bugs
 // @access  Private
-router.get('/:projectId', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const bugs = await Bug.find({ project: req.params.projectId }).sort({
+    const bugs = await Bug.find({ user: req.user.id }).sort({
       date: -1,
     });
     res.json(bugs);
@@ -26,7 +25,7 @@ router.get('/:projectId', auth, async (req, res) => {
 // @access  Private
 // put auth in the middle to make it private
 router.post(
-  '/:projectId',
+  '/',
   auth,
   [
     [check('title', 'Title is required').not().isEmpty()],
@@ -39,17 +38,18 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, priority, description, status } = req.body;
+    const { title, priority, projectName, description, status } = req.body;
     try {
-      const newBug = new Bug({
+      const newRoadmap = new Roadmap({
         title,
         priority,
+        projectName,
         description,
         status,
-        project: req.params.projectId,
+        user: req.user.id,
       });
-      const bug = await newBug.save();
-      res.json(bug);
+      const roadmap = await newRoadmap.save();
+      res.json(roadmap);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');

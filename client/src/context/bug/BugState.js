@@ -21,9 +21,9 @@ const BugState = (props) => {
   // our backend will read the token from the header
   // and then translate it to user data
 
-  const getBugs = async () => {
+  const getBugs = async (project) => {
     try {
-      const res = await axios.get('/api/bugs');
+      const res = await axios.get(`/api/bugs/${project}`);
 
       dispatch({
         type: GET_BUGS,
@@ -34,9 +34,9 @@ const BugState = (props) => {
     }
   };
 
-  const addBug = async (bug) => {
+  const addBug = async (bug, project) => {
     try {
-      await axios.post('/api/bugs', bug);
+      await axios.post(`/api/bugs/${project}`, bug);
       dispatch({
         type: ADD_BUG,
         payload: bug,

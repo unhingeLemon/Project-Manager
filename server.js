@@ -14,6 +14,8 @@ app.use(express.json({ extendend: false }));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/bugs', require('./routes/bugs'));
+app.use('/api/projects', require('./routes/projects'));
+app.use('/api/roadmaps', require('./routes/roadmaps'));
 
 app.listen(PORT, () => {
   console.log('SERVER IS AT: http://localhost:5000/');

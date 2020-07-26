@@ -11,25 +11,28 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import BugState from './context/bug/BugState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthState from './context/auth/AuthState';
+import ProjectState from './context/project/ProjectState';
 
 import ProjectIndex from './components/projects/index';
 
 const App = () => {
   return (
     <AuthState>
-      <BugState>
-        <Loading />
-        <Router>
-          <Navbar />
+      <ProjectState>
+        <BugState>
+          <Loading />
+          <Router>
+            <Navbar />
 
-          <Switch>
-            <PrivateRoute exact path='/' component={Home} />
-            <Route exact path='/projects' component={ProjectIndex} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-          </Switch>
-        </Router>
-      </BugState>
+            <Switch>
+              <PrivateRoute exact path='/' component={Home} />
+              <Route exact path='/projects' component={ProjectIndex} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+            </Switch>
+          </Router>
+        </BugState>
+      </ProjectState>
     </AuthState>
   );
 };

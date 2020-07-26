@@ -15,6 +15,8 @@ TODO!
 [x] PUT AN ALERT WHEN BUG IS DELETED
 [] ROADMAP ROUTE
 [] PUT LOADING FUNCTIONALITY ON BUG
+[] POST PROJECT ID WITH FRONT END
+
 
 
 
@@ -66,7 +68,7 @@ YOUR WORK BUTTON HAS THE LIST OF PROJECTS YOU CONTRIBUTED (LISTED IN BADGES) AND
 SCHEMASSS!
 
 ISSUES: 
-project-schema
+project-schema --- WILL ONLY APPEAR ON THE LOADED PROJECT
 title 
 description
 date:
@@ -74,9 +76,10 @@ status:
 priority:
 
 Projects:
-issues: an object;
 user: (it can be users but whatever, I'll implement that in the next future )
 description:
+title:
+current: Boolean!
 
 USERS:
 name
@@ -85,7 +88,7 @@ password(hash);
 
 
 
-ROADMAP? I will research more haha roadmap
+ROADMAP? I will research more haha "roadmap"
 name:
 description:
 project: (kung san sya related)

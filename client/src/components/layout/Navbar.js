@@ -45,7 +45,7 @@ const Navbar = () => {
             <div className='right-items'>
               <p>Welcome {user.name}</p>
               <a onClick={onLogout} href='/login'>
-                <i class='fas fa-sign-out-alt  ' aria-hidden='true' />
+                <i className='fas fa-sign-out-alt  ' aria-hidden='true' />
                 Logout
               </a>
             </div>

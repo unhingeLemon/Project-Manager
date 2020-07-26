@@ -1,10 +1,11 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react';
 import BugContext from '../../context/bug/bugContext';
-
+import ProjectContext from '../../context/project/projectContext';
 const BugForm = () => {
   const [isOpen, setOpen] = useState(false);
   const bugContext = useContext(BugContext);
-
+  const projectContext = useContext(ProjectContext);
+  const { project } = projectContext;
   const { addBug, getBugs } = bugContext;
 
   const [bug, setBug] = useState({
@@ -25,16 +26,16 @@ const BugForm = () => {
       status: 'todo',
       date: Date.now(),
     });
-  }, [bugContext]);
+  }, [isOpen]);
 
-  const { title, description, projectName, priority } = bug;
+  const { title, description, priority } = bug;
 
   const onChange = (e) => setBug({ ...bug, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    addBug(bug);
+    addBug(bug, project._id);
     setOpen(false);
     getBugs();
   };
@@ -57,16 +58,7 @@ const BugForm = () => {
 
             <form className='create-form' onSubmit={onSubmit}>
               <p>CREATE AN ISSUE</p>
-              <label>
-                <div> Project</div>
-                <input
-                  type='text'
-                  name='projectName'
-                  onChange={onChange}
-                  value={projectName}
-                  required
-                />
-              </label>
+
               <label>
                 <div>Bug Title</div>
                 <input

@@ -21,10 +21,9 @@ const Login = (props) => {
     // history is used to change url inside our app,
     // while not reloading the page
     loadUser();
+
     if (isAuthenticated) {
       props.history.push('/');
-
-      loadUser();
     }
     if (error) {
       alert(error);

@@ -11,3 +11,6 @@ export const LOG_OUT = 'LOG_OUT';
 export const SET_LOADING = 'SET_LOADING';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
+
+export const GET_CURRENT_PROJECT = 'GET_CURRENT_PROJECT';
+export const GET_ALL_PROJECT = 'GET_ALL_PROJECT';

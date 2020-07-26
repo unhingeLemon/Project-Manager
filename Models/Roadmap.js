@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const ProjectSchema = mongoose.Schema({
-  user: {
+const Roadmap = mongoose.Schema({
+  project: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
+    ref: 'projects',
   },
   title: {
     type: String,
@@ -12,11 +12,19 @@ const ProjectSchema = mongoose.Schema({
   description: {
     type: String,
   },
-  date: {
+  status: {
+    type: String,
+    required: true,
+    default: 'todo',
+  },
+  startDate: {
     type: Date,
     required: true,
     default: Date.now,
   },
+  dueDate: {
+    type: Date,
+  },
 });
 
-module.exports = mongoose.model('project', ProjectSchema);
+module.exports = mongoose.model('roadmap', Roadmap);

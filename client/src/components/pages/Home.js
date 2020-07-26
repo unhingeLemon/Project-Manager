@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Bugs from '../bugs/Bugs';
 import Sidebar from '../layout/Sidebar';

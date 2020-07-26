@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const BugSchema = mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
+  project: {
+    type: String,
   },
   title: {
     type: String,
@@ -13,10 +12,6 @@ const BugSchema = mongoose.Schema({
     type: String,
     required: true,
     default: 'Low',
-  },
-  projectName: {
-    type: String,
-    required: true,
   },
   description: {
     type: String,
