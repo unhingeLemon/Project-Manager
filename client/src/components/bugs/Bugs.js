@@ -3,18 +3,23 @@ import BugItem from './BugItem';
 import BugContext from '../../context/bug/bugContext';
 import BugForm from './BugForm';
 import ProjectContext from '../../context/project/projectContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
   const projectContext = useContext(ProjectContext);
+  const authContext = useContext(AuthContext);
+
+  const { loading } = authContext;
   const { bugs, getBugs, updateBug } = bugContext;
   const { project } = projectContext;
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     getBugs(project._id);
+    console.log(bugs);
     // eslint-disable-next-line
-  }, [bugs]);
+  }, [project]);
 
   let todo = bugs.filter((bug) => bug.status === 'todo');
   let inprogress = bugs.filter((bug) => bug.status === 'in progress');
@@ -25,11 +30,11 @@ const Bugs = () => {
     console.log('over');
   };
 
-  let tempBug;
+  var tempBug;
 
   const getDragBug = (bug) => {
     tempBug = bug;
-    console.log(tempBug);
+    console.log(tempBug, 'sdsds');
   };
 
   const updating = () => {
@@ -40,10 +45,11 @@ const Bugs = () => {
     }
   };
 
-  const dropIn = (s) => {
-    tempBug.status = s;
-
-    updateBug(tempBug);
+  const dropIn = async (s) => {
+    if (tempBug) {
+      tempBug.status = s;
+    }
+    await updateBug(tempBug);
     updating();
   };
 

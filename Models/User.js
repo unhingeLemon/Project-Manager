@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
   projectId: {
+    /// Holds the current project of the users. Immutable.s
     type: String,
     default: '',
   },

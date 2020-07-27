@@ -3,6 +3,7 @@ export const DELETE_BUG = 'DELETE_BUG';
 export const GET_BUGS = 'GET_BUGS';
 export const UPDATE_BUG = 'UPDATE_BUG';
 export const RESET_BUGS = 'RESET_BUGS';
+export const SET_LOADING_BUG = 'SET_LOADING_BUG';
 
 export const USER_LOADED = 'USER_LOADED';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

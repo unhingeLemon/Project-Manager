@@ -82,6 +82,12 @@ const BugState = (props) => {
     });
   };
 
+  const setLoading = () => {
+    dispatch({
+      type: RESET_BUGS,
+    });
+  };
+
   return (
     <bugContext.Provider
       value={{

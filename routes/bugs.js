@@ -72,11 +72,6 @@ router.put('/:id', auth, async (req, res) => {
 
     if (!bug) return res.status(404).json({ msg: 'Bug not found' });
 
-    // Make sure user owns bug
-    if (bug.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'Not authorized' });
-    }
-
     bug = await Bug.findByIdAndUpdate(
       req.params.id,
       { $set: bugFields },

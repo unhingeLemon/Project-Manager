@@ -5,6 +5,8 @@ const ProjectSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
   },
+
+  /// ADD userS schema here that hold an array of users (email)
   title: {
     type: String,
     required: true,

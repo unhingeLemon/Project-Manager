@@ -4,6 +4,7 @@ import {
   GET_BUGS,
   UPDATE_BUG,
   RESET_BUGS,
+  SET_LOADING_BUG,
 } from '../types';
 
 export default (state, action) => {
@@ -41,6 +42,11 @@ export default (state, action) => {
         ...state,
         bugs: [],
         loading: false,
+      };
+    case SET_LOADING_BUG:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;
