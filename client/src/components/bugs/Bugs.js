@@ -3,14 +3,11 @@ import BugItem from './BugItem';
 import BugContext from '../../context/bug/bugContext';
 import BugForm from './BugForm';
 import ProjectContext from '../../context/project/projectContext';
-import AuthContext from '../../context/auth/authContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
   const projectContext = useContext(ProjectContext);
-  const authContext = useContext(AuthContext);
 
-  const { loading } = authContext;
   const { bugs, getBugs, updateBug } = bugContext;
   const { project } = projectContext;
   const [update, setUpdate] = useState(false);

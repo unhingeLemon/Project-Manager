@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const ProjectSchema = mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
+    type: String,
   },
 
   /// ADD userS schema here that hold an array of users (email)

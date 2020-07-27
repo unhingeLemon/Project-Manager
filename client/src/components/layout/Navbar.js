@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         <div className='nav-links'>
           <i className='fas fa-bug' />
-          <p>Bug Tracker</p>
+          <p>ZZZzz zzzZz</p>
           <ul>
             <li>
               <a href='/#'>Your works</a>

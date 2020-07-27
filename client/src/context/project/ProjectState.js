@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const ProjectState = (props) => {
   const initialState = {
-    projects: [],
+    projects: null,
     project: {},
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
@@ -30,9 +30,10 @@ const ProjectState = (props) => {
   //   }
   // };
 
-  const getAllProject = async () => {
+  const getAllProjects = async () => {
     try {
-      const res = await axios.get(`/api/projects`);
+      const res = await axios.get('/api/projects');
+      console.log(res.data);
       dispatch({
         type: GET_ALL_PROJECT,
         payload: res.data,
@@ -62,7 +63,7 @@ const ProjectState = (props) => {
         projects: state.projects,
         project: state.project,
         loadCurProject,
-        getAllProject,
+        getAllProjects,
       }}
     >
       {props.children}

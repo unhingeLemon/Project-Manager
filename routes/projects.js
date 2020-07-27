@@ -13,16 +13,8 @@ router.get('/', auth, async (req, res) => {
   try {
     const projects = await Project.find({
       user: req.user.id,
-    }).sort({
-      date: -1,
     });
     res.json(projects);
-    req.current = projects;
-    console.log(req.current);
-
-    /// IF YOU WANT TO LOAD THE CURRENT,
-    // JUST WRITE AN ALGO THAT WILL FILTER THE projects
-    // and find the current: true.
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');

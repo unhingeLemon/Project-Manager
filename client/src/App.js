@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthState from './context/auth/AuthState';
 import ProjectState from './context/project/ProjectState';
 
-import ProjectIndex from './components/projects/index';
+import Projects from './components/projects/Projects';
 
 const App = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
 
             <Switch>
               <PrivateRoute exact path='/' component={Home} />
-              <Route exact path='/projects' component={ProjectIndex} />
+              <PrivateRoute exact path='/projects' component={Projects} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
             </Switch>
