@@ -1,6 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import ProjectContext from '../../context/project/projectContext';
 
 const UpdateProject = () => {
+  const [isOpen, setOpen] = useState(false);
+  const projectContext = useContext(ProjectContext);
+  const { updateProject } = projectContext;
+  useEffect(() => {
+    setProject({
+      title: projectContext.project.title,
+      description: projectContext.project.description,
+    });
+  }, [isOpen]);
+
+  const [project, setProject] = useState({
+    title: '',
+    description: '',
+    date: Date.now(),
+  });
+  const { title, description } = project;
+
+  const onChange = (e) =>
+    setProject({ ...project, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    updateProject(projectContext.project._id, project);
+    setOpen(false);
+    e.preventDefault();
+  };
+
   return (
     <Fragment>
       <div className='btn-container'>
@@ -19,7 +46,7 @@ const UpdateProject = () => {
             ></i>
 
             <form className='create-form' onSubmit={onSubmit}>
-              <p>CREATE A PROJECT</p>
+              <p>UPDATE THIS PROJECT</p>
 
               <label>
                 <div>Project Title</div>

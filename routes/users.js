@@ -74,7 +74,7 @@ router.post(
   }
 );
 
-// @route   PUT api/projects/:id
+// @route   PUT api/users/:id
 // @desc    Update the project current ID
 // @access  Private
 router.put('/:id', auth, async (req, res) => {

@@ -1,7 +1,12 @@
 import React, { useReducer } from 'react';
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
-import { GET_ALL_PROJECT, GET_CURRENT_PROJECT, ADD_PROJECT } from '../types';
+import {
+  GET_ALL_PROJECT,
+  GET_CURRENT_PROJECT,
+  ADD_PROJECT,
+  UPDATE_PROJECT,
+} from '../types';
 import axios from 'axios';
 
 const ProjectState = (props) => {
@@ -50,6 +55,24 @@ const ProjectState = (props) => {
     }
   };
 
+  const updateProject = async (id, data) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(`/api/projects/${id}`, data, config);
+
+      dispatch({
+        type: UPDATE_PROJECT,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <projectContext.Provider
       value={{
@@ -58,6 +81,7 @@ const ProjectState = (props) => {
         loadCurProject,
         getAllProjects,
         addProject,
+        updateProject,
       }}
     >
       {props.children}

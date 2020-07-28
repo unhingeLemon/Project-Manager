@@ -63,4 +63,33 @@ router.get('/:projectId', auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/projects/:id
+// @desc    Update the CURRENT PROJECT
+// @access  Private
+router.put('/:id', auth, async (req, res) => {
+  const { title, description } = req.body;
+
+  // Build Project object
+  const projectFields = {};
+  if (title) projectFields.title = title;
+  if (description) projectFields.description = description;
+
+  try {
+    let project = await Project.findById(req.params.id);
+
+    if (!project) return res.status(404).json({ msg: 'Project not Found' });
+
+    project = await Project.findByIdAndUpdate(
+      req.params.id,
+      { $set: projectFields },
+      { new: true }
+    );
+
+    res.json(project);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
