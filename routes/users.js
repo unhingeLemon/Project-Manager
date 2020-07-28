@@ -85,7 +85,7 @@ router.put('/:id', auth, async (req, res) => {
   if (projectId) userFields.projectId = projectId;
 
   try {
-    let user = await User.findById(req.params.id);
+    let user = await User.findById(req.params.id).select('-password');
 
     if (!user) return res.status(404).json({ msg: 'User not found' });
 
@@ -93,7 +93,7 @@ router.put('/:id', auth, async (req, res) => {
       req.params.id,
       { $set: userFields },
       { new: true }
-    );
+    ).select('-password');
 
     res.json(user);
   } catch (err) {

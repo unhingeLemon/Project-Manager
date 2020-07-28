@@ -13,7 +13,10 @@ const Bugs = () => {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    getBugs(project._id);
+    if (project) {
+      getBugs(project._id);
+    }
+
     console.log(bugs);
     // eslint-disable-next-line
   }, [project]);

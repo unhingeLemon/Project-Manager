@@ -19,8 +19,8 @@ const Sidebar = () => {
   return (
     <Fragment>
       <div className='sidebar-container'>
-        <div>{project.title}</div>
-        <div>{project.description}</div>
+        <div>{project && project.title}</div>
+        <div>{project && project.description}</div>
         <ul>
           <li>Roadmap</li>
           <li>Dashboard</li>

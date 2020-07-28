@@ -11,6 +11,7 @@ import {
   REGISTER_SUCCESS,
   LOGIN_FAIL,
   REMOVE_ERROR,
+  UPDATE_USER_PROJECT,
 } from '../types';
 
 const AuthState = (props) => {
@@ -115,6 +116,26 @@ const AuthState = (props) => {
     });
   };
 
+  /// UPDATE USER CURRENT PROJECT
+  const updateUser = async (userId, data) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(data);
+    try {
+      const res = await axios.put(`/api/users/${userId}`, data, config);
+      console.log(res);
+      dispatch({
+        type: UPDATE_USER_PROJECT,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -128,6 +149,7 @@ const AuthState = (props) => {
         register,
         logout,
         setLoading,
+        updateUser,
       }}
     >
       {props.children}

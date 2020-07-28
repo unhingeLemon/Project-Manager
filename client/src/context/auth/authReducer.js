@@ -6,6 +6,7 @@ import {
   REGISTER_SUCCESS,
   LOGIN_FAIL,
   REMOVE_ERROR,
+  UPDATE_USER_PROJECT,
 } from '../types';
 
 export default (state, action) => {
@@ -48,6 +49,12 @@ export default (state, action) => {
       return {
         ...state,
         error: '',
+        loading: false,
+      };
+    case UPDATE_USER_PROJECT:
+      return {
+        ...state,
+        user: action.payload,
         loading: false,
       };
     default:

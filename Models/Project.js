@@ -4,8 +4,10 @@ const ProjectSchema = mongoose.Schema({
   user: {
     type: String,
   },
-
   /// ADD userS schema here that hold an array of users (email)
+  users: {
+    type: Array,
+  },
   title: {
     type: String,
     required: true,

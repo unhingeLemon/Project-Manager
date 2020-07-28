@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
-import { GET_ALL_PROJECT, GET_CURRENT_PROJECT } from '../types';
+import { GET_ALL_PROJECT, GET_CURRENT_PROJECT, ADD_PROJECT } from '../types';
 import axios from 'axios';
 
 const ProjectState = (props) => {
@@ -11,29 +11,22 @@ const ProjectState = (props) => {
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
 
-  // const updateBug = async (bug) => {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
-
-  //   try {
-  //     const res = await axios.put(`/api/bugs/${bug._id}`, bug, config);
-  //     console.log(res.data);
-  //     dispatch({
-  //       type: UPDATE_BUG,
-  //       payload: res.data,
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const addProject = async (formData) => {
+    try {
+      const res = await axios.post('/api/projects', formData);
+      dispatch({
+        type: ADD_PROJECT,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getAllProjects = async () => {
     try {
       const res = await axios.get('/api/projects');
-      console.log(res.data);
+
       dispatch({
         type: GET_ALL_PROJECT,
         payload: res.data,
@@ -64,6 +57,7 @@ const ProjectState = (props) => {
         project: state.project,
         loadCurProject,
         getAllProjects,
+        addProject,
       }}
     >
       {props.children}
