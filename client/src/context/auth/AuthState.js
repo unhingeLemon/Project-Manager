@@ -123,10 +123,10 @@ const AuthState = (props) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(data);
+
     try {
       const res = await axios.put(`/api/users/${userId}`, data, config);
-      console.log(res);
+
       dispatch({
         type: UPDATE_USER_PROJECT,
         payload: res.data,

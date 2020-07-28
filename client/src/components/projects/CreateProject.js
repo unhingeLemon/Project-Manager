@@ -26,7 +26,7 @@ const CreateProject = () => {
     if (projectContext.project) {
       tempUser = user;
       tempUser.projectId = projectContext.project._id;
-      updateUser(user._id, user);
+      updateUser(user._id, tempUser);
     }
 
     console.log(projectContext.project);

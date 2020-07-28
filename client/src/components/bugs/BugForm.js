@@ -36,8 +36,9 @@ const BugForm = () => {
     e.preventDefault();
 
     addBug(bug, project._id);
+
     setOpen(false);
-    getBugs();
+    getBugs(project._id);
   };
 
   return (
