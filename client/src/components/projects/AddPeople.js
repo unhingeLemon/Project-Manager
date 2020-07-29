@@ -1,31 +1,22 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 
-const UpdateProject = () => {
+const AddPeople = () => {
   const [isOpen, setOpen] = useState(false);
-  const projectContext = useContext(ProjectContext);
-  const { updateProject } = projectContext;
-  useEffect(() => {
-    setProject({
-      title: projectContext.project.title,
-      description: projectContext.project.description,
-    });
+  const [email, setEmail] = useState('');
 
-    // eslint-disable-next-line
+  const projectContext = useContext(ProjectContext);
+  const { updateProject, project } = projectContext;
+
+  useEffect(() => {
+    setEmail('');
   }, [isOpen]);
 
-  const [project, setProject] = useState({
-    title: '',
-    description: '',
-    date: Date.now(),
-  });
-  const { title, description } = project;
-
-  const onChange = (e) =>
-    setProject({ ...project, [e.target.name]: e.target.value });
+  const onChange = (e) => setEmail(e.target.value);
 
   const onSubmit = (e) => {
-    updateProject(projectContext.project._id, project);
+    updateProject(project._id, { users: [...project.users, email] });
+
     setOpen(false);
     e.preventDefault();
   };
@@ -34,7 +25,7 @@ const UpdateProject = () => {
     <Fragment>
       <div className='btn-container'>
         <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          EDIT
+          ADD PEOPLE
         </button>
       </div>
 
@@ -48,28 +39,19 @@ const UpdateProject = () => {
             ></i>
 
             <form className='create-form' onSubmit={onSubmit}>
-              <p>UPDATE THIS PROJECT</p>
+              <p>ADD PEOPLE</p>
 
               <label>
-                <div>Project Title</div>
+                <div>Email</div>
                 <input
-                  type='text'
-                  name='title'
+                  type='email'
+                  name='email'
                   onChange={onChange}
-                  value={title}
+                  value={email}
                   required
                 />
               </label>
-              <label>
-                <div>Description</div>
-                <textarea
-                  value={description}
-                  onChange={onChange}
-                  name='description'
-                  maxLength='500'
-                  required
-                />
-              </label>
+
               <div className='btn-container2'>
                 <button className='btn btn-primary'>SUBMIT</button>
               </div>
@@ -81,4 +63,4 @@ const UpdateProject = () => {
   );
 };
 
-export default UpdateProject;
+export default AddPeople;

@@ -2,6 +2,8 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 import UpdateProject from '../projects/UpdateProject';
+import AddPeople from '../projects/AddPeople';
+
 const Sidebar = () => {
   const projectContext = useContext(ProjectContext);
   const authContext = useContext(AuthContext);
@@ -26,6 +28,7 @@ const Sidebar = () => {
           <li>Dashboard</li>
         </ul>
         <UpdateProject />
+        <AddPeople />
       </div>
     </Fragment>
   );

@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react';
-import ProjectContext from '../../context/project/projectContext';
+
 import AuthContext from '../../context/auth/authContext';
 import { Redirect } from 'react-router-dom';
 
 const ProjectItem = ({ project }) => {
-  const projectContext = useContext(ProjectContext);
   const authContext = useContext(AuthContext);
   const { user, updateUser } = authContext;
   const [redirect, setRedirect] = useState(false);
@@ -18,9 +17,13 @@ const ProjectItem = ({ project }) => {
   };
 
   return (
-    <div onClick={onClick} style={{ border: '4px solid black' }}>
+    <div
+      onClick={onClick}
+      style={{ border: '2px solid black', marginTop: '10px' }}
+    >
       {project.title}
       {redirect && <Redirect to='/' />}
+      <div style={{ padding: '4px 4px', background: 'black' }}></div>
     </div>
   );
 };

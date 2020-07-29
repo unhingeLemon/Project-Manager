@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
-// const User = require('../models/User');
+const User = require('../models/User');
 const Project = require('../models/Project');
 
 // @route   GET api/projects
@@ -67,13 +67,39 @@ router.get('/:projectId', auth, async (req, res) => {
 // @desc    Update the CURRENT PROJECT
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, users } = req.body;
+  let user = await Project.findOne({ _id: req.params.id, user: req.user.id });
+  console.log(user);
+  if (!user) {
+    return res
+      .status(400)
+      .json({ msg: 'You are not allowed to edit this project!' });
+  }
+  var newAddedUser;
+  if (users) {
+    newAddedUser = users[users.length - 1];
+  }
 
+  console.log(newAddedUser);
   // Build Project object
   const projectFields = {};
   if (title) projectFields.title = title;
   if (description) projectFields.description = description;
-
+  if (users) {
+    var newAddedUser1 = await User.findOne({ email: newAddedUser });
+    var newAddedUser2 = await Project.findOne({
+      _id: req.params.id,
+      users: newAddedUser,
+    });
+    console.log(newAddedUser2);
+    if (newAddedUser1 === null) {
+      return res.status(400).json({ msg: 'User does not exist' });
+    } else if (newAddedUser2) {
+      return res.status(400).json({ msg: 'User already added' });
+    } else {
+      projectFields.users = users;
+    }
+  }
   try {
     let project = await Project.findById(req.params.id);
 

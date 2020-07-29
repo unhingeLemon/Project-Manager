@@ -24,6 +24,7 @@ const CreateProject = () => {
   var tempUser;
   useEffect(() => {
     if (projectContext.project) {
+      // eslint-disable-next-line
       tempUser = user;
       tempUser.projectId = projectContext.project._id;
       updateUser(user._id, tempUser);

@@ -19,11 +19,15 @@ const Projects = () => {
   return (
     <div>
       <h1>PROJECT ROUTE</h1>
-      {projects &&
-        projects.map((project) => (
-          <ProjectItem project={project} key={project._id} />
-        ))}
-      <CreateProject />
+      <div>
+        Created Project
+        {projects &&
+          projects.map((project) => (
+            <ProjectItem project={project} key={project._id} />
+          ))}
+        <CreateProject />
+      </div>
+      <div>Added Project Collaborator</div>
     </div>
   );
 };

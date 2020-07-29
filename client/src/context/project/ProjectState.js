@@ -69,6 +69,7 @@ const ProjectState = (props) => {
         payload: res.data,
       });
     } catch (err) {
+      console.log(err.response.data.msg);
       console.log(err);
     }
   };
