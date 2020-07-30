@@ -3,6 +3,7 @@ import {
   GET_CURRENT_PROJECT,
   ADD_PROJECT,
   UPDATE_PROJECT,
+  DELETE_PROJECT,
 } from '../types';
 
 export default (state, action) => {
@@ -27,6 +28,11 @@ export default (state, action) => {
       return {
         ...state,
         project: action.payload,
+      };
+    case DELETE_PROJECT:
+      return {
+        ...state,
+        project: '',
       };
     default:
       return state;

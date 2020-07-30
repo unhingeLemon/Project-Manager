@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 
-const CreateProject = () => {
+const CreateProject = (props) => {
   const projectContext = useContext(ProjectContext);
   const authContext = useContext(AuthContext);
   const { addProject } = projectContext;
   const { user, updateUser } = authContext;
   const [isOpen, setOpen] = useState(false);
+
   const [project, setProject] = useState({
     title: '',
     description: '',
@@ -22,6 +23,7 @@ const CreateProject = () => {
     });
   }, [isOpen]);
   var tempUser;
+
   useEffect(() => {
     if (projectContext.project) {
       // eslint-disable-next-line
@@ -40,6 +42,7 @@ const CreateProject = () => {
 
   const onSubmit = (e) => {
     addProject(project);
+
     setOpen(false);
     e.preventDefault();
   };

@@ -6,10 +6,12 @@ const UpdateProject = () => {
   const projectContext = useContext(ProjectContext);
   const { updateProject } = projectContext;
   useEffect(() => {
-    setProject({
-      title: projectContext.project.title,
-      description: projectContext.project.description,
-    });
+    if (projectContext.project) {
+      setProject({
+        title: projectContext.project.title,
+        description: projectContext.project.description,
+      });
+    }
 
     // eslint-disable-next-line
   }, [isOpen]);

@@ -3,6 +3,7 @@ import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 import UpdateProject from '../projects/UpdateProject';
 import AddPeople from '../projects/AddPeople';
+import DeleteProject from '../projects/DeleteProject';
 
 const Sidebar = () => {
   const projectContext = useContext(ProjectContext);
@@ -29,6 +30,7 @@ const Sidebar = () => {
         </ul>
         <UpdateProject />
         <AddPeople />
+        <DeleteProject />
       </div>
     </Fragment>
   );

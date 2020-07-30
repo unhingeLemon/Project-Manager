@@ -6,6 +6,7 @@ import {
   GET_CURRENT_PROJECT,
   ADD_PROJECT,
   UPDATE_PROJECT,
+  DELETE_PROJECT,
 } from '../types';
 import axios from 'axios';
 
@@ -74,6 +75,18 @@ const ProjectState = (props) => {
     }
   };
 
+  const deleteProject = async (id) => {
+    try {
+      await axios.delete(`/api/projects/${id}`);
+      dispatch({
+        type: DELETE_PROJECT,
+      });
+    } catch (err) {
+      console.log(err.response.data.msg);
+      console.log(err);
+    }
+  };
+
   return (
     <projectContext.Provider
       value={{
@@ -83,6 +96,7 @@ const ProjectState = (props) => {
         getAllProjects,
         addProject,
         updateProject,
+        deleteProject,
       }}
     >
       {props.children}
