@@ -55,7 +55,7 @@ const Bugs = () => {
 
   return (
     <div className='scrolly'>
-      <BugForm />
+      {project && <BugForm />}
       <div className='cards'>
         <div
           className='card todo'

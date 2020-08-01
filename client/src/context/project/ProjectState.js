@@ -7,6 +7,7 @@ import {
   ADD_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
+  GET_INVITED_PROJECT,
 } from '../types';
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ const ProjectState = (props) => {
   const initialState = {
     projects: null,
     project: {},
+    invProjects: null,
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
 
@@ -87,16 +89,30 @@ const ProjectState = (props) => {
     }
   };
 
+  const getInvProjects = async (email) => {
+    try {
+      const res = await axios.get(`/api/projects/invited/${email}`);
+      dispatch({
+        type: GET_INVITED_PROJECT,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <projectContext.Provider
       value={{
         projects: state.projects,
         project: state.project,
+        invProjects: state.invProjects,
         loadCurProject,
         getAllProjects,
         addProject,
         updateProject,
         deleteProject,
+        getInvProjects,
       }}
     >
       {props.children}

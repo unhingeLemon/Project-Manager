@@ -4,6 +4,7 @@ import {
   ADD_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
+  GET_INVITED_PROJECT,
 } from '../types';
 
 export default (state, action) => {
@@ -12,6 +13,11 @@ export default (state, action) => {
       return {
         ...state,
         projects: action.payload,
+      };
+    case GET_INVITED_PROJECT:
+      return {
+        ...state,
+        invProjects: action.payload,
       };
     case GET_CURRENT_PROJECT:
       return {

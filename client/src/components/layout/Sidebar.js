@@ -28,9 +28,14 @@ const Sidebar = () => {
           <li>Roadmap</li>
           <li>Dashboard</li>
         </ul>
-        <UpdateProject />
-        <AddPeople />
-        <DeleteProject />
+
+        {user && user._id === project.user && (
+          <div>
+            <UpdateProject />
+            <AddPeople />
+            <DeleteProject />
+          </div>
+        )}
       </div>
     </Fragment>
   );

@@ -20,6 +20,20 @@ router.get('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+// @route   GET api/projects/invited
+// @desc    Get all projects that the you've been invited
+// @access  Private
+router.get('/invited/:email', auth, async (req, res) => {
+  try {
+    const invProjects = await Project.find({
+      users: req.params.email,
+    });
+    res.json(invProjects);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 // @route   POST api/projects
 // @desc    Add new project
