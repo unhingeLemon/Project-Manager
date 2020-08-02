@@ -21,6 +21,21 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route   GET api/auth
+// @desc    Get ID of an email
+// @access  Private
+router.get('/:email', auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email }).select(
+      '-password'
+    );
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).sendStatus('Server Error');
+  }
+});
+
 // @route   POST api/auth
 // @desc    Auth user & get token
 // @access  public

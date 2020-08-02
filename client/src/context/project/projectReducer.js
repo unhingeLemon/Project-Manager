@@ -5,6 +5,7 @@ import {
   UPDATE_PROJECT,
   DELETE_PROJECT,
   GET_INVITED_PROJECT,
+  REQUESTED_USER,
 } from '../types';
 
 export default (state, action) => {
@@ -40,6 +41,12 @@ export default (state, action) => {
         ...state,
         project: '',
       };
+    case REQUESTED_USER: {
+      return {
+        ...state,
+        reqUser: action.payload,
+      };
+    }
     default:
       return state;
   }

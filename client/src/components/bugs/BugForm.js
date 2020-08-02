@@ -1,12 +1,15 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react';
 import BugContext from '../../context/bug/bugContext';
 import ProjectContext from '../../context/project/projectContext';
+import AuthContext from '../../context/auth/authContext';
 const BugForm = () => {
+  const authContext = useContext(AuthContext);
   const [isOpen, setOpen] = useState(false);
   const bugContext = useContext(BugContext);
   const projectContext = useContext(ProjectContext);
   const { project } = projectContext;
   const { addBug, getBugs } = bugContext;
+  const { user } = authContext;
 
   const [bug, setBug] = useState({
     title: '',
@@ -18,14 +21,17 @@ const BugForm = () => {
   });
 
   useEffect(() => {
-    setBug({
-      title: '',
-      priority: 'Low',
-      projectName: '',
-      description: '',
-      status: 'todo',
-      date: Date.now(),
-    });
+    if (user) {
+      setBug({
+        title: '',
+        priority: 'Low',
+        projectName: '',
+        description: '',
+        status: 'todo',
+        createdBy: user.name,
+        date: Date.now(),
+      });
+    }
   }, [isOpen]);
 
   const { title, description, priority } = bug;
@@ -61,7 +67,7 @@ const BugForm = () => {
               <p>CREATE AN ISSUE</p>
 
               <label>
-                <div>Bug Title</div>
+                <div>ISSUE TITLE</div>
                 <input
                   type='text'
                   name='title'
@@ -71,12 +77,12 @@ const BugForm = () => {
                 />
               </label>
               <label>
-                <div>Bug Description</div>
+                <div>DESCRIPTION</div>
                 <textarea
                   value={description}
                   onChange={onChange}
                   name='description'
-                  maxLength='500'
+                  maxLength='600'
                   required
                 />
               </label>

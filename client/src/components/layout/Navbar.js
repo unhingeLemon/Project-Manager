@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         <div className='nav-links'>
           <i className='fas fa-bug' />
-          <p>ZZZzz zzzZz</p>
+          <p>Project Manager</p>
           <ul>
             <li>
               <Link to='/'>Home</Link>

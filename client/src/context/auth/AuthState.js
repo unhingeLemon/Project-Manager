@@ -136,6 +136,20 @@ const AuthState = (props) => {
     }
   };
 
+  const updateDeletedUser = async (userId, data) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(`/api/users/${userId}`, data, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -150,6 +164,7 @@ const AuthState = (props) => {
         logout,
         setLoading,
         updateUser,
+        updateDeletedUser,
       }}
     >
       {props.children}

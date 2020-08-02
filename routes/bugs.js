@@ -39,13 +39,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, priority, description, status } = req.body;
+    const { title, priority, description, status, createdBy } = req.body;
     try {
       const newBug = new Bug({
         title,
         priority,
         description,
         status,
+        createdBy,
         project: req.params.projectId,
       });
       const bug = await newBug.save();

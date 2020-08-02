@@ -8,6 +8,9 @@ const BugSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  createdBy: {
+    type: String,
+  },
   priority: {
     type: String,
     required: true,

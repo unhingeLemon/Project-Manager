@@ -42,18 +42,21 @@ const UpdateProject = () => {
 
       {isOpen ? (
         <div className='modal-bg'>
-          <div className='modal'>
+          <div className='modal update-project'>
             <i
               onClick={() => setOpen(false)}
               className='fa fa-times-circle closebtn'
               aria-hidden='true'
             ></i>
 
-            <form className='create-form' onSubmit={onSubmit}>
-              <p>UPDATE THIS PROJECT</p>
+            <form
+              className='create-form update-project-form'
+              onSubmit={onSubmit}
+            >
+              <p>EDIT THIS PROJECT</p>
 
               <label>
-                <div>Project Title</div>
+                <div>TITLE</div>
                 <input
                   type='text'
                   name='title'
@@ -63,7 +66,7 @@ const UpdateProject = () => {
                 />
               </label>
               <label>
-                <div>Description</div>
+                <div>DESCRIPTION</div>
                 <textarea
                   value={description}
                   onChange={onChange}
@@ -72,7 +75,7 @@ const UpdateProject = () => {
                   required
                 />
               </label>
-              <div className='btn-container2'>
+              <div className='btn-container2 update-btn'>
                 <button className='btn btn-primary'>SUBMIT</button>
               </div>
             </form>

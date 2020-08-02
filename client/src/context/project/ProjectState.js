@@ -8,6 +8,7 @@ import {
   UPDATE_PROJECT,
   DELETE_PROJECT,
   GET_INVITED_PROJECT,
+  REQUESTED_USER,
 } from '../types';
 import axios from 'axios';
 
@@ -16,6 +17,7 @@ const ProjectState = (props) => {
     projects: null,
     project: {},
     invProjects: null,
+    reqUser: null,
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
 
@@ -120,12 +122,28 @@ const ProjectState = (props) => {
     }
   };
 
+  // if the deleted user is still hold the
+  // Project Id then remove it.
+  const getReqUser = async (email) => {
+    try {
+      const res = await axios.get(`/api/auth/${email}`);
+      console.log(res);
+      dispatch({
+        type: REQUESTED_USER,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <projectContext.Provider
       value={{
         projects: state.projects,
         project: state.project,
         invProjects: state.invProjects,
+        reqUser: state.reqUser,
         loadCurProject,
         getAllProjects,
         addProject,
@@ -133,6 +151,7 @@ const ProjectState = (props) => {
         deleteProject,
         getInvProjects,
         deleteUsers,
+        getReqUser,
       }}
     >
       {props.children}

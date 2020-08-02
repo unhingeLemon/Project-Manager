@@ -31,18 +31,18 @@ const AddPeople = () => {
 
       {isOpen ? (
         <div className='modal-bg'>
-          <div className='modal'>
+          <div className='modal add-people'>
             <i
               onClick={() => setOpen(false)}
               className='fa fa-times-circle closebtn'
               aria-hidden='true'
             ></i>
 
-            <form className='create-form' onSubmit={onSubmit}>
+            <form className='create-form add-people-form' onSubmit={onSubmit}>
               <p>ADD PEOPLE</p>
 
               <label>
-                <div>Email</div>
+                <div>EMAIL</div>
                 <input
                   type='email'
                   name='email'

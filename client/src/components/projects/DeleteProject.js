@@ -17,6 +17,8 @@ const DeleteProject = (props) => {
     if (project.title === title) {
       deleteProject(project._id);
       history.push('/projects');
+    } else {
+      alert('The input title is not the same. Please try Again!');
     }
 
     setOpen(false);
@@ -28,8 +30,7 @@ const DeleteProject = (props) => {
       <div className='btn-container'>
         <button
           onClick={() => setOpen(true)}
-          className='btn btn-primary'
-          style={{ background: 'red' }}
+          className='btn btn-primary deleteBtn'
         >
           DELETE
         </button>
@@ -37,23 +38,23 @@ const DeleteProject = (props) => {
 
       {isOpen ? (
         <div className='modal-bg'>
-          <div className='modal'>
+          <div className='modal delete-project'>
             <i
               onClick={() => setOpen(false)}
               className='fa fa-times-circle closebtn'
               aria-hidden='true'
             ></i>
 
-            <form className='create-form' onSubmit={onSubmit}>
+            <form className='create-form delete-form' onSubmit={onSubmit}>
               <div>
-                <p>
+                <p className='delete-question'>
                   Are you sure you want to delete this project? This can't be
                   undone.
                 </p>
               </div>
 
               <label>
-                <div>Please type the title</div>
+                <div>PLEASE TYPE THE PROJECT TITLE TITLE: </div>
                 <input
                   type='text'
                   name='title'

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import ShowBugInfo from './ShowBugInfo';
 
 const BugItem = ({ bug, getDragBug }) => {
-  const { title, projectName, priority } = bug;
+  const { title, createdBy, priority } = bug;
 
   const getColor = () => {
     if (bug.priority === 'Low') {
@@ -30,7 +30,7 @@ const BugItem = ({ bug, getDragBug }) => {
         <div className='title'>{title} </div>
         <div></div>
         <div>
-          <div className='projectname'>{projectName}</div>
+          <div className='createdby'>{createdBy}</div>
         </div>
 
         <div className='status'>

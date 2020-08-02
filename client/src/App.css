@@ -21,9 +21,12 @@
   display: flex;
   justify-content: space-between;
   color: white;
-  height: 10vh;
+  height: 8vh;
   align-items: center;
   padding: 0 3em;
+  -webkit-box-shadow: 0px 7px 30px -8px rgba(0, 0, 0, 0.55);
+  -moz-box-shadow: 0px 7px 30px -8px rgba(0, 0, 0, 0.55);
+  box-shadow: 0px 7px 30px -8px rgba(0, 0, 0, 0.55);
 }
 
 .nav-links {
@@ -37,13 +40,14 @@
   padding: 0.5em 0.5em;
 }
 .nav-links p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin-right: 2rem;
 }
 
 .nav-links ul {
   display: flex;
   flex-direction: row;
+  font-size: 0.8rem;
 }
 
 .nav-links ul li {
@@ -64,6 +68,7 @@
   display: flex;
   flex-direction: row;
   color: white;
+  font-size: 0.8rem;
 }
 .right-items a {
   color: white;
@@ -76,19 +81,19 @@
 /* BUTTON */
 .btn {
   border: none;
-  border-radius: 20px;
+  border-radius: 4px;
   text-align: center;
+  padding: 8px 10px;
 }
 .btn:hover {
   cursor: pointer;
 }
 
 .btn-primary {
-  padding: 10px 25px;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   background-color: #20433d;
 }
 
@@ -106,18 +111,18 @@
   justify-content: space-around;
   margin: 0 auto;
   color: black;
-  width: 70vw;
+  width: 65vw;
 }
 
 .card {
   background-color: #617576;
-  width: 30vw;
-  margin: 1em 1.2vw;
+  width: 20vw;
+  margin: 1em 0.8vw;
   padding: 1em 1em;
   border-radius: 3px;
   min-height: 400px;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .card-header {
@@ -130,15 +135,15 @@
 }
 
 .scrolly {
-  height: 90vh;
+  height: 80vh;
   width: 70vw;
   overflow: scroll;
   overflow-x: hidden;
   float: right;
   white-space: nowrap;
-  padding-top: 30px;
+
   margin-right: 40px;
-  margin-left: 10px;
+  margin-top: 40px;
 }
 
 /* BUG ITEM */
@@ -148,11 +153,10 @@
   background-color: #799281;
   color: black;
   margin: 1em auto;
-  padding: 10px 15px;
+  padding: 8px 8px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: auto auto;
-
   font-weight: 400;
   transition: 0.3s ease;
 }
@@ -175,9 +179,9 @@
 .status {
   display: flex;
   flex-direction: row;
-  margin-top: 25px;
-  margin-right: 10px;
-  font-size: 14px;
+
+  font-size: 13px;
+  justify-content: flex-end;
 }
 
 .status .circle {
@@ -189,14 +193,12 @@
   margin: auto 0;
 }
 
-.projectname {
-  margin-top: 25px;
+.createdby {
   margin-left: 5px;
   font-size: 13px;
 }
 
 .fa-trash {
-  float: right;
   margin: 4px 4px;
 
   transition: 0.3 ease;
@@ -204,6 +206,7 @@
 
 .fa-trash:hover {
   cursor: pointer;
+  color: red;
 }
 
 .title {
@@ -211,7 +214,8 @@
   margin-left: 5px;
   margin-top: 5px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
+  height: 40px;
 }
 
 .clicked {
@@ -233,10 +237,10 @@
 }
 
 .modal {
-  width: 600px;
+  width: 500px;
   max-width: 600px;
   max-height: 100vh;
-  min-height: 475px;
+  height: 390px;
   background: white;
   border-radius: 5px;
   position: relative;
@@ -246,19 +250,19 @@
 }
 
 .create-form input {
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 4px;
   border: 1px solid #a9a9a9;
   margin-bottom: 8px;
-  padding: 4px 4px;
+  padding: 5px 5px;
 }
 
 .create-form textarea {
-  padding: 4px 4px;
+  padding: 5px 5px;
 }
 
 .create-form {
-  font-size: 20px;
+  font-size: 15px;
   padding-top: 0px;
 }
 
@@ -266,12 +270,13 @@
   color: #85203b;
   letter-spacing: 3px;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 20px;
   margin-bottom: 8px;
 }
 
 .create-form label div {
   margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .closebtn {
@@ -279,11 +284,13 @@
   position: absolute;
   top: 0;
   right: 0;
-  margin: 5px 5px;
+  margin: 7px 7px;
+  transition: 0.3s ease;
 }
 
 .closebtn:hover {
   cursor: pointer;
+  color: red;
 }
 
 .modal label {
@@ -294,30 +301,46 @@
 .modal textarea {
   resize: none;
   width: 100%;
-  height: 200px;
-  font-size: 20px;
+  height: 170px;
+  font-size: 15px;
   border-radius: 4px;
 }
 
 .modal form {
-  padding: 25px 25px;
+  padding: 17px 17px;
 }
 
 .priority {
   display: flex;
-  align-items: center;
-  margin: 10px;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  margin: 10px 0;
 }
+
+.priority > div:nth-of-type(1) {
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+
 .radios-container {
-  margin-left: 5px;
   display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
 }
 .radio-container {
+  padding: 0;
+  margin: 0;
   margin-left: 16px;
 }
-.radio-container {
-  justify-content: center;
-  align-items: center;
+
+.radio-container > input {
+  padding: 0;
+  margin: 0;
+  margin-right: 2px;
+  margin: auto 0;
 }
 
 .btn-container2 {
@@ -329,9 +352,9 @@
 /* INFORMATION MODAL */
 
 .info-modal {
-  width: 566px;
-  min-height: 360px;
-  padding: 30px 30px;
+  width: 500px;
+  height: 310px;
+  padding: 17px 17px;
   display: flex;
   flex-direction: column;
   color: black;
@@ -346,10 +369,14 @@
 }
 
 .info-project-container > div:nth-of-type(1) {
-  font-weight: bold;
-  font-size: 26px;
-  color: #85203b;
-  letter-spacing: 3px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.info-project-container > div:nth-of-type(1) > span {
+  font-weight: 40;
+  font-size: 15px;
+  padding-left: 10px;
 }
 
 .info-project-container > div:nth-of-type(2) {
@@ -361,12 +388,12 @@
 .info-desc {
   width: 100%;
   min-height: 170px;
-  font-size: 20px;
+  font-size: 15px;
   word-wrap: break-word;
 }
 
 .info-title {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -377,7 +404,7 @@
 .info-title > div:nth-of-type(2) {
   color: #798605;
 
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .info-footer {
@@ -385,10 +412,17 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 16px;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .info-footer > div:nth-of-type(1) {
   margin: 0 0;
+  font-size: 15px;
+}
+.info-footer > div:nth-of-type(2) {
+  margin: 0 0;
+  font-size: 15px;
 }
 
 /* AUTH */
@@ -568,10 +602,144 @@
   flex-direction: row;
 }
 .sidebar-container {
-  width: 18vw;
-  margin-right: 1vw;
+  width: 20vw;
   background-color: #17282a;
-  height: 90vh;
+  height: 92vh;
   color: #ecf5e7;
-  text-align: center;
+  font-size: 14px;
+}
+
+.sidebar-container > div:nth-of-type(1) > i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.sidebar-container > div:nth-of-type(1) {
+  margin: 20px 10px 0 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar-container > div:nth-of-type(2) {
+  margin: 2px 10px 0 50px;
+  color: #a9a9a9;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.sidebarBtn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.sidebarBtn > div:nth-of-type(1) {
+  margin-left: 20px;
+}
+
+.sidebarBtn > div:nth-of-type(2) {
+  margin-right: 20px;
+}
+
+.users-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 20px;
+  font-size: 15px;
+}
+.users-sidebar > div:nth-of-type(1) > i {
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.users-sidebar > div:nth-of-type(1) > i {
+  margin-right: 10px;
+  justify-content: center;
+}
+.users-sidebar > ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.users-sidebar > ul > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  margin-top: 3px;
+  padding: 3px 5px;
+  transition: 0.5s ease;
+  margin-right: 10px;
+  justify-self: center;
+}
+
+.users-sidebar > ul > li:hover {
+  background-color: #20433d;
+  cursor: default;
+}
+
+.users-sidebar > ul > li > .fa-trash {
+  margin: 0;
+  margin-right: 5px;
+
+  padding: 0;
+}
+.deleteBtn {
+  margin-top: 20px;
+  transition: 0.3s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #ce0d0d;
+}
+
+/* ADD PEOPLE */
+
+.add-people {
+  height: 160px;
+  width: 350px;
+}
+
+.add-people i {
+  color: black;
+}
+
+.add-people-form {
+  color: black;
+}
+
+/* UPDATE THIS PROJECT */
+
+.update-project {
+  height: 370px;
+}
+.update-project i {
+  color: black;
+}
+
+.update-project-form {
+  color: black;
+}
+
+.update-btn {
+  margin-top: 15px;
+}
+
+/* DELETE PROJECT */
+
+.delete-project {
+  height: 180px;
+}
+
+.delete-form {
+  color: black;
+}
+
+.delete-question {
+  letter-spacing: 0.3px !important;
+  font-size: 20px !important;
 }
