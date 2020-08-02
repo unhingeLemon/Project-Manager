@@ -25,10 +25,7 @@ const Navbar = () => {
           <p>ZZZzz zzzZz</p>
           <ul>
             <li>
-              <a href='/#'>Your works</a>
-            </li>
-            <li>
-              <a href='/#'>People</a>
+              <Link to='/'>Home</Link>
             </li>
             <li>
               <Link to='/projects'>Projects</Link>

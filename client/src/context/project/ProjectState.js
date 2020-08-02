@@ -72,6 +72,25 @@ const ProjectState = (props) => {
         payload: res.data,
       });
     } catch (err) {
+      alert(err.response.data.msg);
+      console.log(err);
+    }
+  };
+  /// delete one of the userS
+  const deleteUsers = async (id, data) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(`/api/projects/users/${id}`, data, config);
+
+      dispatch({
+        type: UPDATE_PROJECT,
+        payload: res.data,
+      });
+    } catch (err) {
       console.log(err.response.data.msg);
       console.log(err);
     }
@@ -113,6 +132,7 @@ const ProjectState = (props) => {
         updateProject,
         deleteProject,
         getInvProjects,
+        deleteUsers,
       }}
     >
       {props.children}
