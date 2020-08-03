@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 import UpdateProject from '../projects/UpdateProject';
@@ -15,7 +15,10 @@ const Sidebar = () => {
     reqUser,
     getReqUser,
   } = projectContext;
+
   const { user, loading } = authContext;
+
+  const [isOwner, setOwner] = useState(false);
 
   const deleteUser = (user) => {
     // This will delete the specific
@@ -35,82 +38,91 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (user) {
-      loadCurProject(user.projectId);
-    }
-    /// IF THE DELETED USER HOLD THE PROJECT
-    /// REMOVE IT.
-    if (reqUser) {
-      if (reqUser.projectId === project._id) {
-        authContext.updateDeletedUser(reqUser._id, { projectId: 'none' });
+      if (user.projectId !== undefined && project === null) {
+        loadCurProject(user.projectId);
+      }
+
+      if (project) {
+        if (user._id === project.user) {
+          setOwner(true);
+        }
       }
     }
 
-    console.log(reqUser);
+    /// IF THE DELETED USER HOLD THE PROJECT
+    /// REMOVE IT.
+    if (reqUser) {
+      console.log(reqUser);
+      if (reqUser.projectId === project._id) {
+        authContext.updateDeletedUser(reqUser._id, { projectId: undefined });
+      }
+    }
 
     // eslint-disable-next-line
-  }, [loading, reqUser]);
+  }, [loading, reqUser, project]);
 
   return (
     <Fragment>
-      <div className='sidebar-container'>
-        <div>
-          <i className='far fa-folder'></i>
-          {project && project.title}
-        </div>
-        <div>{project && project.description}</div>
-        {/* <ul>
+      {project ? (
+        <div className='sidebar-container'>
+          <div>
+            <i className='far fa-folder'></i>
+            {project && project.title}
+          </div>
+          <div>{project && project.description}</div>
+          {/* <ul>
           <li>Roadmap</li>
           <li>Dashboard</li>
         </ul> */}
 
-        {user && user._id === project.user && (
-          <div className='sidebarBtn'>
-            <div>
-              <AddPeople />
+          {project && isOwner && (
+            <div className='sidebarBtn'>
+              <div>
+                <AddPeople />
+              </div>
+              <div>
+                <UpdateProject />
+              </div>
             </div>
+          )}
+          <div className='users-sidebar'>
             <div>
-              <UpdateProject />
+              <i className='fas fa-users'></i>
+              PEOPLE
             </div>
-          </div>
-        )}
-        <div className='users-sidebar'>
-          <div>
-            <i className='fas fa-users'></i>
-            PEOPLE
-          </div>
-          <ul>
-            {project.users &&
-              user &&
-              user._id === project.user &&
-              project.users.map((user) => (
-                <li key={user}>
-                  <div>{user}</div>
-                  <i
-                    className='fas fa-trash'
-                    onClick={() => deleteUser(user)}
-                  ></i>
-                </li>
-              ))}
 
-            {/* IF YOU DO NOT OWN THE PROJECT... */}
+            <ul>
+              {project &&
+                isOwner &&
+                project.users.map((user) => (
+                  <li key={user}>
+                    <div>{user}</div>
+                    <i
+                      className='fas fa-trash'
+                      onClick={() => deleteUser(user)}
+                    ></i>
+                  </li>
+                ))}
 
-            {project.users &&
-              user &&
-              user._id !== project.user &&
-              project.users.map((user) => (
-                <li key={user}>
-                  <div>{user}</div>
-                </li>
-              ))}
-          </ul>
+              {/* IF YOU DO NOT OWN THE PROJECT... */}
+
+              {!isOwner &&
+                project &&
+                project.users.map((user) => (
+                  <li key={user}>
+                    <div>{user}</div>
+                  </li>
+                ))}
+            </ul>
+          </div>
+
+          {isOwner && (
+            <div className='sidebarBtn'>
+              <DeleteProject />
+            </div>
+          )}
         </div>
-
-        {user && user._id === project.user && (
-          <div className='sidebarBtn'>
-            <DeleteProject />
-          </div>
-        )}
-      </div>
+      ) : null}
     </Fragment>
   );
 };

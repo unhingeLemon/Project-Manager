@@ -67,12 +67,15 @@ router.post(
 // @route   GET current api/projects
 // @desc   Load the users current project
 // @access  Private
+
 router.get('/:projectId', auth, async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
+    console.log(project);
     res.json(project);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
+    console.log(error);
     res.status(500).send('Server Error');
   }
 });

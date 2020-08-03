@@ -17,7 +17,6 @@ const Bugs = () => {
       getBugs(project._id);
     }
 
-    console.log(bugs);
     // eslint-disable-next-line
   }, [project]);
 

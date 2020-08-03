@@ -702,6 +702,7 @@
 .add-people {
   height: 160px;
   width: 350px;
+  margin-bottom: 100px;
 }
 
 .add-people i {
@@ -733,6 +734,7 @@
 
 .delete-project {
   height: 180px;
+  margin-bottom: 100px;
 }
 
 .delete-form {
@@ -742,4 +744,8 @@
 .delete-question {
   letter-spacing: 0.3px !important;
   font-size: 20px !important;
+}
+
+.closebtn {
+  color: black;
 }

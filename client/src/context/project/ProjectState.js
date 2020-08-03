@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import projectContext from './projectContext';
+import axios from 'axios';
 import projectReducer from './projectReducer';
 import {
   GET_ALL_PROJECT,
@@ -9,19 +10,27 @@ import {
   DELETE_PROJECT,
   GET_INVITED_PROJECT,
   REQUESTED_USER,
+  SET_LOADING_PROJ,
 } from '../types';
-import axios from 'axios';
 
 const ProjectState = (props) => {
   const initialState = {
     projects: null,
-    project: {},
+    project: null,
     invProjects: null,
     reqUser: null,
+    loading: false,
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
 
+  const setLoading = () => {
+    dispatch({
+      type: SET_LOADING_PROJ,
+    });
+  };
+
   const addProject = async (formData) => {
+    setLoading();
     try {
       const res = await axios.post('/api/projects', formData);
       dispatch({
@@ -34,6 +43,7 @@ const ProjectState = (props) => {
   };
 
   const getAllProjects = async () => {
+    setLoading();
     try {
       const res = await axios.get('/api/projects');
 
@@ -48,9 +58,14 @@ const ProjectState = (props) => {
 
   // pass in the user.projectId
   const loadCurProject = async (project) => {
+    setLoading();
+    console.log(project);
     try {
       const res = await axios.get(`/api/projects/${project}`);
-
+      console.log(res.data);
+      if (res.data === []) {
+        console.log('empty');
+      }
       dispatch({
         type: GET_CURRENT_PROJECT,
         payload: res.data,
@@ -61,6 +76,7 @@ const ProjectState = (props) => {
   };
 
   const updateProject = async (id, data) => {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -80,6 +96,7 @@ const ProjectState = (props) => {
   };
   /// delete one of the userS
   const deleteUsers = async (id, data) => {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -99,6 +116,7 @@ const ProjectState = (props) => {
   };
 
   const deleteProject = async (id) => {
+    setLoading();
     try {
       await axios.delete(`/api/projects/${id}`);
       dispatch({
@@ -111,6 +129,7 @@ const ProjectState = (props) => {
   };
 
   const getInvProjects = async (email) => {
+    setLoading();
     try {
       const res = await axios.get(`/api/projects/invited/${email}`);
       dispatch({
@@ -125,6 +144,7 @@ const ProjectState = (props) => {
   // if the deleted user is still hold the
   // Project Id then remove it.
   const getReqUser = async (email) => {
+    setLoading();
     try {
       const res = await axios.get(`/api/auth/${email}`);
       console.log(res);
@@ -144,6 +164,7 @@ const ProjectState = (props) => {
         project: state.project,
         invProjects: state.invProjects,
         reqUser: state.reqUser,
+        loading: state.loading,
         loadCurProject,
         getAllProjects,
         addProject,

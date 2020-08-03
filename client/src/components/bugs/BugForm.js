@@ -32,6 +32,7 @@ const BugForm = () => {
         date: Date.now(),
       });
     }
+    //eslint-disable-next-line
   }, [isOpen]);
 
   const { title, description, priority } = bug;
