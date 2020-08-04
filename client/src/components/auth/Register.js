@@ -49,13 +49,13 @@ const Register = (props) => {
       <div className='banner-container'>
         <div className='brand-container'>
           <i className='fas fa-bug main-icon' />
-          <div className='brand-name'>PROJECT MANAGER</div>
+          <div className='brand-name'>Project Manager</div>
         </div>
 
         <div className='quote-container'>
           <div className='quote'>
-            A place where you can work with the same project with other people.
-            Like social media? I still don't have a name for it tho.
+            A place where you can keep track of your projects and work with
+            other people with it.
           </div>
           <div className='quote-author'>- me</div>
         </div>

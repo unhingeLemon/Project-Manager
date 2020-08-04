@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 import ProjectItem from './ProjectItem';
@@ -20,23 +20,24 @@ const Projects = () => {
     authContext.loadUser();
     getAllProjects();
     getInvProjects(user.email);
-    console.log(invProjects);
+
     // eslint-disable-next-line
   }, [project]);
 
   return (
     <div>
-      <h1>PROJECT ROUTE</h1>
-      <div>
-        <CreateProject />
-        Created Project
+      <CreateProject />
+
+      <div className='project-header'>Your Projects</div>
+      <div className='cards-projects-container'>
         {projects &&
           projects.map((project) => (
             <ProjectItem project={project} key={project._id} />
           ))}
       </div>
-      <div>Added Project Collaborator</div>
-      <div>
+      <div className='project-header'>Shared to you</div>
+
+      <div className='cards-projects-container'>
         {invProjects &&
           invProjects.map((invProject) => (
             <ProjectItem project={invProject} key={invProject._id} />

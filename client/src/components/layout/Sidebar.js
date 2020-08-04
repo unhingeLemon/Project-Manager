@@ -57,7 +57,7 @@ const Sidebar = () => {
         authContext.updateDeletedUser(reqUser._id, { projectId: undefined });
       }
     }
-
+    console.log(project);
     // eslint-disable-next-line
   }, [loading, reqUser, project]);
 

@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
+import { Redirect } from 'react-router-dom';
 
-const CreateProject = (props) => {
+const CreateProject = () => {
   const projectContext = useContext(ProjectContext);
   const authContext = useContext(AuthContext);
   const { addProject } = projectContext;
@@ -50,14 +51,17 @@ const CreateProject = (props) => {
   return (
     <Fragment>
       <div className='btn-container'>
-        <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          Create Project
+        <button
+          onClick={() => setOpen(true)}
+          className='btn btn-primary create-project-btn'
+        >
+          CREATE
         </button>
       </div>
 
       {isOpen ? (
         <div className='modal-bg'>
-          <div className='modal'>
+          <div className='modal create-project-modal'>
             <i
               onClick={() => setOpen(false)}
               className='fa fa-times-circle closebtn'
@@ -87,7 +91,7 @@ const CreateProject = (props) => {
                   required
                 />
               </label>
-              <div className='btn-container2'>
+              <div className='btn-container2 btn-cproject'>
                 <button className='btn btn-primary'>SUBMIT</button>
               </div>
             </form>
