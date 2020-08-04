@@ -11,6 +11,7 @@ import {
   GET_INVITED_PROJECT,
   REQUESTED_USER,
   SET_LOADING_PROJ,
+  RESET_PROJECT,
 } from '../types';
 
 const ProjectState = (props) => {
@@ -146,7 +147,7 @@ const ProjectState = (props) => {
     setLoading();
     try {
       const res = await axios.get(`/api/auth/${email}`);
-      console.log(res);
+
       dispatch({
         type: REQUESTED_USER,
         payload: res.data,
@@ -154,6 +155,12 @@ const ProjectState = (props) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const resetProject = () => {
+    dispatch({
+      type: RESET_PROJECT,
+    });
   };
 
   return (
@@ -172,6 +179,7 @@ const ProjectState = (props) => {
         getInvProjects,
         deleteUsers,
         getReqUser,
+        resetProject,
       }}
     >
       {props.children}

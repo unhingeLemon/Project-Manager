@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 import UpdateProject from '../projects/UpdateProject';
 import AddPeople from '../projects/AddPeople';
 import DeleteProject from '../projects/DeleteProject';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const projectContext = useContext(ProjectContext);
@@ -31,7 +31,6 @@ const Sidebar = () => {
     }
 
     deleteUsers(project._id, { users: array });
-
     getReqUser(user);
   };
 
@@ -52,12 +51,14 @@ const Sidebar = () => {
     // console.log(isOwner);
     /// IF THE DELETED USER HOLD THE PROJECT
     /// REMOVE IT.
+
     if (reqUser) {
       // console.log(reqUser);
       if (reqUser.projectId === project._id) {
-        authContext.updateDeletedUser(reqUser._id, { projectId: undefined });
+        authContext.updateDeletedUser(reqUser._id, { projectId: null });
       }
     }
+
     // eslint-disable-next-line
   }, [loading, reqUser, project]);
 
@@ -138,7 +139,6 @@ const Sidebar = () => {
               <Link className='auth-submit home-btn' to='/projects'>
                 Click Here
               </Link>
-
               <div>To create or select a project</div>
             </div>
           </div>

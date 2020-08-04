@@ -75,14 +75,14 @@ router.post(
 );
 
 // @route   PUT api/users/:id
-// @desc    Update the project current ID
+// @desc    Update the project ID
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
   const { projectId } = req.body;
 
   // Build bug object
   const userFields = {};
-  if (projectId) userFields.projectId = projectId;
+  userFields.projectId = projectId;
 
   try {
     let user = await User.findById(req.params.id).select('-password');

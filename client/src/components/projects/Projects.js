@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
 import ProjectItem from './ProjectItem';
@@ -29,7 +29,7 @@ const Projects = () => {
       <CreateProject />
 
       {projects && <div className='project-header'>Your Projects</div>}
-
+      {console.log(projects)}
       <div className='cards-projects-container'>
         {projects &&
           projects.map((project) => (

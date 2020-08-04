@@ -142,9 +142,9 @@ const AuthState = (props) => {
         'Content-Type': 'application/json',
       },
     };
+
     try {
-      const res = await axios.put(`/api/users/${userId}`, data, config);
-      console.log(res);
+      await axios.put(`/api/users/${userId}`, data, config);
     } catch (err) {
       console.log(err);
     }

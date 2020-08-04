@@ -7,6 +7,7 @@ import {
   GET_INVITED_PROJECT,
   REQUESTED_USER,
   SET_LOADING_PROJ,
+  RESET_PROJECT,
 } from '../types';
 
 export default (state, action) => {
@@ -32,7 +33,10 @@ export default (state, action) => {
     case ADD_PROJECT:
       return {
         ...state,
-        projects: [...state.projects, action.payload],
+        projects: state.projects
+          ? [...state.projects, action.payload]
+          : [action.payload],
+
         project: action.payload,
         loading: false,
       };
@@ -59,6 +63,15 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    }
+    case RESET_PROJECT: {
+      return {
+        projects: null,
+        project: null,
+        invProjects: null,
+        reqUser: null,
+        loading: false,
       };
     }
     default:
