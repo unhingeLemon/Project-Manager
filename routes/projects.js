@@ -71,7 +71,7 @@ router.post(
 router.get('/:projectId', auth, async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
-    console.log(project);
+
     res.json(project);
   } catch (error) {
     console.error(error);
@@ -96,7 +96,6 @@ router.put('/:id', auth, async (req, res) => {
     newAddedUser = users[users.length - 1];
   }
 
-  console.log(newAddedUser);
   // Build Project object
   const projectFields = {};
   if (title) projectFields.title = title;
@@ -109,7 +108,7 @@ router.put('/:id', auth, async (req, res) => {
       _id: req.params.id,
       users: newAddedUser,
     });
-    console.log(newAddedUser2);
+
     if (newAddedUser1 === null) {
       return res.status(400).json({ msg: 'User does not exist' });
     } else if (newAddedUser2) {

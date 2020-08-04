@@ -12,6 +12,7 @@ const Navbar = () => {
   const onLogout = () => {
     logout();
     resetBugs();
+    // RESET PROJECT
   };
 
   return (

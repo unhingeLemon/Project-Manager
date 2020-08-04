@@ -95,7 +95,7 @@
   font-size: 13px;
   color: white;
   font-weight: 400;
-  letter-spacing: 1px;
+
   background-color: #20433d;
 }
 
@@ -850,3 +850,73 @@
 }
 
 /* NO PROJECT REDIRECT */
+
+.clear-bg {
+  background-color: #040813;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.home-accent {
+  position: fixed;
+  top: 16vh;
+  background-color: white;
+  padding: 55px 7px;
+}
+
+.home-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.home-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.home-brand i {
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 5px 0;
+  font-size: 30px;
+}
+
+.home-brand > div:nth-of-type(1) {
+  font-family: 'Indie Flower', cursive;
+  font-size: 30px;
+}
+
+.welcome-home {
+  font-size: 30px;
+  margin-top: 50px;
+}
+
+.welcome-home span {
+  margin-left: 10px;
+}
+
+.home-container > div:nth-of-type(3) {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-btn {
+  text-decoration: none;
+  margin: 0 auto !important;
+  width: fit-content !important;
+
+  height: fit-content !important;
+  padding: 10px 7px;
+}
+
+.home-container > div:nth-of-type(3) > div:nth-of-type(1) {
+  margin-top: 10px;
+  text-align: center;
+}

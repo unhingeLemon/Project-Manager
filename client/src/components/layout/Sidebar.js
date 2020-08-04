@@ -4,6 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 import UpdateProject from '../projects/UpdateProject';
 import AddPeople from '../projects/AddPeople';
 import DeleteProject from '../projects/DeleteProject';
+import { Redirect, Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const projectContext = useContext(ProjectContext);
@@ -48,11 +49,11 @@ const Sidebar = () => {
         }
       }
     }
-    console.log(isOwner);
+    // console.log(isOwner);
     /// IF THE DELETED USER HOLD THE PROJECT
     /// REMOVE IT.
     if (reqUser) {
-      console.log(reqUser);
+      // console.log(reqUser);
       if (reqUser.projectId === project._id) {
         authContext.updateDeletedUser(reqUser._id, { projectId: undefined });
       }
@@ -121,7 +122,28 @@ const Sidebar = () => {
             </div>
           )}
         </div>
-      ) : null}
+      ) : (
+        <div className='modal-bg clear-bg'>
+          <div className='home-accent'></div>
+          <div className='home-container'>
+            <div className='home-brand'>
+              <i className='fas fa-bug' />
+              <div>Project Manager</div>
+            </div>
+            <div className='welcome-home'>
+              WELCOME!
+              <span>{user && user.name}</span>
+            </div>
+            <div>
+              <Link className='auth-submit home-btn' to='/projects'>
+                Click Here
+              </Link>
+
+              <div>To create or select a project</div>
+            </div>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

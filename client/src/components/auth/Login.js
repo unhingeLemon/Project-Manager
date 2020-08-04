@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { Link } from 'react-router-dom';
+import Banner from './Banner';
 
 const Login = (props) => {
   const authContext = useContext(AuthContext);
@@ -39,21 +40,7 @@ const Login = (props) => {
 
   return (
     <div className='auth'>
-      <div className='banner-container'>
-        <div className='brand-container'>
-          <i className='fas fa-bug main-icon' />
-          <div className='brand-name'>Project Manager</div>
-        </div>
-
-        <div className='quote-container'>
-          <div className='quote'>
-            A place where you can keep track of your projects and work with
-            other people with it.
-          </div>
-          <div className='quote-author'>- me</div>
-        </div>
-      </div>
-
+      <Banner />
       <div className='login-form-container'>
         <div className='auth-title'>LOGIN</div>
         <div className='auth-sub'>Enter your login details below</div>

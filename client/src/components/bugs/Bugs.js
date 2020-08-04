@@ -26,14 +26,14 @@ const Bugs = () => {
 
   const onDragOver = (e) => {
     e.preventDefault();
-    console.log('over');
+    // console.log('over');
   };
 
   var tempBug;
 
   const getDragBug = (bug) => {
     tempBug = bug;
-    console.log(tempBug, 'sdsds');
+    // console.log(tempBug, 'sdsds');
   };
 
   const updating = () => {

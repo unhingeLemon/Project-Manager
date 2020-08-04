@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../context/project/projectContext';
 import AuthContext from '../../context/auth/authContext';
-import { Redirect } from 'react-router-dom';
 
 const CreateProject = () => {
   const projectContext = useContext(ProjectContext);
@@ -33,7 +32,7 @@ const CreateProject = () => {
       updateUser(user._id, tempUser);
     }
 
-    console.log(projectContext.project);
+    // console.log(projectContext.project);
   }, [projectContext.project]);
 
   const { title, description } = project;
