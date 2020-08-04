@@ -9,6 +9,6 @@ A full stack web application using
 
 ## About
 
-Just like trello wherein people can keep track their projects and add their colleagues.
+Just like trello where people can keep track of their projects and add their colleagues.
 
 
