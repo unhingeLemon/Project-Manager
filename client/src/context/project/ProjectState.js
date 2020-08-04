@@ -62,7 +62,7 @@ const ProjectState = (props) => {
 
     try {
       const res = await axios.get(`/api/projects/${project}`);
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch({
         type: GET_CURRENT_PROJECT,
@@ -130,6 +130,7 @@ const ProjectState = (props) => {
     setLoading();
     try {
       const res = await axios.get(`/api/projects/invited/${email}`);
+
       dispatch({
         type: GET_INVITED_PROJECT,
         payload: res.data,

@@ -28,15 +28,16 @@ const Projects = () => {
     <div>
       <CreateProject />
 
-      <div className='project-header'>Your Projects</div>
+      {projects && <div className='project-header'>Your Projects</div>}
+
       <div className='cards-projects-container'>
         {projects &&
           projects.map((project) => (
             <ProjectItem project={project} key={project._id} />
           ))}
       </div>
-      <div className='project-header'>Shared to you</div>
 
+      {invProjects && <div className='project-header'>Shared to you</div>}
       <div className='cards-projects-container'>
         {invProjects &&
           invProjects.map((invProject) => (

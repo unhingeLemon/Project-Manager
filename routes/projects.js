@@ -14,7 +14,11 @@ router.get('/', auth, async (req, res) => {
     const projects = await Project.find({
       user: req.user.id,
     });
-    res.json(projects);
+    if (projects.length === 0) {
+      res.json(null);
+    } else {
+      res.json(projects);
+    }
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -28,7 +32,12 @@ router.get('/invited/:email', auth, async (req, res) => {
     const invProjects = await Project.find({
       users: req.params.email,
     });
-    res.json(invProjects);
+
+    if (invProjects.length === 0) {
+      res.json(null);
+    } else {
+      res.json(invProjects);
+    }
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
