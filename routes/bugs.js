@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 // const User = require('../models/User');
-const Bug = require('../models/Bug');
+const Bug = require('../Models/Bug');
 
 // @route   GET api/bugs
 // @desc    Get all the project's bugs

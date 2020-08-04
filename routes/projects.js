@@ -3,8 +3,8 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
-const User = require('../models/User');
-const Project = require('../models/Project');
+const User = require('../Models/User');
+const Project = require('../Models/Project');
 
 // @route   GET api/projects
 // @desc    Get all the users projects
