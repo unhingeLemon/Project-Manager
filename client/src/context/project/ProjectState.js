@@ -59,13 +59,11 @@ const ProjectState = (props) => {
   // pass in the user.projectId
   const loadCurProject = async (project) => {
     setLoading();
-    console.log(project);
+
     try {
       const res = await axios.get(`/api/projects/${project}`);
       console.log(res.data);
-      if (res.data === []) {
-        console.log('empty');
-      }
+
       dispatch({
         type: GET_CURRENT_PROJECT,
         payload: res.data,

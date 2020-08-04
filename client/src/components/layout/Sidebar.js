@@ -29,8 +29,6 @@ const Sidebar = () => {
       array.splice(index, 1);
     }
 
-    console.log(array);
-
     deleteUsers(project._id, { users: array });
 
     getReqUser(user);
@@ -45,10 +43,12 @@ const Sidebar = () => {
       if (project) {
         if (user._id === project.user) {
           setOwner(true);
+        } else {
+          setOwner(false);
         }
       }
     }
-
+    console.log(isOwner);
     /// IF THE DELETED USER HOLD THE PROJECT
     /// REMOVE IT.
     if (reqUser) {
@@ -57,7 +57,6 @@ const Sidebar = () => {
         authContext.updateDeletedUser(reqUser._id, { projectId: undefined });
       }
     }
-    console.log(project);
     // eslint-disable-next-line
   }, [loading, reqUser, project]);
 
