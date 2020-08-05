@@ -7,6 +7,12 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../middleware/auth');
 
 const User = require('../Models/User');
+var jwtSecret;
+if (process.env.NODE_ENV === 'production') {
+  jwtSecret = process.env.jwtSecret;
+} else {
+  jwtSecret = config.get('jwtSecret');
+}
 
 // @route   GET api/auth
 // @desc    Get log in user
@@ -72,7 +78,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        jwtSecret,
         {
           expiresIn: 60 * 60 * 12,
         },
