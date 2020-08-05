@@ -17,7 +17,6 @@ const ShowBugInfo = ({ bug, openBugInfo, getColor }) => {
   const onDelete = () => {
     deleteBug(bug._id);
     openBugInfo(false);
-    alert('Bug deleted!');
   };
 
   return (
