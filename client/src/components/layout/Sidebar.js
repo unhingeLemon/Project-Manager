@@ -89,7 +89,7 @@ const Sidebar = () => {
           <div className='users-sidebar'>
             <div>
               <i className='fas fa-users'></i>
-              PEOPLE
+              People
             </div>
 
             <ul>
