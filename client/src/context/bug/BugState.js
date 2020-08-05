@@ -7,6 +7,7 @@ import {
   GET_BUGS,
   UPDATE_BUG,
   RESET_BUGS,
+  SET_LOADING_BUG,
 } from '../types';
 import axios from 'axios';
 
@@ -22,6 +23,7 @@ const BugState = (props) => {
   // and then translate it to user data
 
   const getBugs = async (project) => {
+    setLoading();
     try {
       const res = await axios.get(`/api/bugs/${project}`);
 
@@ -35,6 +37,7 @@ const BugState = (props) => {
   };
 
   const addBug = async (bug, project) => {
+    setLoading();
     try {
       await axios.post(`/api/bugs/${project}`, bug);
       dispatch({
@@ -47,6 +50,7 @@ const BugState = (props) => {
   };
 
   const deleteBug = async (id) => {
+    setLoading();
     try {
       await axios.delete(`/api/bugs/${id}`);
       dispatch({
@@ -59,6 +63,7 @@ const BugState = (props) => {
   };
 
   const updateBug = async (bug) => {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -82,6 +87,11 @@ const BugState = (props) => {
     });
   };
 
+  const setLoading = () => {
+    dispatch({
+      type: SET_LOADING_BUG,
+    });
+  };
   return (
     <bugContext.Provider
       value={{
@@ -92,6 +102,7 @@ const BugState = (props) => {
         getBugs,
         updateBug,
         resetBugs,
+        setLoading,
       }}
     >
       {props.children}

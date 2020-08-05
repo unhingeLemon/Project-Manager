@@ -48,6 +48,7 @@ export default (state, action) => {
         ...state,
         loading: true,
       };
+
     default:
       return state;
   }

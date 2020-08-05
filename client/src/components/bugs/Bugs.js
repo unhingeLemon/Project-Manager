@@ -3,6 +3,7 @@ import BugItem from './BugItem';
 import BugContext from '../../context/bug/bugContext';
 import BugForm from './BugForm';
 import ProjectContext from '../../context/project/projectContext';
+import Loading from '../layout/Loading';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
@@ -56,6 +57,7 @@ const Bugs = () => {
     <div className='scrolly'>
       {project && <BugForm />}
       <div className='cards'>
+        <Loading />
         <div
           className='card todo'
           onDragOver={onDragOver}
