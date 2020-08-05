@@ -3,7 +3,6 @@ import BugItem from './BugItem';
 import BugContext from '../../context/bug/bugContext';
 import BugForm from './BugForm';
 import ProjectContext from '../../context/project/projectContext';
-import Loading from '../layout/Loading';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
@@ -54,46 +53,47 @@ const Bugs = () => {
   };
 
   return (
-    <div className='scrolly'>
+    <div>
       {project && <BugForm />}
       <div className='cards'>
-        <Loading />
-        <div
-          className='card todo'
-          onDragOver={onDragOver}
-          onDrop={() => dropIn('todo')}
-        >
-          <div className='card-header'>
-            <p>TO DO</p> <i className='fas fa-clipboard-list'></i>
-          </div>
+        <div>
+          <div
+            className='card todo'
+            onDragOver={onDragOver}
+            onDrop={() => dropIn('todo')}
+          >
+            <div className='card-header'>
+              <p>TO DO</p> <i className='fas fa-clipboard-list'></i>
+            </div>
 
-          {todo.map((bug) => (
-            <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
-          ))}
-        </div>
-        <div
-          className='card in-progress'
-          onDragOver={onDragOver}
-          onDrop={() => dropIn('in progress')}
-        >
-          <div className='card-header'>
-            <p>IN PROGRESS</p> <i className='fas fa-spinner'></i>
+            {todo.map((bug) => (
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
+            ))}
           </div>
-          {inprogress.map((bug) => (
-            <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
-          ))}
-        </div>
-        <div
-          className='card done'
-          onDragOver={onDragOver}
-          onDrop={() => dropIn('done')}
-        >
-          <div className='card-header'>
-            <p>DONE</p> <i className='fas fa-clipboard-check'></i>
+          <div
+            className='card in-progress'
+            onDragOver={onDragOver}
+            onDrop={() => dropIn('in progress')}
+          >
+            <div className='card-header'>
+              <p>IN PROGRESS</p> <i className='fas fa-spinner'></i>
+            </div>
+            {inprogress.map((bug) => (
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
+            ))}
           </div>
-          {done.map((bug) => (
-            <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
-          ))}
+          <div
+            className='card done'
+            onDragOver={onDragOver}
+            onDrop={() => dropIn('done')}
+          >
+            <div className='card-header'>
+              <p>DONE</p> <i className='fas fa-clipboard-check'></i>
+            </div>
+            {done.map((bug) => (
+              <BugItem key={bug._id} bug={bug} getDragBug={getDragBug} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

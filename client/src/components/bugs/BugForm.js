@@ -52,7 +52,7 @@ const BugForm = () => {
     <Fragment>
       <div className='btn-container'>
         <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          CREATE
+          Create
         </button>
       </div>
       {isOpen ? (

@@ -25,7 +25,7 @@ const AddPeople = () => {
     <Fragment>
       <div className='btn-container'>
         <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          ADD PEOPLE
+          Add People
         </button>
       </div>
 

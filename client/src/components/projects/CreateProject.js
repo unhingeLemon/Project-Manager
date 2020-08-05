@@ -54,7 +54,7 @@ const CreateProject = () => {
           onClick={() => setOpen(true)}
           className='btn btn-primary create-project-btn'
         >
-          CREATE
+          Create
         </button>
       </div>
 

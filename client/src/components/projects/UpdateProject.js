@@ -36,7 +36,7 @@ const UpdateProject = () => {
     <Fragment>
       <div className='btn-container'>
         <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          EDIT
+          Edit
         </button>
       </div>
 

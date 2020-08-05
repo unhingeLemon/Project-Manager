@@ -32,7 +32,7 @@ const DeleteProject = (props) => {
           onClick={() => setOpen(true)}
           className='btn btn-primary deleteBtn'
         >
-          DELETE
+          Delete
         </button>
       </div>
 
