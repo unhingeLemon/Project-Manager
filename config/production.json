@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://mark:011010111@cluster0-rqd91.mongodb.net/projectManager?retryWrites=true&w=majority",
+  "jwtSecret": "radom231sdklsjdrandzxc23"
+}
