@@ -71,10 +71,7 @@ const Sidebar = () => {
             {project && project.title}
           </div>
           <div>{project && project.description}</div>
-          {/* <ul>
-          <li>Roadmap</li>
-          <li>Dashboard</li>
-        </ul> */}
+          <Link to='/roadmap'> Roadmap </Link>
 
           {project && isOwner && (
             <div className='sidebarBtn'>

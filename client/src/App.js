@@ -7,6 +7,7 @@ import Home from './components/pages/Home';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
+import Roadmap from './components/roadmap/Roadmap';
 
 import BugState from './context/bug/BugState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -27,6 +28,7 @@ const App = () => {
             <Switch>
               <PrivateRoute exact path='/' component={Home} />
               <PrivateRoute exact path='/projects' component={Projects} />
+              <PrivateRoute exact path='/roadmap' component={Roadmap} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
             </Switch>
