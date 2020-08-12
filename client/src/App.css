@@ -968,13 +968,14 @@
 }
 
 .roadmap-board {
-  background-color: #20433d;
+  background-color: #17282a;
   border-radius: 3px;
   min-height: 500px;
   max-height: 500px;
   overflow-y: scroll;
 
   display: flex;
+  color: #ecf5e7;
 }
 
 .roadmap-board > div:nth-of-type(1) {
@@ -993,4 +994,13 @@
 .rd-items {
   display: grid;
   grid-template-columns: auto auto auto;
+}
+
+.rm-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.rm-title > ol {
+  padding-left: 40px;
 }
