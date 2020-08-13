@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ChildPlan from './ChildPlan';
 import Moment from 'react-moment';
+import moment from 'moment';
 
 const PlanItems = ({ roadmap }) => {
   const [childActive, setChildActive] = useState(false);
@@ -59,6 +60,11 @@ const PlanItems = ({ roadmap }) => {
   const onChangeDate = (e) => {
     console.log(e.target.value);
     setDate(e.target.value);
+    if (date && date2) {
+      if (moment(e.target.value).isSameOrAfter(date)) {
+        setDate2(e.target.value);
+      }
+    }
   };
   const onChangeDate2 = (e) => {
     console.log(e.target.value);
