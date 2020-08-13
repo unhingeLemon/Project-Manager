@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ChildPlan from './ChildPlan';
 
 const PlanItems = ({ roadmap }) => {
   const [childActive, setChildActive] = useState(false);
@@ -9,6 +10,45 @@ const PlanItems = ({ roadmap }) => {
       setChildActive(true);
     }
   };
+  // FOR PLANS Childs
+  const [addChild, setAddChild] = useState(false);
+  const [child, setChild] = useState({
+    title: '',
+    checked: false,
+  });
+
+  const onClick = () => {
+    if (addChild) {
+      setAddChild(false);
+    } else {
+      setAddChild(true);
+    }
+  };
+  // Adding child
+  const onChangeChild = (e) => {
+    setChild({
+      title: e.target.value,
+      checked: false,
+    });
+  };
+
+  const onSubmitChild = (e) => {
+    e.preventDefault();
+
+    if (child.title !== '') {
+      roadmap.childPlans.push(child);
+      setAddChild(false);
+    }
+  };
+
+  useEffect(() => {
+    setChild({
+      title: '',
+      checked: false,
+    });
+
+    //eslint-disable-next-line
+  }, [addChild]);
 
   return (
     <div className='rd-items'>
@@ -18,22 +58,22 @@ const PlanItems = ({ roadmap }) => {
         {childActive && (
           <ol>
             {roadmap.childPlans.map((childPlan) => (
-              <li key={childPlan.id}>
-                {childPlan.title}
-                <input
-                  type='checkbox'
-                  defaultChecked={childPlan.checked}
-                  onChange={() => {
-                    console.log(childPlan.checked);
-                    if (childPlan.checked) {
-                      childPlan.checked = false;
-                    } else {
-                      childPlan.checked = true;
-                    }
-                  }}
-                />
-              </li>
+              <ChildPlan childPlan={childPlan} key={childPlan.id} />
             ))}
+
+            <div style={{ background: 'black' }} onClick={onClick}>
+              + Add
+            </div>
+            {addChild && (
+              <form onSubmit={onSubmitChild}>
+                <input
+                  type='text'
+                  onChange={onChangeChild}
+                  value={child.title}
+                />
+                <button>V</button>
+              </form>
+            )}
           </ol>
         )}
       </div>
