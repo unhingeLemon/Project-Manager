@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ChildPlan = ({ childPlan }) => {
+  const [childPlanS, setChildPlan] = useState(childPlan);
+
+  useEffect(() => {
+    setChildPlan(childPlan);
+  }, [childPlan]);
+
   return (
     <li>
       {childPlan.title}

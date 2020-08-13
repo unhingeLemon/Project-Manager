@@ -110,8 +110,6 @@ const Roadmap = () => {
 
             <div className='creater-roadmap'>+ Create a plan</div>
           </div>
-
-          <div>DONE!</div>
         </div>
       </div>
     </div>

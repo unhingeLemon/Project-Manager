@@ -981,24 +981,55 @@
 .roadmap-board > div:nth-of-type(1) {
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 100%;
 }
-.roadmap-board > div:nth-of-type(2) {
-  width: 25%;
-}
+
 .roadmap-header {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 50% 25% 25%;
+  padding: 10px 10px;
+  text-align: center;
 }
 
 .rd-items {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 50% 25% 25%;
 }
 
 .rm-title {
   display: flex;
   flex-direction: column;
+}
+
+.rm-date {
+  padding: 0 10px;
+  text-align: center;
+}
+
+.rm-date > input {
+  background-color: #17282a;
+  border: none;
+  font-size: 14px;
+  color: white;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  color: white;
+  opacity: 100;
+  background: none;
+}
+
+input[type='date']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+input[type='date']::-webkit-datetime-edit {
+  display: none;
+}
+
+input[type='date']::-webkit-datetime-edit-text {
+  display: none;
 }
 
 .rm-title > ol {
