@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../layout/Sidebar';
 import PlanItems from './PlanItems';
 
 const Roadmap = () => {
-  const roadmaps = [
+  const [plans, setPlans] = useState([
     {
       id: '1',
       title: 'Sample title',
@@ -88,7 +88,49 @@ const Roadmap = () => {
         },
       ],
     },
-  ];
+  ]);
+
+  const [addPlanActive, SetAddPlanActive] = useState(false);
+  const [newPlan, setNewPlan] = useState({
+    title: '',
+    checked: false,
+  });
+
+  const addPlanClick = () => {
+    addPlanActive ? SetAddPlanActive(false) : SetAddPlanActive(true);
+  };
+
+  const addPlanSubmit = (e) => {
+    e.preventDefault();
+
+    if (newPlan.title !== '') {
+      if (plans.length > 0) {
+        console.log(plans);
+        console.log(newPlan);
+        setPlans([...plans, newPlan]);
+        console.log(plans);
+      } else {
+        setPlans([newPlan]);
+      }
+    }
+
+    SetAddPlanActive(false);
+    setNewPlan({
+      title: '',
+      checked: false,
+    });
+  };
+
+  useEffect(() => {
+    setNewPlan({
+      title: '',
+      checked: false,
+    });
+  }, [addPlanActive]);
+
+  const onChange = (e) => {
+    setNewPlan({ ...newPlan, title: e.target.value });
+  };
 
   return (
     <div className='underNav'>
@@ -103,12 +145,23 @@ const Roadmap = () => {
               <div>Start Date</div>
               <div>Due Date</div>
             </div>
-
-            {roadmaps.map((roadmap) => (
-              <PlanItems roadmap={roadmap} key={roadmap.id} />
-            ))}
-
-            <div className='creater-roadmap'>+ Create a plan</div>
+            {plans.map((plan) => (
+              <PlanItems roadmap={plan} key={plan.id} />
+            ))}{' '}
+            <div className='creater-roadmap' onClick={addPlanClick}>
+              + Create a plan
+            </div>
+            {addPlanActive && (
+              <form onSubmit={addPlanSubmit}>
+                <input
+                  type='text'
+                  placeholder='What needs to be done?'
+                  value={newPlan.title}
+                  onChange={onChange}
+                />
+                <button>wew</button>
+              </form>
+            )}
           </div>
         </div>
       </div>

@@ -91,6 +91,7 @@ const PlanItems = ({ roadmap }) => {
                   type='text'
                   onChange={onChangeChild}
                   value={child.title}
+                  placeholder='What needs to be done?'
                 />
                 <button>V</button>
               </form>
