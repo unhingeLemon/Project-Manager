@@ -1,9 +1,26 @@
 const mongoose = require('mongoose');
 
+var childPlan = new mongoose.Schema({
+  id: {
+    type: mongoose.Types.ObjectId,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  checked: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const Roadmap = mongoose.Schema({
   project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'projects',
+    type: String,
+    required: true,
   },
   title: {
     type: String,
@@ -15,7 +32,7 @@ const Roadmap = mongoose.Schema({
   status: {
     type: String,
     required: true,
-    default: 'todo',
+    default: 'in-progress',
   },
   startDate: {
     type: Date,
@@ -25,6 +42,11 @@ const Roadmap = mongoose.Schema({
   dueDate: {
     type: Date,
   },
+  createdDate: {
+    type: Date,
+    default: Date.now,
+  },
+  childPlan: [childPlan],
 });
 
 module.exports = mongoose.model('roadmap', Roadmap);

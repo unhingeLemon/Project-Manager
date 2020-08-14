@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const roadmaptContext = createContext();
+const roadmapContext = createContext();
 
 export default roadmapContext;

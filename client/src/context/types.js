@@ -23,3 +23,5 @@ export const GET_INVITED_PROJECT = 'GET_INVITED_PROJECT';
 export const REQUESTED_USER = 'REQUESTED_USER';
 export const SET_LOADING_PROJ = 'SET_LOADING_PROJ';
 export const RESET_PROJECT = 'RESET_PROJECT';
+
+export const ADD_PLAN = 'ADD_PLAN';

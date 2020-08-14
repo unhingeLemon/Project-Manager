@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ChildPlan = ({ childPlan }) => {
+  //eslint-disable-next-line
   const [childPlanS, setChildPlan] = useState(childPlan);
 
   useEffect(() => {

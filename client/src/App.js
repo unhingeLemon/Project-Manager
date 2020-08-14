@@ -13,6 +13,7 @@ import BugState from './context/bug/BugState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthState from './context/auth/AuthState';
 import ProjectState from './context/project/ProjectState';
+import RoadmapState from './context/roadmap/RoadmapState';
 
 import Projects from './components/projects/Projects';
 
@@ -21,18 +22,20 @@ const App = () => {
     <AuthState>
       <ProjectState>
         <BugState>
-          <Loading />
-          <Router>
-            <Navbar />
+          <RoadmapState>
+            <Loading />
+            <Router>
+              <Navbar />
 
-            <Switch>
-              <PrivateRoute exact path='/' component={Home} />
-              <PrivateRoute exact path='/projects' component={Projects} />
-              <PrivateRoute exact path='/roadmap' component={Roadmap} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/register' component={Register} />
-            </Switch>
-          </Router>
+              <Switch>
+                <PrivateRoute exact path='/' component={Home} />
+                <PrivateRoute exact path='/projects' component={Projects} />
+                <PrivateRoute exact path='/roadmap' component={Roadmap} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/register' component={Register} />
+              </Switch>
+            </Router>
+          </RoadmapState>
         </BugState>
       </ProjectState>
     </AuthState>
