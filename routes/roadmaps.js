@@ -69,7 +69,7 @@ router.put('/:id', auth, async (req, res) => {
     status,
     startDate,
     dueDate,
-    childPlan,
+    childPlans,
   } = req.body;
 
   // Build Roadmap object
@@ -79,7 +79,7 @@ router.put('/:id', auth, async (req, res) => {
   if (status) planFields.status = status;
   if (startDate) planFields.startDate = startDate;
   if (dueDate) planFields.dueDate = dueDate;
-  if (childPlan) planFields.childPlan = childPlan;
+  if (childPlans) planFields.childPlans = childPlans;
 
   try {
     let plan = await Roadmap.findById(req.params.id);
@@ -99,18 +99,25 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
-// @route   DELETE api/roadmaps/:id
-// @desc    Delete plan
+// @route   DELETE api/roadmaps/childplan/:id
+// @desc    Delete a childPlan
 // @access  Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/childPlan/:id', auth, async (req, res) => {
   try {
-    let plan = await Roadmap.findById(req.params.id);
+    await Roadmap.findOne({ 'childPlans._id': req.params.id }, async function (
+      err,
+      result
+    ) {
+      try {
+        await result.childPlans.id(req.params.id).remove();
+        await result.save();
+        res.json({ msg: 'Child plan removed' });
+      } catch (error) {
+        res.status(404).json({ msg: 'Plan not found' });
+      }
+    });
 
-    if (!plan) return res.status(404).json({ msg: 'Bug not found' });
-
-    await Roadmap.findByIdAndRemove(req.params.id);
-
-    res.json({ msg: 'Plan removed' });
+    // if (!plan) return res.status(404).json({ msg: 'Plan not found' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

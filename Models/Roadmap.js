@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const childPlan = new mongoose.Schema({
+const childPlans = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -43,7 +43,7 @@ const Roadmap = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  childPlan: [childPlan],
+  childPlans: [childPlans],
 });
 
 module.exports = mongoose.model('roadmap', Roadmap);

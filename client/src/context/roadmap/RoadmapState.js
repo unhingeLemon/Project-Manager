@@ -48,6 +48,22 @@ const RoadmapState = (props) => {
     });
   };
 
+  const updatePlan = async (id, data) => {
+    console.log(data);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.put(`/api/roadmaps/${id}`, data, config);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <roadmapContext.Provider
       value={{
@@ -56,6 +72,7 @@ const RoadmapState = (props) => {
         addPlan,
         addChildPlan,
         getPlans,
+        updatePlan,
         // invProjects: state.invProjects,
         // reqUser: state.reqUser,
         // loading: state.loading,

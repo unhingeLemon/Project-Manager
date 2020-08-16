@@ -4,9 +4,14 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import RoadmapContext from '../../context/roadmap/roadmapContext';
 
+import ProjectContext from '../../context/project/projectContext';
+
 const PlanItems = ({ roadmap }) => {
   const roadmapContext = useContext(RoadmapContext);
-  const { addChildPlan } = roadmapContext;
+  const projectContext = useContext(ProjectContext);
+  const { addChildPlan, updatePlan, getPlans } = roadmapContext;
+  const { project } = projectContext;
+  var selected;
 
   const [childActive, setChildActive] = useState(false);
   const [date, setDate] = useState(null);
@@ -46,10 +51,18 @@ const PlanItems = ({ roadmap }) => {
     e.preventDefault();
 
     if (child.title !== '') {
-      addChildPlan(child);
-
+      if (roadmap.childPlans.length === 0) {
+        console.log('0');
+        updatePlan(roadmap._id, { childPlans: [child] });
+        getPlans(project._id);
+      } else {
+        updatePlan(roadmap._id, { childPlans: [...roadmap.childPlans, child] });
+        getPlans(project._id);
+      }
       setAddChild(false);
     }
+
+    getPlans(project._id);
   };
 
   useEffect(() => {
@@ -57,9 +70,9 @@ const PlanItems = ({ roadmap }) => {
       title: '',
       checked: false,
     });
-
+    console.log(selected);
     //eslint-disable-next-line
-  }, [addChild]);
+  }, [addChild, selected]);
 
   const onChangeDate = (e) => {
     console.log(e.target.value);
@@ -86,7 +99,11 @@ const PlanItems = ({ roadmap }) => {
           <ol>
             {roadmap.childPlans &&
               roadmap.childPlans.map((childPlan) => (
-                <ChildPlan childPlan={childPlan} key={childPlan.id} />
+                <ChildPlan
+                  childPlan={childPlan}
+                  key={childPlan.id}
+                  selected={selected}
+                />
               ))}
 
             <div className='rd-btn addChild' onClick={onClick}>
