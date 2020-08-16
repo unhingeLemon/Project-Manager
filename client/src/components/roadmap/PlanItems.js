@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ChildPlan from './ChildPlan';
 import Moment from 'react-moment';
 import moment from 'moment';
+import RoadmapContext from '../../context/roadmap/roadmapContext';
 
 const PlanItems = ({ roadmap }) => {
+  const roadmapContext = useContext(RoadmapContext);
+  const { addChildPlan } = roadmapContext;
+
   const [childActive, setChildActive] = useState(false);
   const [date, setDate] = useState(null);
   const [date2, setDate2] = useState(null);
@@ -42,7 +46,7 @@ const PlanItems = ({ roadmap }) => {
     e.preventDefault();
 
     if (child.title !== '') {
-      roadmap.childPlans.push(child);
+      addChildPlan(child);
 
       setAddChild(false);
     }
@@ -74,26 +78,32 @@ const PlanItems = ({ roadmap }) => {
   return (
     <div className='rd-items'>
       <div className='rm-title'>
-        <div>{roadmap.title}</div>
-        <button onClick={handleClick}>btn</button>
+        <div>
+          {roadmap.title} <i className='fas fa-th-list' onClick={handleClick} />
+        </div>
+
         {childActive && (
           <ol>
-            {roadmap.childPlans.map((childPlan) => (
-              <ChildPlan childPlan={childPlan} key={childPlan.id} />
-            ))}
+            {roadmap.childPlans &&
+              roadmap.childPlans.map((childPlan) => (
+                <ChildPlan childPlan={childPlan} key={childPlan.id} />
+              ))}
 
-            <div style={{ background: 'black' }} onClick={onClick}>
-              + Add
+            <div className='rd-btn addChild' onClick={onClick}>
+              <i className='fas fa-plus'></i> Add
             </div>
             {addChild && (
-              <form onSubmit={onSubmitChild}>
+              <form className='rm-form' onSubmit={onSubmitChild}>
                 <input
+                  className='rm-form'
                   type='text'
                   onChange={onChangeChild}
                   value={child.title}
                   placeholder='What needs to be done?'
                 />
-                <button>V</button>
+                <button className='rd-btn rm-submit'>
+                  <i class='fas fa-chevron-right'></i>
+                </button>
               </form>
             )}
           </ol>

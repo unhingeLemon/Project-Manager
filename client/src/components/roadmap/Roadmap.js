@@ -7,13 +7,12 @@ import ProjectContext from '../../context/project/projectContext';
 const Roadmap = () => {
   const roadmapContext = useContext(RoadmapContext);
   const projectContext = useContext(ProjectContext);
-  const { plans, addPlan } = roadmapContext;
+  const { plans, addPlan, getPlans } = roadmapContext;
   const { project } = projectContext;
-
-  console.log(project._id); // CURRENT ID BIND IT TO ROADMAP
 
   const [addPlanActive, SetAddPlanActive] = useState(false);
   const [newPlan, setNewPlan] = useState({
+    project: project._id,
     title: '',
     checked: false,
   });
@@ -31,6 +30,7 @@ const Roadmap = () => {
 
     SetAddPlanActive(false);
     setNewPlan({
+      project: project._id,
       title: '',
       checked: false,
     });
@@ -38,9 +38,11 @@ const Roadmap = () => {
 
   useEffect(() => {
     setNewPlan({
+      project: project._id,
       title: '',
       checked: false,
     });
+    getPlans(project._id);
   }, [addPlanActive]);
 
   const onChange = (e) => {
@@ -60,21 +62,24 @@ const Roadmap = () => {
               <div>Start Date</div>
               <div>Due Date</div>
             </div>
-            {plans.map((plan) => (
-              <PlanItems roadmap={plan} key={plan.id} />
-            ))}{' '}
-            <div className='creater-roadmap' onClick={addPlanClick}>
-              + Create a plan
+            {plans &&
+              plans.map((plan) => (
+                <PlanItems roadmap={plan} key={plan._id} />
+              ))}{' '}
+            <div className='rd-btn create-plan' onClick={addPlanClick}>
+              <i className='fas fa-plus'></i>
             </div>
             {addPlanActive && (
-              <form onSubmit={addPlanSubmit}>
+              <form className='rm-form' onSubmit={addPlanSubmit}>
                 <input
                   type='text'
                   placeholder='What needs to be done?'
                   value={newPlan.title}
                   onChange={onChange}
                 />
-                <button>wew</button>
+                <button className='rd-btn rm-submit'>
+                  <i className='fas fa-chevron-right'></i>
+                </button>
               </form>
             )}
           </div>

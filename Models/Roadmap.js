@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
-var childPlan = new mongoose.Schema({
-  id: {
-    type: mongoose.Types.ObjectId,
-  },
+const childPlan = new mongoose.Schema({
   title: {
     type: String,
     required: true,

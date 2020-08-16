@@ -2,96 +2,11 @@ import React, { useReducer } from 'react';
 import roadmapContext from './roadmapContext';
 import axios from 'axios';
 import roadmapReducer from './roadmapReducer';
-import { ADD_PLAN } from '../types';
+import { ADD_PLAN, ADD_CHILD_PLAN, GET_PLANS } from '../types';
 
 const RoadmapState = (props) => {
   const initialState = {
-    plans: [
-      {
-        id: '1',
-        title: 'Sample title',
-        startDate: 'November 1 2021',
-        dueDate: 'November 1 2021',
-        description: 'sdsdsd',
-        status: 'INP',
-        childPlans: [
-          {
-            id: '3',
-            title: 'do this #1',
-            description: 'description',
-            checked: true,
-          },
-          {
-            id: '2',
-            title: 'do this #2',
-            description: 'description',
-            checked: false,
-          },
-          {
-            id: '1',
-            title: 'do this #3',
-            description: 'description',
-            checked: false,
-          },
-        ],
-      },
-      {
-        id: '2',
-        title: 'Sample title',
-        startDate: 'No23er 1 2021121',
-        dueDate: 'Nov23er 1 202331',
-        description: 'sdsdsd',
-        status: 'INP',
-        childPlans: [
-          {
-            id: '1',
-            title: 'do this #1',
-            description: 'description',
-            checked: true,
-          },
-          {
-            id: '2',
-            title: 'do this #2',
-            description: 'description',
-            checked: false,
-          },
-          {
-            id: '3',
-            title: 'do this #3',
-            description: 'description',
-            checked: false,
-          },
-        ],
-      },
-      {
-        id: '3',
-        title: 'Sample title',
-        startDate: 'November 1 23',
-        dueDate: 'November 1 203221',
-        description: 'sdsdsd',
-        status: 'INP',
-        childPlans: [
-          {
-            id: '3',
-            title: 'do this #1',
-            description: 'description',
-            checked: true,
-          },
-          {
-            id: '2',
-            title: 'do this #2',
-            description: 'description',
-            checked: false,
-          },
-          {
-            id: '1',
-            title: 'do this #3',
-            description: 'description',
-            checked: false,
-          },
-        ],
-      },
-    ],
+    plans: null,
     childPlan: null,
   };
   const [state, dispatch] = useReducer(roadmapReducer, initialState);
@@ -102,10 +17,34 @@ const RoadmapState = (props) => {
   //   });
   // };
 
-  const addPlan = (plan) => {
+  const getPlans = async (project) => {
+    try {
+      const res = await axios.get(`/api/roadmaps/${project}`);
+      dispatch({
+        type: GET_PLANS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addPlan = async (formData) => {
+    try {
+      const res = await axios.post('/api/roadmaps', formData);
+      dispatch({
+        type: ADD_PLAN,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addChildPlan = (childPlan) => {
     dispatch({
-      type: ADD_PLAN,
-      payload: plan,
+      type: ADD_CHILD_PLAN,
+      payload: childPlan,
     });
   };
 
@@ -115,6 +54,8 @@ const RoadmapState = (props) => {
         plans: state.plans,
         childPlan: state.childPlan,
         addPlan,
+        addChildPlan,
+        getPlans,
         // invProjects: state.invProjects,
         // reqUser: state.reqUser,
         // loading: state.loading,
