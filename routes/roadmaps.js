@@ -124,4 +124,39 @@ router.delete('/childPlan/:id', auth, async (req, res) => {
   }
 });
 
+// @route   UPDATE api/roadmaps/childplan/:id
+// @desc    update a childPlan
+// @access  Private
+router.put('/childPlan/:id', auth, async (req, res) => {
+  const { title, description, checked } = req.body;
+
+  // Build child plan object
+  const childPlanField = {};
+  childPlanField._id = req.params.id;
+  if (title) childPlanField.title = title;
+  if (description) childPlanField.description = description;
+  if (checked) childPlanField.checked = checked;
+  console.log(childPlanField);
+  try {
+    await Roadmap.findOneAndUpdate(
+      { 'childPlans._id': req.params.id },
+      {
+        $set: {
+          'childPlans.$': childPlanField,
+        },
+      },
+      async (err, doc) => {
+        if (err) return console.log(err);
+        if (doc) return res.json({ msg: 'child plan updated' });
+        if (doc === null) return res.json({ msg: 'Update Failed!' });
+      }
+    );
+
+    // if (!plan) return res.status(404).json({ msg: 'Plan not found' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
