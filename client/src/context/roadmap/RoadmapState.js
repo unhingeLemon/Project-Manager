@@ -18,6 +18,7 @@ const RoadmapState = (props) => {
   // };
 
   const getPlans = async (project) => {
+    console.log('wew');
     try {
       const res = await axios.get(`/api/roadmaps/${project}`);
       dispatch({
@@ -73,18 +74,6 @@ const RoadmapState = (props) => {
         addChildPlan,
         getPlans,
         updatePlan,
-        // invProjects: state.invProjects,
-        // reqUser: state.reqUser,
-        // loading: state.loading,
-        // loadCurProject,
-        // getAllProjects,
-        // addProject,
-        // updateProject,
-        // deleteProject,
-        // getInvProjects,
-        // deleteUsers,
-        // getReqUser,
-        // resetProject,
       }}
     >
       {props.children}

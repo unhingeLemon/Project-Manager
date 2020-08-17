@@ -1,22 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RoadmapContext from '../../context/roadmap/roadmapContext';
 
-const ChildPlan = ({ childPlan, selected }) => {
+const ChildPlan = ({ childPlan }) => {
   const { roadmapContext } = useContext(RoadmapContext);
 
   //eslint-disable-next-line
-  const [childPlanS, setChildPlan] = useState(childPlan);
+
   console.log(childPlan);
-  useEffect(() => {
-    setChildPlan(childPlan);
-  }, [childPlan]);
-  const onClick = (e) => {
+  useEffect(() => {}, [childPlan]);
+
+  const [showChildPlanInfo, setshowChildPlanInfo] = useState(false);
+
+  const [newchildPlan, setnewchildPlan] = useState(childPlan);
+  const onChangeEdit = (e) => {
+    setnewchildPlan({ ...childPlan, [e.target.name]: e.target.value });
+  };
+  const onClickChildPlan = (e) => {
+    console.log(e.target.classList.contains('childplan-container'));
     if (e.target.classList.contains('childplan-container')) {
-      console.log(childPlan._id);
+      showChildPlanInfo
+        ? setshowChildPlanInfo(false)
+        : setshowChildPlanInfo(true);
     }
   };
   return (
-    <li onClick={onClick} className='childplan-container'>
+    <li onClick={onClickChildPlan} className='childplan-container'>
       {childPlan.title}
       <input
         type='checkbox'
@@ -30,6 +38,50 @@ const ChildPlan = ({ childPlan, selected }) => {
           }
         }}
       />
+      {/* MODAL SHOW INFO OF A CHILD PLAN */}
+      {showChildPlanInfo && (
+        <div className='modal-bg'>
+          <div className='modal'>
+            <i
+              onClick={() => setshowChildPlanInfo(false)}
+              className='fa fa-times-circle closebtn'
+              aria-hidden='true'
+            ></i>
+            <form
+              className='create-form update-project-form'
+              onSubmit={() => console.log('submited')}
+            >
+              <p>EDIT THIS SUB-PLAN</p>
+              <i
+                className='fas fa-trash'
+                onClick={() => console.log('deleted!')}
+              ></i>
+              <label>
+                <div>TITLE</div>
+                <input
+                  type='text'
+                  name='title'
+                  onChange={onChangeEdit}
+                  value={childPlan.title}
+                  required
+                />
+              </label>
+              <label>
+                <div>DESCRIPTION</div>
+                <textarea
+                  value={childPlan.description}
+                  onChange={onChangeEdit}
+                  name='description'
+                  maxLength='500'
+                />
+              </label>
+              <div className='btn-container2 update-btn'>
+                <button className='btn btn-primary'>SUBMIT</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </li>
   );
 };

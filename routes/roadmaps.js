@@ -20,16 +20,6 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-// router.get('/childPlan/:id', auth, async (req, res) => {
-//   try {
-//     const plans = await Roadmap.findOne({ 'childPlan._id': req.params.id });
-//     res.json(plans.childPlan[0]);
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(500).send('Server Error');
-//   }
-// });
-
 // @route   POST api/roadmap
 // @desc    Add new plans
 // @access  Private
@@ -60,7 +50,7 @@ router.post(
 );
 
 // @route   PUT api/roadmaps/:id
-// @desc    Update Roadmaps
+// @desc    Update Roadmap
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
   const {

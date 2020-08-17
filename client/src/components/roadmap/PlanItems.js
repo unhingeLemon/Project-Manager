@@ -27,6 +27,8 @@ const PlanItems = ({ roadmap }) => {
   // FOR PLANS Childs
   // addChild is the form input | couldn't think of a name
   const [addChild, setAddChild] = useState(false);
+  const [showPlanInfo, setshowPlanInfo] = useState(false);
+
   const [child, setChild] = useState({
     title: '',
     checked: false,
@@ -70,9 +72,9 @@ const PlanItems = ({ roadmap }) => {
       title: '',
       checked: false,
     });
-    console.log(selected);
+    getPlans(project._id); // THIS IS RUNNING INFINITE!
     //eslint-disable-next-line
-  }, [addChild, selected]);
+  }, [addChild, roadmap]);
 
   const onChangeDate = (e) => {
     console.log(e.target.value);
@@ -88,10 +90,33 @@ const PlanItems = ({ roadmap }) => {
     setDate2(e.target.value);
   };
 
+  const onClickPlan = (e) => {
+    console.log(e.target.classList.contains('Dsqwe'));
+    if (e.target.classList.contains('Dsqwe')) {
+      showPlanInfo ? setshowPlanInfo(false) : setshowPlanInfo(true);
+    }
+  };
+  const [newRoadmap, setNewRoadmap] = useState(roadmap);
+  const onChangeEdit = (e) => {
+    setNewRoadmap({ ...newRoadmap, [e.target.name]: e.target.value });
+  };
+
+  const onUpdatePlan = (e) => {
+    e.preventDefault();
+    console.log('submitted');
+    updatePlan(roadmap._id, newRoadmap);
+
+    getPlans(project._id);
+    setshowPlanInfo(false);
+  };
+
   return (
     <div className='rd-items'>
-      <div className='rm-title'>
-        <div>
+      <div className='rm-title Dsqwe' onClick={onClickPlan}>
+        {/* Im just using a unique jibirish 
+        name to access 2 divs */}
+
+        <div className='Dsqwe'>
           {roadmap.title} <i className='fas fa-th-list' onClick={handleClick} />
         </div>
 
@@ -101,7 +126,7 @@ const PlanItems = ({ roadmap }) => {
               roadmap.childPlans.map((childPlan) => (
                 <ChildPlan
                   childPlan={childPlan}
-                  key={childPlan.id}
+                  key={childPlan._id}
                   selected={selected}
                 />
               ))}
@@ -143,6 +168,52 @@ const PlanItems = ({ roadmap }) => {
           />
         )}
       </div>
+
+      {/* MODAL SHOW INFO OF A PLAN */}
+
+      {showPlanInfo && (
+        <div className='modal-bg'>
+          <div className='modal'>
+            <i
+              onClick={() => setshowPlanInfo(false)}
+              className='fa fa-times-circle closebtn'
+              aria-hidden='true'
+            ></i>
+            <form
+              className='create-form update-project-form'
+              onSubmit={onUpdatePlan}
+            >
+              <p>EDIT THIS PLAN</p>
+              <i
+                className='fas fa-trash'
+                onClick={() => console.log('deleted!')}
+              ></i>
+              <label>
+                <div>TITLE</div>
+                <input
+                  type='text'
+                  name='title'
+                  onChange={onChangeEdit}
+                  value={newRoadmap.title}
+                  required
+                />
+              </label>
+              <label>
+                <div>DESCRIPTION</div>
+                <textarea
+                  value={newRoadmap.description}
+                  onChange={onChangeEdit}
+                  name='description'
+                  maxLength='500'
+                />
+              </label>
+              <div className='btn-container2 update-btn'>
+                <button className='btn btn-primary'>SUBMIT</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
