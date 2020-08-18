@@ -3,10 +3,12 @@ import Ripple from './Ripple.svg';
 import AuthContext from '../../context/auth/authContext';
 import BugContext from '../../context/bug/bugContext';
 import ProjectContext from '../../context/project/projectContext';
+import RoadmapContext from '../../context/roadmap/roadmapContext';
 const Loading = () => {
   const authContext = useContext(AuthContext);
   const bugContext = useContext(BugContext);
   const projectContext = useContext(ProjectContext);
+  const roadmapContext = useContext(RoadmapContext);
 
   const { loading } = authContext;
 
@@ -19,7 +21,10 @@ const Loading = () => {
         draggable='false'
         style={{
           display: `${
-            loading || bugContext.loading || projectContext.loading
+            loading ||
+            bugContext.loading ||
+            projectContext.loading ||
+            roadmapContext.loading
               ? 'block'
               : 'none'
           }`,

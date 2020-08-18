@@ -1,26 +1,54 @@
-import { ADD_PLAN, ADD_CHILD_PLAN, GET_PLANS } from '../types';
+import {
+  ADD_PLAN,
+  GET_PLANS,
+  SET_LOADING_RM,
+  DELETE_PLAN,
+  UPDATE_PLAN,
+  DELETE_CHILD_PLAN,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_PLANS:
+      return {
+        ...state,
+        plans: action.payload,
+        loading: false,
+      };
     case ADD_PLAN:
       return {
         ...state,
         plans: state.plans
           ? [...state.plans, action.payload]
           : [action.payload],
-      };
-    case ADD_CHILD_PLAN:
-      return {
-        ...state,
-        childPlan: state.childPlan
-          ? [...state.childPlan, action.payload]
-          : [action.payload],
+        loading: false,
       };
 
-    case GET_PLANS:
+    case SET_LOADING_RM:
       return {
         ...state,
-        plans: action.payload,
+        loading: true,
+      };
+    case UPDATE_PLAN:
+      return {
+        ...state,
+        plans: state.plans.map((plan) =>
+          plan._id === action.payload._id ? action.payload : plan
+        ),
+        loading: false,
+      };
+    case DELETE_PLAN:
+      return {
+        ...state,
+        plans: state.plans.filter((plan) => action.payload !== plan._id),
+        loading: false,
+      };
+
+    case DELETE_CHILD_PLAN:
+      return {
+        ...state,
+
+        loading: false,
       };
     default:
       return state;

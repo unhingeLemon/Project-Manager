@@ -2,18 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import RoadmapContext from '../../context/roadmap/roadmapContext';
 
 const ChildPlan = ({ childPlan }) => {
-  const { roadmapContext } = useContext(RoadmapContext);
-
+  const roadmapContext = useContext(RoadmapContext);
+  const { updateChildPlan, deleteChildPlan } = roadmapContext;
   //eslint-disable-next-line
 
-  console.log(childPlan);
   useEffect(() => {}, [childPlan]);
 
   const [showChildPlanInfo, setshowChildPlanInfo] = useState(false);
 
   const [newchildPlan, setnewchildPlan] = useState(childPlan);
   const onChangeEdit = (e) => {
-    setnewchildPlan({ ...childPlan, [e.target.name]: e.target.value });
+    setnewchildPlan({ ...newchildPlan, [e.target.name]: e.target.value });
   };
   const onClickChildPlan = (e) => {
     console.log(e.target.classList.contains('childplan-container'));
@@ -22,6 +21,19 @@ const ChildPlan = ({ childPlan }) => {
         ? setshowChildPlanInfo(false)
         : setshowChildPlanInfo(true);
     }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(newchildPlan);
+
+    updateChildPlan(childPlan._id, newchildPlan);
+    setshowChildPlanInfo(false);
+  };
+
+  const onDelete = () => {
+    deleteChildPlan(childPlan._id);
+    setshowChildPlanInfo(false);
   };
   return (
     <li onClick={onClickChildPlan} className='childplan-container'>
@@ -49,27 +61,24 @@ const ChildPlan = ({ childPlan }) => {
             ></i>
             <form
               className='create-form update-project-form'
-              onSubmit={() => console.log('submited')}
+              onSubmit={onSubmit}
             >
               <p>EDIT THIS SUB-PLAN</p>
-              <i
-                className='fas fa-trash'
-                onClick={() => console.log('deleted!')}
-              ></i>
+              <i className='fas fa-trash' onClick={onDelete}></i>
               <label>
                 <div>TITLE</div>
                 <input
                   type='text'
                   name='title'
                   onChange={onChangeEdit}
-                  value={childPlan.title}
+                  value={newchildPlan.title}
                   required
                 />
               </label>
               <label>
                 <div>DESCRIPTION</div>
                 <textarea
-                  value={childPlan.description}
+                  value={newchildPlan.description}
                   onChange={onChangeEdit}
                   name='description'
                   maxLength='500'

@@ -89,6 +89,38 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
+// @route   UPDATE api/roadmaps/childplan/:id
+// @desc    update a childPlan
+// @access  Private
+router.put('/childPlan/:id', auth, async (req, res) => {
+  const { title, description, checked } = req.body;
+
+  // Build child plan object
+  const childPlanField = {};
+  childPlanField._id = req.params.id;
+  if (title) childPlanField.title = title;
+  if (description) childPlanField.description = description;
+  if (checked) childPlanField.checked = checked;
+
+  try {
+    let updatedChild = await Roadmap.findOneAndUpdate(
+      { 'childPlans._id': req.params.id },
+      {
+        $set: {
+          'childPlans.$': childPlanField,
+        },
+      }
+    );
+    updatedChild = await Roadmap.findOne({ 'childPlans._id': req.params.id });
+    res.json(updatedChild);
+
+    // if (!plan) return res.status(404).json({ msg: 'Plan not found' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/roadmaps/childplan/:id
 // @desc    Delete a childPlan
 // @access  Private
@@ -114,35 +146,18 @@ router.delete('/childPlan/:id', auth, async (req, res) => {
   }
 });
 
-// @route   UPDATE api/roadmaps/childplan/:id
-// @desc    update a childPlan
+// @route   DELETE api/roadmaps/childplan/:id
+// @desc    Delete a childPlan
 // @access  Private
-router.put('/childPlan/:id', auth, async (req, res) => {
-  const { title, description, checked } = req.body;
-
-  // Build child plan object
-  const childPlanField = {};
-  childPlanField._id = req.params.id;
-  if (title) childPlanField.title = title;
-  if (description) childPlanField.description = description;
-  if (checked) childPlanField.checked = checked;
-  console.log(childPlanField);
+router.delete('/:id', auth, async (req, res) => {
   try {
-    await Roadmap.findOneAndUpdate(
-      { 'childPlans._id': req.params.id },
-      {
-        $set: {
-          'childPlans.$': childPlanField,
-        },
-      },
-      async (err, doc) => {
-        if (err) return console.log(err);
-        if (doc) return res.json({ msg: 'child plan updated' });
-        if (doc === null) return res.json({ msg: 'Update Failed!' });
-      }
-    );
+    let plan = await Roadmap.findById(req.params.id);
 
-    // if (!plan) return res.status(404).json({ msg: 'Plan not found' });
+    if (!plan) return res.status(404).json({ msg: 'Plan not found' });
+
+    await Roadmap.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: 'Plan removed' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

@@ -9,7 +9,7 @@ import ProjectContext from '../../context/project/projectContext';
 const PlanItems = ({ roadmap }) => {
   const roadmapContext = useContext(RoadmapContext);
   const projectContext = useContext(ProjectContext);
-  const { addChildPlan, updatePlan, getPlans } = roadmapContext;
+  const { updatePlan, getPlans, deletePlan } = roadmapContext;
   const { project } = projectContext;
   var selected;
 
@@ -63,8 +63,6 @@ const PlanItems = ({ roadmap }) => {
       }
       setAddChild(false);
     }
-
-    getPlans(project._id);
   };
 
   useEffect(() => {
@@ -72,9 +70,9 @@ const PlanItems = ({ roadmap }) => {
       title: '',
       checked: false,
     });
-    getPlans(project._id); // THIS IS RUNNING INFINITE!
+
     //eslint-disable-next-line
-  }, [addChild, roadmap]);
+  }, [addChild]);
 
   const onChangeDate = (e) => {
     console.log(e.target.value);
@@ -96,18 +94,25 @@ const PlanItems = ({ roadmap }) => {
       showPlanInfo ? setshowPlanInfo(false) : setshowPlanInfo(true);
     }
   };
+
   const [newRoadmap, setNewRoadmap] = useState(roadmap);
   const onChangeEdit = (e) => {
     setNewRoadmap({ ...newRoadmap, [e.target.name]: e.target.value });
+    let array = roadmap.childPlans;
+    let index = array.indexOf({ title: 'wew!ddzvqddd' });
+    console.log(array);
+    console.log(index);
   };
 
-  const onUpdatePlan = (e) => {
+  const onUpdatePlan = async (e) => {
     e.preventDefault();
     console.log('submitted');
     updatePlan(roadmap._id, newRoadmap);
-
-    getPlans(project._id);
     setshowPlanInfo(false);
+  };
+
+  const onDelete = () => {
+    deletePlan(roadmap._id);
   };
 
   return (
@@ -184,10 +189,7 @@ const PlanItems = ({ roadmap }) => {
               onSubmit={onUpdatePlan}
             >
               <p>EDIT THIS PLAN</p>
-              <i
-                className='fas fa-trash'
-                onClick={() => console.log('deleted!')}
-              ></i>
+              <i className='fas fa-trash' onClick={onDelete}></i>
               <label>
                 <div>TITLE</div>
                 <input
