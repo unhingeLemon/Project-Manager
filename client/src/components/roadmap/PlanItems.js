@@ -11,11 +11,14 @@ const PlanItems = ({ roadmap }) => {
   const projectContext = useContext(ProjectContext);
   const { updatePlan, getPlans, deletePlan } = roadmapContext;
   const { project } = projectContext;
-  var selected;
+  const [newRoadmap, setNewRoadmap] = useState(roadmap);
+  const onChangeEdit = (e) => {
+    setNewRoadmap({ ...newRoadmap, [e.target.name]: e.target.value });
+  };
 
   const [childActive, setChildActive] = useState(false);
-  const [date, setDate] = useState(null);
-  const [date2, setDate2] = useState(null);
+  // const [date, setDate] = useState(null);
+  // const [date2, setDate2] = useState(null);
 
   const handleClick = () => {
     if (childActive) {
@@ -74,18 +77,27 @@ const PlanItems = ({ roadmap }) => {
     //eslint-disable-next-line
   }, [addChild]);
 
-  const onChangeDate = (e) => {
+  const onChangeStartDate = (e) => {
     console.log(e.target.value);
-    setDate(e.target.value);
-    if (date && date2) {
-      if (moment(e.target.value).isSameOrAfter(date)) {
-        setDate2(e.target.value);
+    let temp = newRoadmap;
+    temp.startDate = e.target.value;
+
+    setNewRoadmap(temp);
+    updatePlan(roadmap._id, newRoadmap);
+    if (temp.startDate && temp.dueDate) {
+      if (moment(e.target.value).isSameOrAfter(temp.dueDate)) {
+        temp.dueDate = e.target.value;
+        setNewRoadmap(temp);
+        updatePlan(roadmap._id, newRoadmap);
       }
     }
   };
-  const onChangeDate2 = (e) => {
+  const onChangeDueDate = (e) => {
     console.log(e.target.value);
-    setDate2(e.target.value);
+    let temp = newRoadmap;
+    temp.dueDate = e.target.value;
+    setNewRoadmap(temp);
+    updatePlan(roadmap._id, newRoadmap);
   };
 
   const onClickPlan = (e) => {
@@ -93,15 +105,6 @@ const PlanItems = ({ roadmap }) => {
     if (e.target.classList.contains('Dsqwe')) {
       showPlanInfo ? setshowPlanInfo(false) : setshowPlanInfo(true);
     }
-  };
-
-  const [newRoadmap, setNewRoadmap] = useState(roadmap);
-  const onChangeEdit = (e) => {
-    setNewRoadmap({ ...newRoadmap, [e.target.name]: e.target.value });
-    let array = roadmap.childPlans;
-    let index = array.indexOf({ title: 'wew!ddzvqddd' });
-    console.log(array);
-    console.log(index);
   };
 
   const onUpdatePlan = async (e) => {
@@ -129,11 +132,7 @@ const PlanItems = ({ roadmap }) => {
           <ol>
             {roadmap.childPlans &&
               roadmap.childPlans.map((childPlan) => (
-                <ChildPlan
-                  childPlan={childPlan}
-                  key={childPlan._id}
-                  selected={selected}
-                />
+                <ChildPlan childPlan={childPlan} key={childPlan._id} />
               ))}
 
             <div className='rd-btn addChild' onClick={onClick}>
@@ -157,19 +156,29 @@ const PlanItems = ({ roadmap }) => {
         )}
       </div>
       <div className='rm-date'>
-        {date && <Moment format='MMMM Do YYYY'>{date}</Moment>}
+        {newRoadmap.startDate && (
+          <Moment format='MMMM Do YYYY'>{newRoadmap.startDate}</Moment>
+        )}
 
-        <input type='date' onChange={onChangeDate} required='required' />
+        <input
+          type='date'
+          onChange={onChangeStartDate}
+          required='required'
+          name='startDate'
+        />
       </div>
       <div className='rm-date'>
-        {date2 && <Moment format='MMMM Do YYYY'>{date2}</Moment>}
+        {newRoadmap.dueDate && (
+          <Moment format='MMMM Do YYYY'>{newRoadmap.dueDate}</Moment>
+        )}
 
-        {date && (
+        {newRoadmap.startDate && (
           <input
             type='date'
-            onChange={onChangeDate2}
+            name='dueDate'
+            onChange={onChangeDueDate}
             required='required'
-            min={date}
+            min={newRoadmap.startDate}
           />
         )}
       </div>

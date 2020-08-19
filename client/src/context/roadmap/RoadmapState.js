@@ -8,7 +8,6 @@ import {
   SET_LOADING_RM,
   DELETE_PLAN,
   UPDATE_PLAN,
-  DELETE_CHILD_PLAN,
 } from '../types';
 
 const RoadmapState = (props) => {
@@ -53,6 +52,7 @@ const RoadmapState = (props) => {
 
   const updatePlan = async (id, data) => {
     setLoadingRM();
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const RoadmapState = (props) => {
 
     try {
       const res = await axios.put(`/api/roadmaps/${id}`, data, config);
-      console.log(res.data);
+
       dispatch({
         type: UPDATE_PLAN,
         payload: res.data,

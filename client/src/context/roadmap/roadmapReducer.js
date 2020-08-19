@@ -4,7 +4,6 @@ import {
   SET_LOADING_RM,
   DELETE_PLAN,
   UPDATE_PLAN,
-  DELETE_CHILD_PLAN,
 } from '../types';
 
 export default (state, action) => {
