@@ -43,13 +43,6 @@ export default (state, action) => {
         plans: state.plans.filter((plan) => action.payload !== plan._id),
         loading: false,
       };
-
-    case DELETE_CHILD_PLAN:
-      return {
-        ...state,
-
-        loading: false,
-      };
     default:
       return state;
   }

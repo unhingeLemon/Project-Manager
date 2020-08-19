@@ -132,8 +132,9 @@ router.delete('/childPlan/:id', auth, async (req, res) => {
     ) {
       try {
         await result.childPlans.id(req.params.id).remove();
-        await result.save();
-        res.json({ msg: 'Child plan removed' });
+        let doc = await result.save();
+
+        res.json(doc);
       } catch (error) {
         res.status(404).json({ msg: 'Plan not found' });
       }

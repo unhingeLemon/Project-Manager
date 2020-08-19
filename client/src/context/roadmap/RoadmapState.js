@@ -112,10 +112,10 @@ const RoadmapState = (props) => {
   const deleteChildPlan = async (id) => {
     setLoadingRM();
     try {
-      await axios.delete(`/api/roadmaps/childPlan/${id}`);
+      let res = await axios.delete(`/api/roadmaps/childPlan/${id}`);
       dispatch({
-        type: DELETE_CHILD_PLAN,
-        payload: id,
+        type: UPDATE_PLAN,
+        payload: res.data,
       });
     } catch (err) {
       console.log(err);
