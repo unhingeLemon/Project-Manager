@@ -71,16 +71,29 @@ const Sidebar = () => {
             {project && project.title}
           </div>
           <div>{project && project.description}</div>
-          <Link to='/roadmap'> Roadmap </Link>
 
-          {project && isOwner && (
-            <div className='sidebarBtn'>
+          {project && (
+            <div className='sidebar-options'>
               <div>
-                <AddPeople />
+                <Link to='/roadmap' className='sidebar-option-item'>
+                  Roadmap
+                </Link>
               </div>
-              <div>
-                <UpdateProject />
-              </div>
+              {isOwner && (
+                <div>
+                  <UpdateProject />
+                </div>
+              )}
+              {isOwner && (
+                <div>
+                  <DeleteProject />
+                </div>
+              )}
+              {isOwner && (
+                <div>
+                  <AddPeople />
+                </div>
+              )}
             </div>
           )}
           <div className='users-sidebar'>
@@ -113,12 +126,6 @@ const Sidebar = () => {
                 ))}
             </ul>
           </div>
-
-          {isOwner && (
-            <div className='sidebarBtn'>
-              <DeleteProject />
-            </div>
-          )}
         </div>
       ) : (
         <div className='modal-bg clear-bg'>

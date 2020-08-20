@@ -27,14 +27,9 @@ const DeleteProject = (props) => {
 
   return (
     <Fragment>
-      <div className='btn-container'>
-        <button
-          onClick={() => setOpen(true)}
-          className='btn btn-primary deleteBtn'
-        >
-          Delete
-        </button>
-      </div>
+      <button className='sidebar-option-item' onClick={() => setOpen(true)}>
+        Delete
+      </button>
 
       {isOpen ? (
         <div className='modal-bg'>

@@ -34,11 +34,9 @@ const UpdateProject = () => {
 
   return (
     <Fragment>
-      <div className='btn-container'>
-        <button onClick={() => setOpen(true)} className='btn btn-primary'>
-          Edit
-        </button>
-      </div>
+      <button className='sidebar-option-item' onClick={() => setOpen(true)}>
+        Edit
+      </button>
 
       {isOpen ? (
         <div className='modal-bg'>
