@@ -967,11 +967,17 @@
   width: 77vw;
 }
 
+.roadmap-container > div:nth-of-type(1) {
+  font-size: 20px;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
 .roadmap-board {
   background-color: #17282a;
   border-radius: 3px;
-  min-height: 450px;
-  max-height: 450px;
+  min-height: 36vw;
+  max-height: 36vw;
   overflow-y: scroll;
 
   display: flex;
@@ -1007,8 +1013,12 @@
 .rm-title > div:nth-of-type(1) {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
 }
+.rm-title > div:nth-of-type(1) > i {
+  margin-right: 10px;
+}
+
 .rm-title > div:nth-of-type(1):hover {
   cursor: pointer;
 }
@@ -1044,25 +1054,43 @@ input[type='date']::-webkit-datetime-edit-text {
   display: none;
 }
 
-.rm-title > ol {
+.rm-title > ul {
   padding-left: 40px;
+  margin-top: 5px;
+  list-style: none;
+}
+.rm-title > ul > li {
+  padding: 2px;
+}
+.rm-title > ul > li > input {
+  margin-right: 5px;
+}
+.checkmark {
+  cursor: pointer;
 }
 
 .rm-btn {
-  padding: 2px 0 2px 4px;
-  width: 30%;
-  border-radius: 5px;
+  font-size: 20px;
+  padding: 4px 6px;
 }
-.addChild:hover {
-  background-color: #1c3a35;
+
+.rm-btn:hover {
   cursor: pointer;
 }
+
+.add-child {
+  background-color: #1c3133;
+}
+
 .create-plan {
-  margin-left: 10px;
+  margin-left: 20px;
+  background-color: #1c3133;
+  width: 32px;
+  padding: 7px;
+  margin-bottom: 10px;
 }
 
 .create-plan:hover {
-  background-color: #1d3235;
   cursor: pointer;
 }
 
@@ -1070,11 +1098,13 @@ input[type='date']::-webkit-datetime-edit-text {
   padding: 4px 4px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .rm-form > input {
   padding: 5px;
   font-size: 14px;
   border: none;
+  border-radius: 2px;
   width: 80%;
 }
 .rm-submit {
@@ -1082,8 +1112,18 @@ input[type='date']::-webkit-datetime-edit-text {
   border: none;
   padding: 4px 4px;
   margin-left: 4px;
+  width: 25px;
+  border-radius: 2px;
 }
-
+.roadmap-add {
+  margin-left: 18px;
+  width: 60%;
+  margin-bottom: 20px;
+}
+.plan-add {
+  height: 100%;
+  padding: 5px;
+}
 .rm-submit > i {
   font-size: 14px;
 }

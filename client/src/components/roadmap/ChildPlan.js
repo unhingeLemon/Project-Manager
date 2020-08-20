@@ -37,19 +37,23 @@ const ChildPlan = ({ childPlan }) => {
   };
   return (
     <li onClick={onClickChildPlan} className='childplan-container'>
-      {childPlan.title}
       <input
+        className='checkmark'
         type='checkbox'
         defaultChecked={childPlan.checked}
         onChange={() => {
           console.log(childPlan.checked);
           if (childPlan.checked) {
-            childPlan.checked = false;
+            newchildPlan.checked = false;
+            updateChildPlan(childPlan._id, newchildPlan);
           } else {
-            childPlan.checked = true;
+            newchildPlan.checked = true;
+            updateChildPlan(childPlan._id, newchildPlan);
           }
         }}
       />
+
+      {childPlan.title}
       {/* MODAL SHOW INFO OF A CHILD PLAN */}
       {showChildPlanInfo && (
         <div className='modal-bg'>

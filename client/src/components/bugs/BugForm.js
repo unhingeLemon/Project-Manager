@@ -84,7 +84,6 @@ const BugForm = () => {
                   onChange={onChange}
                   name='description'
                   maxLength='600'
-                  required
                 />
               </label>
               <div className='priority'>

@@ -54,7 +54,7 @@ const Roadmap = () => {
       <Sidebar />
 
       <div className='roadmap-container'>
-        <div>Roadmap for: PROJECT NAME LOL</div>
+        <div>/ Roadmap</div>
         <div className='roadmap-board'>
           <div>
             <div className='roadmap-header'>
@@ -66,18 +66,20 @@ const Roadmap = () => {
               plans.map((plan) => (
                 <PlanItems roadmap={plan} key={plan._id} />
               ))}{' '}
-            <div className='rd-btn create-plan' onClick={addPlanClick}>
-              <i className='fas fa-plus'></i>
-            </div>
+            <i
+              className='fas fa-plus rm-btn create-plan'
+              onClick={addPlanClick}
+              style={{ display: `${addPlanActive ? 'none' : 'block'}` }}
+            ></i>
             {addPlanActive && (
-              <form className='rm-form' onSubmit={addPlanSubmit}>
+              <form className='rm-form roadmap-add' onSubmit={addPlanSubmit}>
                 <input
                   type='text'
                   placeholder='What needs to be done?'
                   value={newPlan.title}
                   onChange={onChange}
                 />
-                <button className='rd-btn rm-submit'>
+                <button className='rm-submit '>
                   <i className='fas fa-chevron-right'></i>
                 </button>
               </form>

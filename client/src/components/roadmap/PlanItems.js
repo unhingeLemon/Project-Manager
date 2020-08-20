@@ -125,34 +125,36 @@ const PlanItems = ({ roadmap }) => {
         name to access 2 divs */}
 
         <div className='Dsqwe'>
-          {roadmap.title} <i className='fas fa-th-list' onClick={handleClick} />
+          <i className='fas fa-th-list' onClick={handleClick} /> {roadmap.title}
         </div>
 
         {childActive && (
-          <ol>
+          <ul>
             {roadmap.childPlans &&
               roadmap.childPlans.map((childPlan) => (
                 <ChildPlan childPlan={childPlan} key={childPlan._id} />
               ))}
 
-            <div className='rd-btn addChild' onClick={onClick}>
-              <i className='fas fa-plus'></i> Add
-            </div>
+            <i
+              className='fas fa-plus rm-btn add-child'
+              onClick={onClick}
+              style={{ display: `${addChild ? 'none' : 'inline'}` }}
+            ></i>
+
             {addChild && (
               <form className='rm-form' onSubmit={onSubmitChild}>
                 <input
-                  className='rm-form'
                   type='text'
                   onChange={onChangeChild}
                   value={child.title}
                   placeholder='What needs to be done?'
                 />
-                <button className='rd-btn rm-submit'>
+                <button className='rm-submit plan-add'>
                   <i class='fas fa-chevron-right'></i>
                 </button>
               </form>
             )}
-          </ol>
+          </ul>
         )}
       </div>
       <div className='rm-date'>
