@@ -8,6 +8,7 @@ import {
   SET_LOADING_RM,
   DELETE_PLAN,
   UPDATE_PLAN,
+  RESET_ROADMAP,
 } from '../types';
 
 const RoadmapState = (props) => {
@@ -24,7 +25,6 @@ const RoadmapState = (props) => {
   };
 
   const getPlans = async (project) => {
-    console.log('wew');
     setLoadingRM();
     try {
       const res = await axios.get(`/api/roadmaps/${project}`);
@@ -69,6 +69,13 @@ const RoadmapState = (props) => {
     } catch (err) {
       console.log(err.message);
     }
+  };
+
+  const resetRoadmap = () => {
+    setLoadingRM();
+    dispatch({
+      type: RESET_ROADMAP,
+    });
   };
 
   const deletePlan = async (id) => {
@@ -133,6 +140,7 @@ const RoadmapState = (props) => {
         deletePlan,
         updateChildPlan,
         deleteChildPlan,
+        resetRoadmap,
       }}
     >
       {props.children}

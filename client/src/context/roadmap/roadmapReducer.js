@@ -4,6 +4,7 @@ import {
   SET_LOADING_RM,
   DELETE_PLAN,
   UPDATE_PLAN,
+  RESET_ROADMAP,
 } from '../types';
 
 export default (state, action) => {
@@ -40,6 +41,12 @@ export default (state, action) => {
       return {
         ...state,
         plans: state.plans.filter((plan) => action.payload !== plan._id),
+        loading: false,
+      };
+    case RESET_ROADMAP:
+      return {
+        ...state,
+        plans: null,
         loading: false,
       };
     default:

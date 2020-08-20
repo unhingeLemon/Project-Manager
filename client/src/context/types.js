@@ -30,3 +30,4 @@ export const ADD_CHILD_PLAN = 'ADD_CHILD_PLAN';
 export const SET_LOADING_RM = 'SET_LOADING_RM';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const UPDATE_PLAN = 'UPDATE_PLAN';
+export const RESET_ROADMAP = 'RESET_ROADMAP';

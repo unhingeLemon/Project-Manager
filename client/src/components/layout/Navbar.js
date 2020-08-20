@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import BugContext from '../../context/bug/bugContext';
 import ProjectContext from '../../context/project/projectContext';
+import RoadmapContext from '../../context/roadmap/roadmapContext';
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
   const bugContext = useContext(BugContext);
   const projectContext = useContext(ProjectContext);
+  const roadmapContext = useContext(RoadmapContext);
   const { logout, user, isAuthenticated } = authContext;
   const { resetBugs } = bugContext;
 
@@ -15,7 +17,7 @@ const Navbar = () => {
     logout();
     resetBugs();
     projectContext.resetProject();
-    // RESET PROJECT
+    roadmapContext.resetRoadmap();
   };
 
   return (

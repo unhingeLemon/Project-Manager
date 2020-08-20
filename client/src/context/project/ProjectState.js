@@ -158,6 +158,7 @@ const ProjectState = (props) => {
   };
 
   const resetProject = () => {
+    setLoading();
     dispatch({
       type: RESET_PROJECT,
     });

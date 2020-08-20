@@ -87,7 +87,6 @@ const CreateProject = () => {
                   onChange={onChange}
                   name='description'
                   maxLength='500'
-                  required
                 />
               </label>
               <div className='btn-container2 btn-cproject'>

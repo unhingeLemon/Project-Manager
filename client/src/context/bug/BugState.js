@@ -82,6 +82,7 @@ const BugState = (props) => {
     }
   };
   const resetBugs = () => {
+    setLoading();
     dispatch({
       type: RESET_BUGS,
     });

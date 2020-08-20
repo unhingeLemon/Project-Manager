@@ -3,8 +3,13 @@ import Moment from 'react-moment';
 import AuthContext from '../../context/auth/authContext';
 import { Redirect } from 'react-router-dom';
 import ProjectContext from '../../context/project/projectContext';
+import BugContext from '../../context/bug/bugContext';
+import RoadmapContext from '../../context/roadmap/roadmapContext';
 const ProjectItem = ({ project }) => {
   const authContext = useContext(AuthContext);
+  const bugContext = useContext(BugContext);
+  const roadmapContext = useContext(RoadmapContext);
+
   const { user, updateUser } = authContext;
   const [redirect, setRedirect] = useState(false);
   const projectContext = useContext(ProjectContext);
@@ -13,6 +18,8 @@ const ProjectItem = ({ project }) => {
   var tempUser;
 
   const onClick = () => {
+    bugContext.resetBugs();
+    roadmapContext.resetRoadmap();
     tempUser = user;
     tempUser.projectId = project._id;
     updateUser(user._id, tempUser);
