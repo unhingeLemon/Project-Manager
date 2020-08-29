@@ -1156,3 +1156,15 @@ input[type='date']::-webkit-datetime-edit-text {
   background-color: #d6d6d6;
   transition: 0.4s ease;
 }
+
+.childplan-container {
+  padding: 5px 5px;
+  padding-left: 8px !important;
+  border-radius: 3px;
+  transition: 0.3s ease;
+}
+
+.childplan-container:hover {
+  cursor: pointer;
+  background: #17282a;
+}

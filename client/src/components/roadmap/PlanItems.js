@@ -57,7 +57,6 @@ const PlanItems = ({ roadmap }) => {
 
     if (child.title !== '') {
       if (roadmap.childPlans.length === 0) {
-        console.log('0');
         updatePlan(roadmap._id, { childPlans: [child] });
         getPlans(project._id);
       } else {
@@ -78,22 +77,20 @@ const PlanItems = ({ roadmap }) => {
   }, [addChild]);
 
   const onChangeStartDate = (e) => {
-    console.log(e.target.value);
-    let temp = newRoadmap;
+    setNewRoadmap(roadmap);
+    let temp = roadmap;
     temp.startDate = e.target.value;
-
     setNewRoadmap(temp);
-    updatePlan(roadmap._id, newRoadmap);
+    updatePlan(roadmap._id, temp);
     if (temp.startDate && temp.dueDate) {
       if (moment(e.target.value).isSameOrAfter(temp.dueDate)) {
         temp.dueDate = e.target.value;
         setNewRoadmap(temp);
-        updatePlan(roadmap._id, newRoadmap);
+        updatePlan(roadmap._id, temp);
       }
     }
   };
   const onChangeDueDate = (e) => {
-    console.log(e.target.value);
     let temp = newRoadmap;
     temp.dueDate = e.target.value;
     setNewRoadmap(temp);
@@ -101,7 +98,6 @@ const PlanItems = ({ roadmap }) => {
   };
 
   const onClickPlan = (e) => {
-    console.log(e.target.classList.contains('Dsqwe'));
     if (e.target.classList.contains('Dsqwe')) {
       showPlanInfo ? setshowPlanInfo(false) : setshowPlanInfo(true);
     }
@@ -109,7 +105,7 @@ const PlanItems = ({ roadmap }) => {
 
   const onUpdatePlan = async (e) => {
     e.preventDefault();
-    console.log('submitted');
+
     updatePlan(roadmap._id, newRoadmap);
     setshowPlanInfo(false);
   };
@@ -152,7 +148,7 @@ const PlanItems = ({ roadmap }) => {
                   placeholder='What needs to be done?'
                 />
                 <button className='rm-submit plan-add'>
-                  <i class='fas fa-chevron-right'></i>
+                  <i className='fas fa-chevron-right'></i>
                 </button>
               </form>
             )}
