@@ -1099,8 +1099,12 @@ input[type='date']::-webkit-datetime-edit-text {
 
 .add-child {
   background-color: #1c3133;
+  font-size: 15px;
 }
 
+.add-child-cont {
+  margin-top: 3px !important;
+}
 .create-plan {
   margin-left: 20px;
   background-color: #1c3133;

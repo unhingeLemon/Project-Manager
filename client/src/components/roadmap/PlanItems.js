@@ -135,11 +135,13 @@ const PlanItems = ({ roadmap }) => {
                 <ChildPlan childPlan={childPlan} key={childPlan._id} />
               ))}
 
-            <i
-              className='fas fa-plus rm-btn add-child'
-              onClick={onClick}
-              style={{ display: `${addChild ? 'none' : 'inline'}` }}
-            ></i>
+            <div className='add-child-cont'>
+              <i
+                className='fas fa-plus rm-btn add-child'
+                onClick={onClick}
+                style={{ display: `${addChild ? 'none' : 'inline'}` }}
+              ></i>
+            </div>
 
             {addChild && (
               <form className='rm-form' onSubmit={onSubmitChild}>
