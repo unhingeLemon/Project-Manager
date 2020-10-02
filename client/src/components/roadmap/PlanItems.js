@@ -92,9 +92,13 @@ const PlanItems = ({ roadmap }) => {
   };
   const onChangeDueDate = (e) => {
     let temp = newRoadmap;
-    temp.dueDate = e.target.value;
-    setNewRoadmap(temp);
-    updatePlan(roadmap._id, newRoadmap);
+    if (moment(e.target.value).isBefore(temp.startDate)) {
+      console.log('its before');
+    } else {
+      temp.dueDate = e.target.value;
+      setNewRoadmap(temp);
+      updatePlan(roadmap._id, newRoadmap);
+    }
   };
 
   const onClickPlan = (e) => {
