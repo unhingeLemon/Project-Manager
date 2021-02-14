@@ -7,6 +7,9 @@
   font-family: 'Roboto', sans-serif;
   white-space: normal;
 }
+p {
+  text-align: center;
+}
 
 .ripple {
   position: fixed;
